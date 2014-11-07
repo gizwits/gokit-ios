@@ -104,13 +104,6 @@
 
 - (void)checkMode
 {
-    if(![XPGWifiSDK sharedInstance])
-    {
-        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"SDK 初始化失败。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
-        [self performSelector:@selector(pushToNotReachable) withObject:nil afterDelay:0.5];
-        return;
-    }
-    
     [XPGWifiSDK sharedInstance].delegate = self;
     
     // 检测到 Soft AP 模式，自动跳转，无需登录
@@ -178,7 +171,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [XPGWifiSDK sharedInstance].delegate = nil;
+    if(self.navigationController.viewControllers.lastObject == self)
+        [XPGWifiSDK sharedInstance].delegate = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
