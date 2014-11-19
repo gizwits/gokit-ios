@@ -56,6 +56,14 @@ typedef enum _tagXPGWifiErrorCode
     XPGWifiError_INVALID_VERSION = -22,
     XPGWifiError_INSUFFIENT_MEM = -23,
     XPGWifiError_THREAD_BUSY = -24,
+    // pomia 141104, start
+    XPGWifiError_CONFIGURE_TIMEOUT = -40,
+    XPGWifiError_CONFIGURE_SENDFAILED = -41,
+    XPGWifiError_NOT_IN_SOFTAPMODE = -42,
+    XPGWifiError_UNRECOGNIZED_DATA = -43,
+    XPGWifiError_CONNECTION_NO_GATEWAY = -44,
+    XPGWifiError_CONNECTION_REFUSED = -45,
+    // pomia 141104, end
 }XPGWifiErrorCode;
 
 typedef enum _tagXPGWifiLoginErrorCode
@@ -65,22 +73,33 @@ typedef enum _tagXPGWifiLoginErrorCode
     XPGWifiLoginError_FAILED,
 }XPGWifiLoginErrorCode;
 
+// pomia 141102, start: configure mode
+typedef enum
+{
+    XPGWifiSDKSoftAPMode = 1,
+    XPGWifiSDKAirLinkMode = 2,
+}ConfigureMode;
+// pomia 141102, end
+
 @class XPGWifiSDK;
 
 @protocol XPGWifiSDKDelegate <NSObject>
 @optional
 
 /**
- * @brief Soft AP 模式得到 SSID 列表
+ * @brief 获取设备软AP模式下的SSID列表时，会触发此回调函数的调用。此回调函数返回Soft AP 模式下的 SSID 列表。
  * @param ssidList：为 XPGWifiSSID * 的集合
+ * @see -(void) getSSIDList;
  */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didGetSSIDList:(NSArray *)ssidList result:(int)result;
 
 /**
- * @brief Air Link 模式成功配置设备
+ * @brief 设备配置的结果
  * @param device：已配置成功的设备
+ * @param result：配置结果 成功或失败 如果配置失败，device为nil
+ * @note add by pomia: replace didSetAirlink
  */
-- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didSetAirLink:(XPGWifiDevice *)device;
+- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didSetDeviceWifi:(XPGWifiDevice *)device result:(int)result;
 
 /**
  * @brief 发现设备的结果
@@ -180,28 +199,6 @@ typedef enum _tagXPGWifiLoginErrorCode
  */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUnbindDevice:(NSString *)did error:(NSNumber *)error errorMessage:(NSString *)errorMessage;
 
-/**
- * @brief 获取设备详细信息结果（对应getDeviceDetailInfoWithUid）
- * @param error：0为成功，其他失败
- * @param errorMessage：错误信息（无错误则为nil）
- * @param productKey：设备的productKey（有错误则为nil）
- * @param did：设备的uid（有错误则为nil）
- * @param mac：设备的mac（有错误则为nil）
- * @param passCode：设备的passCode（有错误则为nil）
- * @param host：设备的M2M服务器域名（有错误则为nil）
- * @param port：设备的M2M服务器端口（有错误则为0）
- * @param isOnline：设备的在线状态（有错误则为NO）
- */
-- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didGetDeviceInfo:(NSNumber *)error errorMessage:(NSString *)errorMessage productKey:(NSString *)productKey did:(NSString *)did mac:(NSString *)mac passCode:(NSString *)passCode host:(NSString *)host port:(NSNumber *)port isOnline:(BOOL)isOnline;
-
-/**
- * @brief 获取设备历史数据结果（对应getDeviceHistoryDataWithDid）
- * @param error：0为成功，其他失败
- * @param errorMessage：错误信息（无错误则为nil）
- * @param data：历史数据数组（数组成员类型为字典类型）（有错误则为nil）
- */
-- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didGetDeviceHistoryData:(NSNumber *)error errorMessage:(NSString *)errorMessage data:(NSArray *)data;
-
 @end
 
 @interface XPGWifiSDK : NSObject
@@ -211,39 +208,27 @@ typedef enum _tagXPGWifiLoginErrorCode
 
 @property (nonatomic, assign) id <XPGWifiSDKDelegate>delegate;
 
+//Trevor simplify
 /**
- * @brief 设置输出Log级别
- * @param level 日志级别。枚举值简介：
- * XPGWifiLogLevelNone       输出最多的日志内容
- * XPGWifiLogLevelInfo       输出信息、警告和错误
- * XPGWifiLogLevelWarning    只输出警告和错误
- * XPGWifiLogLevelError      只输出错误
- * @note 默认 level=XPGWifiLogLevelWarning
- * 仅在[XPGWifiSDK sharedInstance]后设置有效
- */
-+ (void)setLogLevel:(XPGWifiLogLevel)level;
-
-/**
- * @brief 设置输出Log文件。输出路径为/Documents
- * @param file：能访问到文件的相对路径
+ * @brief 设置Log级别、Log文件路径、Log内二进制输出级别
+ *
+ * @param logLevel：日志级别。枚举值简介：
+ * XPGWifiLogLevelError     只输出错误
+ * XPGWifiLogLevelWarning   只输出警告
+ * XPGWifiLogLevelAll       输出最多的日志内容
+ * @note 默认 level=XPGWifiLogLevelAll???
+ *
+ * logFile：日志文件的相对路径（相对/Documents）(指定Nil则不输出到文件)
  * @note 默认不输出到文件
+ *
+ * @param printDataLevel：日志内二进制数据输出级别。布尔值简介：
+ * isDebug=YES：  输出最多信息
+ * isDebug=NO：   输出最少信息
+ * @note 默认 isDebug=NO
+ *
  * 仅在[XPGWifiSDK sharedInstance]后设置有效
  */
-+ (void)setLogFile:(NSString *)file;
-
-/**
- * @brief 设置内置的产品过滤
- * @param isEnabled：是否过滤
- * @note 在载入配置文件之前配置有效。默认Enabled
- */
-+ (void)enableProductFilter:(BOOL)isEnabled;
-
-/**
- * @brief 注册内置的产品过滤规则
- * @param productkey：允许的产品标识
- * @note 在载入配置文件之前配置有效。默认nil
- */
-+ (void)registerProductKeys:(NSString *)productkey, ... NS_REQUIRES_NIL_TERMINATION;
++ (void)setLogLevel:(XPGWifiLogLevel)logLevel logFile:(NSString *)logFile printDataLevel:(BOOL)isDebug;
 
 /**
  * @brief 注册识别Soft AP模式的规则
@@ -251,23 +236,6 @@ typedef enum _tagXPGWifiLoginErrorCode
  * @note 在载入配置文件之前配置有效。默认nil
  */
 + (void)registerSSIDs:(NSString *)ssidPrefix, ... NS_REQUIRES_NIL_TERMINATION;
-
-/**
- * @brief 设置输出二进制级别
- * @param isDebug=YES：  输出最多信息
- * @param isDebug=NO：   输出最少信息
- * @note 默认 isDebug=NO
- * 仅在[XPGWifiSDK sharedInstance]后设置有效
- */
-+ (void)setPrintDataLevel:(BOOL)isDebug;
-
-/**
- * @brief 设置配置文件的模式
- * @param isDebug=YES：  DEBUG模式
- * @param isDebug=NO：   RELEASE模式
- * @note 默认 isDebug=NO
- */
-+ (void)setDebug:(BOOL)isDebug;
 
 /**
  * @brief 设置服务器地址切换
@@ -299,23 +267,20 @@ typedef enum _tagXPGWifiLoginErrorCode
 + (void)updateDeviceFromServer:(NSString *)productKey;
 
 /**
- * @brief 软AP模式下，配置上路由的方法
+ * @brief 配置路由的方法
  * @param ssid：需要配置到路由的SSID名
  * @param key：需要配置到路由的密码
+ * @param mode：配置方式 SoftAPMode=软AP模式 AirLinkMode=一键配置模式
+ * @param timeout: 配置的超时时间 SDK默认执行的最小超时时间为30秒
+ * @note add by pomia
  */
-- (BOOL)setSSID:(NSString *)ssid key:(NSString *)key;
+- (void)setDeviceWifi:(NSString*)ssid key:(NSString*)key mode:(ConfigureMode)mode timeout:(int)timeout;
 
 /**
- * @brief 软AP模式下，获取设备搜索到的SSID列表
+ * @brief 获取设备Wifi在软AP模式下搜索到的SSID列表，SSID列表通过异步回调方式返回。
+ * @see 回调函数：- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didGetSSIDList:(NSArray *)ssidList result:(int)result;
  */
 - (void)getSSIDList;
-
-/**
- * @brief 一键配置路由的方法
- * @param ssid：需要配置到路由的SSID名
- * @param key：需要配置到路由的密码
- */
-- (BOOL)setAirLink:(NSString *)ssid key:(NSString *)key;
 
 /**
  * @brief 请求向指定手机发送验证码
@@ -417,7 +382,7 @@ typedef enum _tagXPGWifiLoginErrorCode
  * @param token：登录成功后得到的token
  * @param uid：登录成功后得到的uid
  * @param did：待绑定设备的did
- * @param passCode：待绑定设备的passCode
+ * @param passCode：待绑定设备的passCode（能得到就传，得不到可传Nil，SDK会内部尝试获取PassCode）
  */
 - (void)bindDeviceWithUid:(NSString *)uid token:(NSString *)token did:(NSString *)did passCode:(NSString *)passCode;
 
@@ -426,36 +391,17 @@ typedef enum _tagXPGWifiLoginErrorCode
  * @param uid：登录成功后得到的uid
  * @param token：登录成功后得到的token
  * @param did：待解绑设备的did
- * @param passCode：待解绑设备的passCode
+ * @param passCode：待解绑设备的passCode（能得到就传，得不到可传Nil，SDK会内部尝试获取PassCode）
  */
 - (void)unbindDeviceWithUid:(NSString *)uid token:(NSString *)token did:(NSString *)did passCode:(NSString *)passCode;
 
+//Trevor simplify
 /**
  * @brief 获取绑定设备及本地设备列表
  * @param uid：登录成功后得到的uid
  * @param token：登录成功后得到的token
+ * @param productkey：指定待筛选设备的产品标识（获取或搜索到未指定设备产品标识的设备将其过滤，指定Nil则不过滤）
  */
-- (void)getBoundDevicesWithUid:(NSString *)uid token:(NSString *)token;
-
-/**
- * @brief 获取指定设备的详细信息
- * @param uid：登录成功后得到的uid
- * @param token：登录成功后得到的token
- * @param did：指定设备的did
- */
-- (void)getDeviceDetailInfoWithUid:(NSString *)uid token:(NSString *)token did:(NSString *)did;
-
-/**
- * @brief 获取指定设备的历史数据
- * @param token：登录成功后得到的token
- * @param did：指定设备的did
- * @param startTS：指定开始时间戳
- * @param endTS：指定结束时间戳
- * @param entity：指定entity
- * @param attr：指定attr
- * @param limit：指定limit
- * @param skip：指定skip
- */
-- (void)getDeviceHistoryData:(NSString *)token did:(NSString *)did startTS:(int)startTS endTS:(int)endTS entity:(int)entity attr:(int)attr limit:(int)limit skip:(int)skip;
+- (void)getBoundDevicesWithUid:(NSString *)uid token:(NSString *)token specialProductKeys:(NSString *)productkey, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end

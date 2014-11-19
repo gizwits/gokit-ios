@@ -1,16 +1,31 @@
-//
-//  IoTDeviceList.m
-//  WiFiDemo
-//
-//  Created by xpg on 14-6-6.
-//  Copyright (c) 2014年 Xtreme Programming Group, Inc. All rights reserved.
-//
+/**
+ * IoTDeviceList.m
+ *
+ * Copyright (c) 2014~2015 Xtreme Programming Group, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 #import "IoTDeviceList.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AFNetworking/AFNetworking.h>
 
-#import "IoTAddDeviceViewController.h"
 #import "IoTLogin.h"
 #import "IoTAirlinkConfigure.h"
 #import <XPGWifiSDK/XPGWifiSDK.h>
@@ -34,10 +49,6 @@
    
     XPGWifiDevice *selectedDevices;
     UIAlertView *_alertView;
-    
-    //自动下载配置文件
-    NSMutableArray *downloadedProducts;
-    NSTimer *logTimer;
 }
 
 @property (strong, nonatomic) NSArray *arrayList;
@@ -74,12 +85,11 @@
 #if QR_SIMULATOR
 - (void)qrcodeSimulator
 {
-    IoTAddDeviceViewController *addDev = [[IoTAddDeviceViewController alloc] init];
-    addDev.device = nil;
-    addDev.did = @"9H7oLSMq9CWxkhPiMnZGQH";
-    addDev.passcode = @"123456";
-    addDev.productkey = @"6f3074fe43894547a4f1314bd7e3ae0b";
-    [self.navigationController pushViewController:addDev animated:YES];
+    NSString *did = @"9H7oLSMq9CWxkhPiMnZGQH";
+    NSString *passcode = @"123456";
+    AppDelegate.hud.labelText = [NSString stringWithFormat:@"正在绑定%@...", selectedDevices.macAddress];
+    [AppDelegate.hud show:YES];
+    [[XPGWifiSDK sharedInstance] bindDeviceWithUid:AppDelegate.uid token:AppDelegate.token did:did passCode:passcode];
 }
 #endif
 
@@ -115,9 +125,6 @@
     
     [[AFNetworkReachabilityManager sharedManager] removeObserver:self forKeyPath:@"networkReachabilityStatus"];
     
-    [logTimer invalidate];
-    logTimer = nil;
-
     [XPGWifiSDK sharedInstance].delegate = nil;
     selectedDevices.delegate = nil;
 
@@ -248,27 +255,27 @@
         return;
     [self LockList];
     
-    //连接设备
-    MBProgressHUD *hud = AppDelegate.hud;
-    hud.labelText = @"连接中...";
-    [hud show:YES];
-    
-    if(NULL != selectedDevices)
-    {
-        selectedDevices.delegate = nil;
-        if([selectedDevices isConnected])
-            [selectedDevices disconnect];
-    }
-    
     //连接后不用解锁，等到收到连接事件后解锁
     NSArray *arrSection = self.arrayList[indexPath.section];
     selectedDevices = arrSection[indexPath.row];
     selectedDevices.delegate = self;
 
-    if(![selectedDevices connect])
-        [AppDelegate.hud hide:YES];
-    else
-        return;
+    if ([selectedDevices.passcode length]) {
+        AppDelegate.hud.labelText = [NSString stringWithFormat:@"正在登录%@...", selectedDevices.macAddress];
+        [AppDelegate.hud show:YES];
+        [selectedDevices login:AppDelegate.uid token:AppDelegate.token];
+    } else {
+        if(selectedDevices.did.length == 0)
+        {
+            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备尚未与云端注册，无法绑定。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+        }
+        else
+        {
+            AppDelegate.hud.labelText = [NSString stringWithFormat:@"正在绑定%@...", selectedDevices.macAddress];
+            [AppDelegate.hud show:YES];
+            [[XPGWifiSDK sharedInstance] bindDeviceWithUid:AppDelegate.uid token:AppDelegate.token did:selectedDevices.did passCode:nil];
+        }
+    }
 
     [self unLockList];
 }
@@ -292,10 +299,7 @@
     hud.labelText = @"正在加载云端列表...";
     [hud show:YES];
     
-    if(!isDiscoverLock)
-        downloadedProducts = [NSMutableArray array];
-    
-    [[XPGWifiSDK sharedInstance] getBoundDevicesWithUid:AppDelegate.uid token:AppDelegate.token];
+    [[XPGWifiSDK sharedInstance] getBoundDevicesWithUid:AppDelegate.uid token:AppDelegate.token specialProductKeys:IOT_PRODUCT, nil];
 }
 
 - (void)setArrayList:(NSArray *)arrayList
@@ -324,37 +328,9 @@
         [arr3 addObject:device];
     }
     
-    [self downloadJsonWithList:arrayList];
-    
     _arrayList = @[arr1, arr2, arr3];
     [self unLockList];
     [self.tableView reloadData];
-}
-
-- (void)downloadJsonWithList:(NSArray *)list
-{
-    for(XPGWifiDevice *device in list)
-    {
-        BOOL isProductExists = NO;
-        if(device.productKey.length == 0)
-            continue;
-        
-        for(NSString *productKey in downloadedProducts)
-        {
-            if([device.productKey isEqualToString:productKey])
-            {
-                isProductExists = YES;
-                break;
-            }
-        }
-        
-        if(!isProductExists)
-        {
-            NSLog(@"%s Download product:%@", __func__, device.productKey);
-            [XPGWifiSDK updateDeviceFromServer:device.productKey];
-            [downloadedProducts addObject:device.productKey];
-        }
-    }
 }
 
 #pragma mark - 列表回调
@@ -401,43 +377,10 @@
     }
 }
 
-- (void)XPGWifiDeviceDidConnectFailed:(XPGWifiDevice *)device
-{
-    if([device isEqualToDevice:selectedDevices])
-    {
-        [self unLockList];
-        [AppDelegate.hud hide:YES];
-        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
-    }
-}
-
-- (void)XPGWifiDeviceDidConnected:(XPGWifiDevice *)device
-{
-    if([device isEqualToDevice:selectedDevices])
-    {
-        [self unLockList];
-//        NSLog(@"Connected device:%@, %@, %@, %@", device.macAddress, device.did, device.passcode, device.productKey);
-        if(![selectedDevices isBind:AppDelegate.uid])
-        {
-            IoTAddDeviceViewController *addDev = [[IoTAddDeviceViewController alloc] init];
-            addDev.device = selectedDevices;
-            addDev.did = nil;
-            addDev.passcode = nil;
-            addDev.productkey = nil;
-            [self.navigationController pushViewController:addDev animated:YES];
-        }
-        else
-        {
-            AppDelegate.hud.labelText = @"登录中...";
-            NSLog(@"%@ %@", AppDelegate.uid, AppDelegate.token);
-            [selectedDevices login:AppDelegate.uid token:AppDelegate.token];
-        }
-    }
-}
-
 - (void)XPGWifiDeviceDidDisconnected:(XPGWifiDevice *)device
 {
-    if([device isEqualToDevice:selectedDevices])
+    if([selectedDevices.macAddress isEqualToString:device.macAddress] &&
+       [selectedDevices.did isEqualToString:device.did])
     {
         if(AppDelegate.hud.alpha == 1 && [AppDelegate.hud.labelText isEqualToString:@"登录中..."])
         {
@@ -461,7 +404,8 @@
 
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didLogin:(int)result
 {
-    if([selectedDevices isEqualToDevice:device])
+    if([selectedDevices.macAddress isEqualToString:device.macAddress] &&
+       [selectedDevices.did isEqualToString:device.did])
     {
         [AppDelegate.hud hide:YES];
         [self unLockList];
@@ -502,9 +446,19 @@
     }
 }
 
-- (void)XPGWifiDevice:(XPGWifiDevice *)device didLoginWithMQTT:(int)result
+- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didBindDevice:(NSString *)did error:(NSNumber *)error errorMessage:(NSString *)errorMessage
 {
-    [self XPGWifiDevice:device didLogin:result];
+    [AppDelegate.hud hide:YES];
+    
+    if (![error intValue]) {
+        _alertView = [[UIAlertView alloc] initWithTitle:@"绑定成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    } else {
+        _alertView = [[UIAlertView alloc] initWithTitle:@"绑定失败" message:errorMessage delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    }
+    
+    [self downloadBindListFormCloud];
+    
+    [_alertView show];
 }
 
 #pragma mark - 设备列表锁

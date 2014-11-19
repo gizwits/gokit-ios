@@ -1,10 +1,26 @@
-//
-//  IoTDeviceController.m
-//  Gokit-demo
-//
-//  Created by xpg on 14/10/22.
-//  Copyright (c) 2014年 xpg. All rights reserved.
-//
+/**
+ * IoTDeviceController.m
+ *
+ * Copyright (c) 2014~2015 Xtreme Programming Group, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 #import "IoTDeviceController.h"
 #import <itoast.h>
@@ -111,6 +127,7 @@ typedef enum
 {
     [super viewWillAppear:animated];
     
+    //大循环判断设备是否在线
     if(!self.device.isOnline && !self.device.isLAN)
     {
         [_alertView dismissWithClickedButtonIndex:0 animated:YES];
@@ -119,6 +136,7 @@ typedef enum
         self.view.userInteractionEnabled = NO;
     }
     
+    //初始化信息
     self.navigationItem.title = _device.productName;
 
     [XPGWifiSDK sharedInstance].delegate = self;
@@ -133,6 +151,7 @@ typedef enum
     fTemperature = -1;
     fHumidity = -1;
     
+    //暂停更新页面的计时器
     if(!remainTimer)
         remainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onRemainTimer) userInfo:nil repeats:YES];
     updateCtrl = [NSMutableArray array];
@@ -525,7 +544,7 @@ typedef enum
                     MBProgressHUD *hud = AppDelegate.hud;
                     hud.labelText = @"与服务器解除绑定...";
                     [hud show:YES];
-                    [[XPGWifiSDK sharedInstance] unbindDeviceWithUid:AppDelegate.uid token:AppDelegate.token did:self.device.did passCode:self.device.passcode];
+                    [[XPGWifiSDK sharedInstance] unbindDeviceWithUid:AppDelegate.uid token:AppDelegate.token did:self.device.did passCode:nil];
                     break;
                 }
                 case 2:
@@ -580,17 +599,22 @@ typedef enum
     return value;
 }
 
-- (BOOL)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data
+- (BOOL)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data result:(int)result
 {
-    NSString *ledRonOff = [self readDataPoint:IoTDeviceWriteLED_R_onOff data:data];
-    NSString *ledColor = [self readDataPoint:IoTDeviceWriteLED_Color data:data];
-    NSString *ledR = [self readDataPoint:IoTDeviceWriteLED_R data:data];
-    NSString *ledG = [self readDataPoint:IoTDeviceWriteLED_G data:data];
-    NSString *ledB = [self readDataPoint:IoTDeviceWriteLED_B data:data];
-    NSString *motorSpeed = [self readDataPoint:IoTDeviceWriteMotorSpeed data:data];
-    NSString *ir = [self readDataPoint:IoTDeviceReadIR data:data];
-    NSString *temperature = [self readDataPoint:IoTDeviceReadTemperature data:data];
-    NSString *humidity = [self readDataPoint:IoTDeviceReadHumidity data:data];
+    /**
+     * 数据部分
+     */
+    NSDictionary *_data = [data valueForKey:@"data"];
+    
+    NSString *ledRonOff = [self readDataPoint:IoTDeviceWriteLED_R_onOff data:_data];
+    NSString *ledColor = [self readDataPoint:IoTDeviceWriteLED_Color data:_data];
+    NSString *ledR = [self readDataPoint:IoTDeviceWriteLED_R data:_data];
+    NSString *ledG = [self readDataPoint:IoTDeviceWriteLED_G data:_data];
+    NSString *ledB = [self readDataPoint:IoTDeviceWriteLED_B data:_data];
+    NSString *motorSpeed = [self readDataPoint:IoTDeviceWriteMotorSpeed data:_data];
+    NSString *ir = [self readDataPoint:IoTDeviceReadIR data:_data];
+    NSString *temperature = [self readDataPoint:IoTDeviceReadTemperature data:_data];
+    NSString *humidity = [self readDataPoint:IoTDeviceReadHumidity data:_data];
     
     NSMutableArray *rows = [NSMutableArray array];
     
@@ -615,28 +639,19 @@ typedef enum
     else
         [self setCustomLEDMode:YES];
     
-    return YES;
-}
-
-- (void)XPGWifiDeviceDidDisconnected:(XPGWifiDevice *)device
-{
-    [_alertView dismissWithClickedButtonIndex:0 animated:YES];
-    _alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"连接已断开" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [_alertView show];
-    [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
-}
-
-- (void)XPGWifiDevice:(XPGWifiDevice *)device didReceiveAlertsAndFaults:(NSDictionary *)recvInfo
-{
-    if([self.navigationController.viewControllers lastObject] != self)
-        return;
-    
-    if(self.isToasted)
-        return;
+    /**
+     * 报警和错误
+     */
+    if([self.navigationController.viewControllers lastObject] != self ||
+       self.isToasted)
+        return YES;
     
     NSString *str = @"";
-    NSArray *alerts = [recvInfo valueForKey:@"alerts"];
-    NSArray *faults = [recvInfo valueForKey:@"faults"];
+    NSArray *alerts = [data valueForKey:@"alerts"];
+    NSArray *faults = [data valueForKey:@"faults"];
+    
+    if(alerts.count == 0 && faults.count == 0)
+        return YES;
     
     if(alerts.count > 0)
     {
@@ -674,12 +689,29 @@ typedef enum
     }
     
     [self performSelectorInBackground:@selector(toast:) withObject:str];
+    
+    return YES;
+}
+
+- (void)XPGWifiDeviceDidDisconnected:(XPGWifiDevice *)device
+{
+    if(AppDelegate.hud.alpha == 0)
+    {
+        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
+        _alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"连接已断开" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [_alertView show];
+        [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+    }
 }
 
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUnbindDevice:(NSString *)did error:(NSNumber *)error errorMessage:(NSString *)errorMessage
 {
     if([self.device.did isEqualToString:did])
     {
+        //为了防止解除绑定和断开连接的时间冲突，先把 device.delegate 赋空
+        self.device.delegate = nil;
+        
+        //处理解绑事件
         [AppDelegate.hud hide:YES];
         NSDictionary *params = ([error intValue] == 0)?
         @{@"title": @"已成功解除绑定",
@@ -693,6 +725,7 @@ typedef enum
 #pragma mark - others
 - (void)setCustomLEDMode:(BOOL)mode
 {
+    //设置 LED 的 RGB 值是否可用
     bLedCtrl = mode;
     NSArray *leds = @[[NSIndexPath indexPathForRow:2 inSection:0],
                       [NSIndexPath indexPathForRow:3 inSection:0],
@@ -702,6 +735,7 @@ typedef enum
 
 - (void)toast:(NSString *)strToast
 {
+    //弹出一段字符，最多不超过3行
     self.isToasted = YES;
     iToast *toast = [iToast makeText:strToast];
     [toast performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
@@ -740,6 +774,7 @@ typedef enum
 
 - (void)onRemainTimer
 {
+    //根据系统的 Timer 去更新控件可以变更的剩余时间
     NSMutableArray *removeCtrl = [NSMutableArray array];
     for(NSMutableDictionary *dict in updateCtrl)
     {
@@ -754,6 +789,7 @@ typedef enum
 
 - (BOOL)isElementRemaining:(NSInteger)row
 {
+    //判断某个控件是否能更新内容
     for(NSMutableDictionary *dict in updateCtrl)
     {
         NSNumber *object = [dict valueForKey:@"object"];

@@ -29,25 +29,9 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
 @optional
 
 /**
- * @brief 设备已连接
- */
-- (void)XPGWifiDeviceDidConnected:(XPGWifiDevice *)device;
-
-/**
- * @brief 设备连接失败
- */
-- (void)XPGWifiDeviceDidConnectFailed:(XPGWifiDevice *)device;
-
-/**
  * @brief 设备已断开
  */
 - (void)XPGWifiDeviceDidDisconnected:(XPGWifiDevice *)device;
-
-/**
- * @brief 从设备获取 passcode 成功
- * @param result：0=成功 否则失败
- */
-- (void)XPGWifiDevice:(XPGWifiDevice *)device didGetPasscode:(int)result;
 
 /**
  * @brief 本地登录
@@ -56,16 +40,11 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didLogin:(int)result;
 
 /**
- * @brief 云端登录
- * @param result：2=获取控制权
- */
-- (void)XPGWifiDevice:(XPGWifiDevice *)device didLoginWithMQTT:(int)result;
-
-/**
  * @brief 接收数据
  * @param data：格式参考 write 方法
+ * @note add by pomia 141112: return the detail reason
  */
-- (BOOL)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data;
+- (BOOL)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data result:(int)result;
 
 /**
  * @brief 判断设备是否大循环在线
@@ -78,11 +57,6 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  * @param result：0 成功，其他失败
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didSetSwitcher:(int)result;
-
-/**
- * @brief 更新UI
- */
-- (void)XPGWifiDeviceDidUpdateUI:(XPGWifiDevice *)device;
 
 /**
  * @brief 设备推送日志信息
@@ -99,27 +73,11 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didQueryHardwareInfo:(NSDictionary *)hwInfo;
 
-/**
- * @brief 警告和错误
- * @param recvInfo
- */
-- (void)XPGWifiDevice:(XPGWifiDevice *)device didReceiveAlertsAndFaults:(NSDictionary *)recvInfo;
-
 @end
 
 @interface XPGWifiDevice : NSObject
 
 @property (nonatomic, assign) id <XPGWifiDeviceDelegate>delegate;
-
-/**
- * @brief 判断设备是否合法
- */
-- (BOOL)isValidDevice;
-
-/**
- * @brief 判断设备是否相同
- */
-- (BOOL)isEqualToDevice:(XPGWifiDevice *)device;
 
 /**
  * Properties
@@ -149,25 +107,6 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  * bit3: WiFi 模组所有指示灯的总开关，0 为关，1 为开；
  */
 - (void)setLogParam:(NSInteger)nLogLevel totalOnOff:(BOOL)totalOnOff;
-
-/**
- * @brief 获取PASSCODE。
- * @note 设备的绑定、控制需要先获取PASSCODE。
- * @note 部分设备需要按下获取密码按钮后，调用此方法才有效
- */
-- (BOOL)getPasscodeFromDevice;
-
-/**
- * @brief 设备使用大循环连接
- */
-- (BOOL)connectToMQTT;
-
-/**
- * @brief 自动匹配模式连接
- * @note 连接遵循小循环优先原则：
- * 这个设备既支持小循环，又支持大循环，则优先连接小循环
- */
-- (BOOL)connect;
 
 /**
  * @brief 断开当前的连接

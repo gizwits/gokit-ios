@@ -1,10 +1,26 @@
-//
-//  AppDelegate.m
-//  Gokit-demo
-//
-//  Created by xpg on 14/10/21.
-//  Copyright (c) 2014年 xpg. All rights reserved.
-//
+/**
+ * IoTAppDelegate.m
+ *
+ * Copyright (c) 2014~2015 Xtreme Programming Group, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE. 
+ */
 
 #import "IoTAppDelegate.h"
 #import "IoTCheckConnection.h"
@@ -14,30 +30,50 @@
 @end
 
 static NSString * const IOT_APPKEY = @"7ac10dec7dba436785ac23949536a6eb";
-static NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b34d441b59d7eba2c080ff805";
+NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b34d441b59d7eba2c080ff805";
 
 @implementation IoTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // 拷贝配置文件到 /Documents/Devices 目录
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    {
+        NSLog(@"Invalid json file, skip.");
+        abort();
+    }
+    else
+    {
+        NSString *destPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        destPath = [destPath stringByAppendingPathComponent:@"Devices"];
+        
+        // 创建目录
+        [[NSFileManager defaultManager] createDirectoryAtPath:destPath withIntermediateDirectories:YES attributes:nil error:nil];
+        
+        destPath = [destPath stringByAppendingFormat:@"/%@.json", IOT_PRODUCT];
+        
+        // 把文件复制到指定的目录
+        if(![[NSFileManager defaultManager] fileExistsAtPath:destPath])
+        {
+            if(![[NSFileManager defaultManager] copyItemAtPath:filePath toPath:destPath error:nil])
+            {
+                NSLog(@"Can't copy file to /Documents/Devices");
+                abort();
+            }
+        }
+    }
+    
     // 网络状态跟踪
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
 
     // 初始化 Wifi SDK
     [XPGWifiSDK startWithAppID:IOT_APPKEY];
     
-    // 是否过滤指定 PRODUCT_KEY 的设备，NO 表示不过滤，会列出所有发现到的设备。如果 enableProductFilter 设置为 YES，且注册 ProductKeys，那么系统会从服务器自动下载一次配置。下载后，系统将通过 XPGWifiSDK:didUpdateProduct:result: 进行回调。
-    [XPGWifiSDK enableProductFilter:YES];
-    [XPGWifiSDK registerProductKeys:IOT_PRODUCT, nil];//注册并从服务器载入配置
-
     // 为 Soft AP 模式设置 SSID 名。如果没设置，默认值是 XPG-GAgent, XPG_GAgent
     [XPGWifiSDK registerSSIDs:@"XPG-GAgent", @"XPG_GAgent", nil];
     
-    // 以下为调试开关
-    [XPGWifiSDK setDebug:YES];
-    
-    [XPGWifiSDK setLogLevel:XPGWifiLogLevelAll];
-    [XPGWifiSDK setLogFile:@"logfile.txt"]; // 日志输出到 App 的 Documents 目录
-    [XPGWifiSDK setPrintDataLevel:YES]; // 打印收发包二进制数据
+    // 设置日志分级、日志输出文件、是否打印二进制数据
+    [XPGWifiSDK setLogLevel:XPGWifiLogLevelAll logFile:@"logfile.txt" printDataLevel:YES];
 
     // 设置 SDK Delegate
     [XPGWifiSDK sharedInstance].delegate = self;
@@ -58,14 +94,6 @@ static NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be
 }
 
 #pragma mark - XPGWifiSDK delegate
-- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUpdateProduct:(NSString *)product result:(int)result
-{
-    if((result == 0 || result == 1) && [product isEqualToString:IOT_PRODUCT])
-        _isLoadedProduct = YES;
-    _haveProductResult = YES;
-    NSLog(@"didUpdateProduct: %@ result: %i", product, result);
-}
-
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUserLogin:(NSNumber *)error errorMessage:(NSString *)errorMessage uid:(NSString *)uid token:(NSString *)token
 {
     // 登录成功，自动设置相关信息
