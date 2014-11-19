@@ -1,17 +1,33 @@
-//
-//  IoTCheckConnection.m
-//  WiFiDemo
-//
-//  Created by xpg on 14-6-5.
-//  Copyright (c) 2014年 Xtreme Programming Group, Inc. All rights reserved.
-//
+/**
+ * IoTCheckConnection.m
+ *
+ * Copyright (c) 2014~2015 Xtreme Programming Group, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 #import "IoTCheckConnection.h"
 #import <AFNetworking/AFNetworking.h>
 #import "IoTDeviceList.h"
 #import "IoTNotReachable.h"
 #import "IoTDeviceAP.h"
-#import <XPGWifiSDK/XPGWifiSSIDInfo.h>
+#import "IoTWifiUtil.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface IoTCheckConnection ()
@@ -49,8 +65,8 @@
     // 检测Wifi/移动数据(WWAN)/关闭状态(Not Reachable)
     [self checkNetwokStatus];
     
-    // 等待下载配置的操作
-    [self performSelectorInBackground:@selector(waitForUpdateProduct) withObject:nil];
+    // 检测 SDK 是否加载
+    [self performSelectorInBackground:@selector(checkSDK) withObject:nil];
 }
 
 - (void)willResignActive
@@ -70,7 +86,7 @@
     [self performSelector:@selector(pushToNotReachable) withObject:nil afterDelay:0.5];
 }
 
-- (void)waitForUpdateProduct
+- (void)checkSDK
 {
     //延迟 1s 后再判断 SDK
     sleep(1);
@@ -81,24 +97,7 @@
         return;
     }
     
-    // 等待下载 Product 配置 9 秒
-    for(int i=0; i<90; i++) {
-        if(AppDelegate.haveProductResult)
-            break;
-        usleep(100000);
-    }
-    
-    if(!AppDelegate.haveProductResult)
-        NSLog(@"warning: download product request is already exists?");
-    else
-    {
-        if(AppDelegate.isLoadedProduct)
-            NSLog(@"info: load product succeed.");
-        else
-            NSLog(@"info: load product failed.");
-    }
-    
-    // 下载完成后，才能把 delegate 赋值
+    // 确认 SDK 加载成功，把 delegate 赋值
     [self performSelectorOnMainThread:@selector(checkMode) withObject:nil waitUntilDone:NO];
 }
 
@@ -108,7 +107,7 @@
     
     // 检测到 Soft AP 模式，自动跳转，无需登录
     // 防止页面过快的自动跳转，延迟 0.5s
-    if([XPGWifiSSIDInfo isSoftAPMode])
+    if([IoTWifiUtil isSoftAPMode:@"XPG-GAgent"])
         [self performSelector:@selector(pushToDeviceAP) withObject:nil afterDelay:0.5];
     else
         [self performSelector:@selector(initAccount) withObject:nil afterDelay:0.5];
@@ -145,8 +144,8 @@
     if([AppDelegate respondsToSelector:@selector(XPGWifiSDK:didUserLogin:errorMessage:uid:token:)])
         [AppDelegate XPGWifiSDK:wifiSDK didUserLogin:error errorMessage:errorMessage uid:uid token:token];
     
-    // 登录失败或产品下载不到，跳转错误页面
-    if (!AppDelegate.isLoadedProduct || [error intValue] || uid.length == 0 || token.length == 0)
+    // 登录失败，跳转错误页面
+    if ([error intValue] || uid.length == 0 || token.length == 0)
         [self performSelector:@selector(pushToNotReachable) withObject:nil afterDelay:0.5];
     else
         [self performSelector:@selector(pushToDeviceList) withObject:nil afterDelay:0.5];

@@ -7,27 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE33B5051A1C94E70003854A /* IoTAirlinkConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = EE33B4FC1A1C94E70003854A /* IoTAirlinkConfigure.m */; };
+		EE33B5061A1C94E70003854A /* IoTAirlinkConfigure.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE33B4FD1A1C94E70003854A /* IoTAirlinkConfigure.xib */; };
+		EE33B5071A1C94E70003854A /* IoTDeviceAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EE33B5001A1C94E70003854A /* IoTDeviceAP.m */; };
+		EE33B5081A1C94E70003854A /* IoTDeviceAP.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE33B5011A1C94E70003854A /* IoTDeviceAP.xib */; };
+		EE33B5091A1C94E70003854A /* IoTWaitForConfigureAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EE33B5031A1C94E70003854A /* IoTWaitForConfigureAP.m */; };
+		EE33B50A1A1C94E70003854A /* IoTWaitForConfigureAP.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE33B5041A1C94E70003854A /* IoTWaitForConfigureAP.xib */; };
 		EE45797119F64B0F00E1E9DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EE45797019F64B0F00E1E9DF /* main.m */; };
 		EE45797419F64B0F00E1E9DF /* IoTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE45797319F64B0F00E1E9DF /* IoTAppDelegate.m */; };
 		EE45797C19F64B0F00E1E9DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE45797B19F64B0F00E1E9DF /* Images.xcassets */; };
-		EE4579A419F650FE00E1E9DF /* IoTAddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE45799C19F650FE00E1E9DF /* IoTAddDeviceViewController.m */; };
-		EE4579A519F650FE00E1E9DF /* IoTAddDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE45799D19F650FE00E1E9DF /* IoTAddDeviceViewController.xib */; };
 		EE4579A619F650FE00E1E9DF /* IoTLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = EE45799F19F650FE00E1E9DF /* IoTLogin.m */; };
 		EE4579A719F650FE00E1E9DF /* IoTLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579A019F650FE00E1E9DF /* IoTLogin.xib */; };
 		EE4579A819F650FE00E1E9DF /* IoTRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579A219F650FE00E1E9DF /* IoTRegister.m */; };
 		EE4579A919F650FE00E1E9DF /* IoTRegister.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579A319F650FE00E1E9DF /* IoTRegister.xib */; };
-		EE4579B119F6510C00E1E9DF /* IoTDeviceAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579AC19F6510C00E1E9DF /* IoTDeviceAP.m */; };
-		EE4579B219F6510C00E1E9DF /* IoTDeviceAP.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579AD19F6510C00E1E9DF /* IoTDeviceAP.xib */; };
-		EE4579B319F6510C00E1E9DF /* IoTWaitForConfigureAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579AF19F6510C00E1E9DF /* IoTWaitForConfigureAP.m */; };
-		EE4579B419F6510C00E1E9DF /* IoTWaitForConfigureAP.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579B019F6510C00E1E9DF /* IoTWaitForConfigureAP.xib */; };
 		EE4579BC19F6511500E1E9DF /* IoTCheckConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579B719F6511500E1E9DF /* IoTCheckConnection.m */; };
 		EE4579BD19F6511500E1E9DF /* IoTCheckConnection.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579B819F6511500E1E9DF /* IoTCheckConnection.xib */; };
 		EE4579BE19F6511500E1E9DF /* IoTNotReachable.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579BA19F6511500E1E9DF /* IoTNotReachable.m */; };
 		EE4579BF19F6511500E1E9DF /* IoTNotReachable.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579BB19F6511500E1E9DF /* IoTNotReachable.xib */; };
 		EE4579C419F6511C00E1E9DF /* IoTDeviceList.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579C219F6511C00E1E9DF /* IoTDeviceList.m */; };
 		EE4579C519F6511C00E1E9DF /* IoTDeviceList.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579C319F6511C00E1E9DF /* IoTDeviceList.xib */; };
-		EE4579CA19F6512100E1E9DF /* IoTAirlinkConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579C819F6512100E1E9DF /* IoTAirlinkConfigure.m */; };
-		EE4579CB19F6512100E1E9DF /* IoTAirlinkConfigure.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4579C919F6512100E1E9DF /* IoTAirlinkConfigure.xib */; };
 		EE4579E419F6512400E1E9DF /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4579CF19F6512400E1E9DF /* CAAnimation+Blocks.m */; };
 		EE4579F619F6512700E1E9DF /* align.png in Resources */ = {isa = PBXBuildFile; fileRef = EE4579F019F6512700E1E9DF /* align.png */; };
 		EE4579F719F6512700E1E9DF /* rssi_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE4579F119F6512700E1E9DF /* rssi_0@2x.png */; };
@@ -35,6 +33,8 @@
 		EE4579F919F6512700E1E9DF /* rssi_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE4579F319F6512700E1E9DF /* rssi_2@2x.png */; };
 		EE4579FA19F6512700E1E9DF /* rssi_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE4579F419F6512700E1E9DF /* rssi_3@2x.png */; };
 		EE4579FB19F6512700E1E9DF /* rssi_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE4579F519F6512700E1E9DF /* rssi_4@2x.png */; };
+		EE6B62A31A1AED3100F08628 /* IoTWifiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6B62A21A1AED3100F08628 /* IoTWifiUtil.m */; };
+		EE6B62A51A1AF5A000F08628 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = EE6B62A41A1AF5A000F08628 /* data.json */; };
 		EE7D6D8319FE38CD0035DB51 /* IoTDeviceBoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7D6D8119FE38CD0035DB51 /* IoTDeviceBoolCell.m */; };
 		EE7D6D8419FE38CD0035DB51 /* IoTDeviceBoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE7D6D8219FE38CD0035DB51 /* IoTDeviceBoolCell.xib */; };
 		EE7D6D8819FE38EB0035DB51 /* IoTDeviceEnumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7D6D8619FE38EB0035DB51 /* IoTDeviceEnumCell.m */; };
@@ -86,27 +86,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE33B4FB1A1C94E70003854A /* IoTAirlinkConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTAirlinkConfigure.h; sourceTree = "<group>"; };
+		EE33B4FC1A1C94E70003854A /* IoTAirlinkConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTAirlinkConfigure.m; sourceTree = "<group>"; };
+		EE33B4FD1A1C94E70003854A /* IoTAirlinkConfigure.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTAirlinkConfigure.xib; sourceTree = "<group>"; };
+		EE33B4FF1A1C94E70003854A /* IoTDeviceAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTDeviceAP.h; sourceTree = "<group>"; };
+		EE33B5001A1C94E70003854A /* IoTDeviceAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTDeviceAP.m; sourceTree = "<group>"; };
+		EE33B5011A1C94E70003854A /* IoTDeviceAP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTDeviceAP.xib; sourceTree = "<group>"; };
+		EE33B5021A1C94E70003854A /* IoTWaitForConfigureAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTWaitForConfigureAP.h; sourceTree = "<group>"; };
+		EE33B5031A1C94E70003854A /* IoTWaitForConfigureAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTWaitForConfigureAP.m; sourceTree = "<group>"; };
+		EE33B5041A1C94E70003854A /* IoTWaitForConfigureAP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTWaitForConfigureAP.xib; sourceTree = "<group>"; };
 		EE45796B19F64B0F00E1E9DF /* gokit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gokit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE45796F19F64B0F00E1E9DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE45797019F64B0F00E1E9DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EE45797219F64B0F00E1E9DF /* IoTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IoTAppDelegate.h; sourceTree = "<group>"; };
 		EE45797319F64B0F00E1E9DF /* IoTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IoTAppDelegate.m; sourceTree = "<group>"; };
 		EE45797B19F64B0F00E1E9DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		EE45799B19F650FE00E1E9DF /* IoTAddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTAddDeviceViewController.h; sourceTree = "<group>"; };
-		EE45799C19F650FE00E1E9DF /* IoTAddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTAddDeviceViewController.m; sourceTree = "<group>"; };
-		EE45799D19F650FE00E1E9DF /* IoTAddDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTAddDeviceViewController.xib; sourceTree = "<group>"; };
 		EE45799E19F650FE00E1E9DF /* IoTLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTLogin.h; sourceTree = "<group>"; };
 		EE45799F19F650FE00E1E9DF /* IoTLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTLogin.m; sourceTree = "<group>"; };
 		EE4579A019F650FE00E1E9DF /* IoTLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTLogin.xib; sourceTree = "<group>"; };
 		EE4579A119F650FE00E1E9DF /* IoTRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTRegister.h; sourceTree = "<group>"; };
 		EE4579A219F650FE00E1E9DF /* IoTRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTRegister.m; sourceTree = "<group>"; };
 		EE4579A319F650FE00E1E9DF /* IoTRegister.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTRegister.xib; sourceTree = "<group>"; };
-		EE4579AB19F6510C00E1E9DF /* IoTDeviceAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTDeviceAP.h; sourceTree = "<group>"; };
-		EE4579AC19F6510C00E1E9DF /* IoTDeviceAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTDeviceAP.m; sourceTree = "<group>"; };
-		EE4579AD19F6510C00E1E9DF /* IoTDeviceAP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTDeviceAP.xib; sourceTree = "<group>"; };
-		EE4579AE19F6510C00E1E9DF /* IoTWaitForConfigureAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTWaitForConfigureAP.h; sourceTree = "<group>"; };
-		EE4579AF19F6510C00E1E9DF /* IoTWaitForConfigureAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTWaitForConfigureAP.m; sourceTree = "<group>"; };
-		EE4579B019F6510C00E1E9DF /* IoTWaitForConfigureAP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTWaitForConfigureAP.xib; sourceTree = "<group>"; };
 		EE4579B619F6511500E1E9DF /* IoTCheckConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTCheckConnection.h; sourceTree = "<group>"; };
 		EE4579B719F6511500E1E9DF /* IoTCheckConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTCheckConnection.m; sourceTree = "<group>"; };
 		EE4579B819F6511500E1E9DF /* IoTCheckConnection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTCheckConnection.xib; sourceTree = "<group>"; };
@@ -116,9 +116,6 @@
 		EE4579C119F6511C00E1E9DF /* IoTDeviceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTDeviceList.h; sourceTree = "<group>"; };
 		EE4579C219F6511C00E1E9DF /* IoTDeviceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTDeviceList.m; sourceTree = "<group>"; };
 		EE4579C319F6511C00E1E9DF /* IoTDeviceList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTDeviceList.xib; sourceTree = "<group>"; };
-		EE4579C719F6512100E1E9DF /* IoTAirlinkConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTAirlinkConfigure.h; sourceTree = "<group>"; };
-		EE4579C819F6512100E1E9DF /* IoTAirlinkConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTAirlinkConfigure.m; sourceTree = "<group>"; };
-		EE4579C919F6512100E1E9DF /* IoTAirlinkConfigure.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTAirlinkConfigure.xib; sourceTree = "<group>"; };
 		EE4579CE19F6512400E1E9DF /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
 		EE4579CF19F6512400E1E9DF /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
 		EE4579D019F6512400E1E9DF /* IoTDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTDefinitions.h; sourceTree = "<group>"; };
@@ -129,6 +126,9 @@
 		EE4579F419F6512700E1E9DF /* rssi_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rssi_3@2x.png"; sourceTree = "<group>"; };
 		EE4579F519F6512700E1E9DF /* rssi_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rssi_4@2x.png"; sourceTree = "<group>"; };
 		EE4579FC19F6544E00E1E9DF /* gokit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gokit.pch; sourceTree = "<group>"; };
+		EE6B62A11A1AED3100F08628 /* IoTWifiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTWifiUtil.h; sourceTree = "<group>"; };
+		EE6B62A21A1AED3100F08628 /* IoTWifiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTWifiUtil.m; sourceTree = "<group>"; };
+		EE6B62A41A1AF5A000F08628 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		EE7D6D8019FE38CD0035DB51 /* IoTDeviceBoolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTDeviceBoolCell.h; sourceTree = "<group>"; };
 		EE7D6D8119FE38CD0035DB51 /* IoTDeviceBoolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTDeviceBoolCell.m; sourceTree = "<group>"; };
 		EE7D6D8219FE38CD0035DB51 /* IoTDeviceBoolCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTDeviceBoolCell.xib; sourceTree = "<group>"; };
@@ -308,6 +308,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE33B4F91A1C94E70003854A /* On-boarding */ = {
+			isa = PBXGroup;
+			children = (
+				EE33B4FA1A1C94E70003854A /* Airlink */,
+				EE33B4FE1A1C94E70003854A /* SoftAP */,
+			);
+			path = "On-boarding";
+			sourceTree = "<group>";
+		};
+		EE33B4FA1A1C94E70003854A /* Airlink */ = {
+			isa = PBXGroup;
+			children = (
+				EE33B4FB1A1C94E70003854A /* IoTAirlinkConfigure.h */,
+				EE33B4FC1A1C94E70003854A /* IoTAirlinkConfigure.m */,
+				EE33B4FD1A1C94E70003854A /* IoTAirlinkConfigure.xib */,
+			);
+			path = Airlink;
+			sourceTree = "<group>";
+		};
+		EE33B4FE1A1C94E70003854A /* SoftAP */ = {
+			isa = PBXGroup;
+			children = (
+				EE33B4FF1A1C94E70003854A /* IoTDeviceAP.h */,
+				EE33B5001A1C94E70003854A /* IoTDeviceAP.m */,
+				EE33B5011A1C94E70003854A /* IoTDeviceAP.xib */,
+				EE33B5021A1C94E70003854A /* IoTWaitForConfigureAP.h */,
+				EE33B5031A1C94E70003854A /* IoTWaitForConfigureAP.m */,
+				EE33B5041A1C94E70003854A /* IoTWaitForConfigureAP.xib */,
+			);
+			path = SoftAP;
+			sourceTree = "<group>";
+		};
 		EE45796219F64B0F00E1E9DF = {
 			isa = PBXGroup;
 			children = (
@@ -328,11 +360,10 @@
 			isa = PBXGroup;
 			children = (
 				EE4579EE19F6512700E1E9DF /* Resource */,
+				EE33B4F91A1C94E70003854A /* On-boarding */,
 				EE4579CC19F6512400E1E9DF /* Uitls */,
-				EE4579C619F6512100E1E9DF /* Airlink */,
 				EE4579C019F6511C00E1E9DF /* Devices */,
 				EE4579B519F6511500E1E9DF /* NetStatus */,
-				EE4579AA19F6510C00E1E9DF /* SoftAP */,
 				EE45799A19F650FE00E1E9DF /* UserAccount */,
 				EE45797219F64B0F00E1E9DF /* IoTAppDelegate.h */,
 				EE45797319F64B0F00E1E9DF /* IoTAppDelegate.m */,
@@ -354,9 +385,6 @@
 		EE45799A19F650FE00E1E9DF /* UserAccount */ = {
 			isa = PBXGroup;
 			children = (
-				EE45799B19F650FE00E1E9DF /* IoTAddDeviceViewController.h */,
-				EE45799C19F650FE00E1E9DF /* IoTAddDeviceViewController.m */,
-				EE45799D19F650FE00E1E9DF /* IoTAddDeviceViewController.xib */,
 				EE45799E19F650FE00E1E9DF /* IoTLogin.h */,
 				EE45799F19F650FE00E1E9DF /* IoTLogin.m */,
 				EE4579A019F650FE00E1E9DF /* IoTLogin.xib */,
@@ -365,19 +393,6 @@
 				EE4579A319F650FE00E1E9DF /* IoTRegister.xib */,
 			);
 			path = UserAccount;
-			sourceTree = "<group>";
-		};
-		EE4579AA19F6510C00E1E9DF /* SoftAP */ = {
-			isa = PBXGroup;
-			children = (
-				EE4579AB19F6510C00E1E9DF /* IoTDeviceAP.h */,
-				EE4579AC19F6510C00E1E9DF /* IoTDeviceAP.m */,
-				EE4579AD19F6510C00E1E9DF /* IoTDeviceAP.xib */,
-				EE4579AE19F6510C00E1E9DF /* IoTWaitForConfigureAP.h */,
-				EE4579AF19F6510C00E1E9DF /* IoTWaitForConfigureAP.m */,
-				EE4579B019F6510C00E1E9DF /* IoTWaitForConfigureAP.xib */,
-			);
-			path = SoftAP;
 			sourceTree = "<group>";
 		};
 		EE4579B519F6511500E1E9DF /* NetStatus */ = {
@@ -408,20 +423,11 @@
 			path = Devices;
 			sourceTree = "<group>";
 		};
-		EE4579C619F6512100E1E9DF /* Airlink */ = {
-			isa = PBXGroup;
-			children = (
-				EE4579C719F6512100E1E9DF /* IoTAirlinkConfigure.h */,
-				EE4579C819F6512100E1E9DF /* IoTAirlinkConfigure.m */,
-				EE4579C919F6512100E1E9DF /* IoTAirlinkConfigure.xib */,
-			);
-			path = Airlink;
-			sourceTree = "<group>";
-		};
 		EE4579CC19F6512400E1E9DF /* Uitls */ = {
 			isa = PBXGroup;
 			children = (
 				EECDA9FB1A02417200E35C82 /* libc++.dylib */,
+				EE6B62A01A1AED3100F08628 /* Wifi */,
 				EECDA9361A023F0800E35C82 /* AFNetworking */,
 				EE4579CD19F6512400E1E9DF /* CAAnimationBlocks */,
 				EECDA9751A02402F00E35C82 /* iToast */,
@@ -448,6 +454,7 @@
 		EE4579EE19F6512700E1E9DF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				EE6B62A41A1AF5A000F08628 /* data.json */,
 				EE4579EF19F6512700E1E9DF /* Images */,
 				EE4579FC19F6544E00E1E9DF /* gokit.pch */,
 			);
@@ -465,6 +472,15 @@
 				EE4579F519F6512700E1E9DF /* rssi_4@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		EE6B62A01A1AED3100F08628 /* Wifi */ = {
+			isa = PBXGroup;
+			children = (
+				EE6B62A11A1AED3100F08628 /* IoTWifiUtil.h */,
+				EE6B62A21A1AED3100F08628 /* IoTWifiUtil.m */,
+			);
+			path = Wifi;
 			sourceTree = "<group>";
 		};
 		EE7D6D8A19FE38F20035DB51 /* Cells */ = {
@@ -788,21 +804,21 @@
 				EE4579F719F6512700E1E9DF /* rssi_0@2x.png in Resources */,
 				EE86C69219F7928000F661AB /* IoTDeviceSliderCell.xib in Resources */,
 				EE4579BF19F6511500E1E9DF /* IoTNotReachable.xib in Resources */,
-				EE4579CB19F6512100E1E9DF /* IoTAirlinkConfigure.xib in Resources */,
 				EE45797C19F64B0F00E1E9DF /* Images.xcassets in Resources */,
 				EE4579F619F6512700E1E9DF /* align.png in Resources */,
+				EE33B5061A1C94E70003854A /* IoTAirlinkConfigure.xib in Resources */,
+				EE33B5081A1C94E70003854A /* IoTDeviceAP.xib in Resources */,
 				EE86C68B19F749EF00F661AB /* IoTDeviceController.xib in Resources */,
-				EE4579B419F6510C00E1E9DF /* IoTWaitForConfigureAP.xib in Resources */,
-				EE4579A519F650FE00E1E9DF /* IoTAddDeviceViewController.xib in Resources */,
 				EE86C69719F7929800F661AB /* IoTDeviceLabelCell.xib in Resources */,
-				EE4579B219F6510C00E1E9DF /* IoTDeviceAP.xib in Resources */,
 				EE4579FA19F6512700E1E9DF /* rssi_3@2x.png in Resources */,
 				EE4579FB19F6512700E1E9DF /* rssi_4@2x.png in Resources */,
+				EE33B50A1A1C94E70003854A /* IoTWaitForConfigureAP.xib in Resources */,
 				EE7D6D8919FE38EB0035DB51 /* IoTDeviceEnumCell.xib in Resources */,
 				EE4579F819F6512700E1E9DF /* rssi_1@2x.png in Resources */,
 				EE7D6D8419FE38CD0035DB51 /* IoTDeviceBoolCell.xib in Resources */,
 				EECDA9F31A0240B500E35C82 /* Radial.png in Resources */,
 				EE7D6D9019FE3DAD0035DB51 /* IoTDeviceEnumSelection.xib in Resources */,
+				EE6B62A51A1AF5A000F08628 /* data.json in Resources */,
 				EE4579F919F6512700E1E9DF /* rssi_2@2x.png in Resources */,
 				EE4579A719F650FE00E1E9DF /* IoTLogin.xib in Resources */,
 				EE4579C519F6511C00E1E9DF /* IoTDeviceList.xib in Resources */,
@@ -818,10 +834,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EECDA95D1A023F0800E35C82 /* AFHTTPRequestOperation.m in Sources */,
-				EE4579B319F6510C00E1E9DF /* IoTWaitForConfigureAP.m in Sources */,
+				EE6B62A31A1AED3100F08628 /* IoTWifiUtil.m in Sources */,
 				EE4579BC19F6511500E1E9DF /* IoTCheckConnection.m in Sources */,
 				EECDA9EC1A0240B500E35C82 /* CALayer+ModalAlert.m in Sources */,
 				EE4579C419F6511C00E1E9DF /* IoTDeviceList.m in Sources */,
+				EE33B5071A1C94E70003854A /* IoTDeviceAP.m in Sources */,
 				EE45797419F64B0F00E1E9DF /* IoTAppDelegate.m in Sources */,
 				EECDA96D1A023F0800E35C82 /* UIWebView+AFNetworking.m in Sources */,
 				EECDA9F21A0240B500E35C82 /* LMNavigationController.m in Sources */,
@@ -833,7 +850,6 @@
 				EECDA9D41A02407900E35C82 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				EECDA9661A023F0800E35C82 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EE7D6D8319FE38CD0035DB51 /* IoTDeviceBoolCell.m in Sources */,
-				EE4579CA19F6512100E1E9DF /* IoTAirlinkConfigure.m in Sources */,
 				EECDA96A1A023F0800E35C82 /* UIImageView+AFNetworking.m in Sources */,
 				EECDA9691A023F0800E35C82 /* UIButton+AFNetworking.m in Sources */,
 				EECDA9741A023FBC00E35C82 /* MBProgressHUD.m in Sources */,
@@ -857,15 +873,15 @@
 				EECDA9D61A02407900E35C82 /* TPKeyboardAvoidingTableView.m in Sources */,
 				EE86C69119F7928000F661AB /* IoTDeviceSliderCell.m in Sources */,
 				EECDA95E1A023F0800E35C82 /* AFHTTPRequestOperationManager.m in Sources */,
+				EE33B5051A1C94E70003854A /* IoTAirlinkConfigure.m in Sources */,
 				EECDA9F11A0240B500E35C82 /* LMNavigationBar.m in Sources */,
+				EE33B5091A1C94E70003854A /* IoTWaitForConfigureAP.m in Sources */,
 				EE4579A619F650FE00E1E9DF /* IoTLogin.m in Sources */,
 				EE86C69619F7929800F661AB /* IoTDeviceLabelCell.m in Sources */,
 				EECDA9601A023F0800E35C82 /* AFNetworkReachabilityManager.m in Sources */,
 				EECDA9D51A02407900E35C82 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				EECDA9DB1A0240B100E35C82 /* LMFixedTextView.m in Sources */,
-				EE4579A419F650FE00E1E9DF /* IoTAddDeviceViewController.m in Sources */,
 				EECDA9ED1A0240B500E35C82 /* LMAlertView.m in Sources */,
-				EE4579B119F6510C00E1E9DF /* IoTDeviceAP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
