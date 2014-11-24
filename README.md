@@ -34,8 +34,8 @@ Gizwits GoKit iOS Demo App
         如果您尚未下载，请到这里下载：https://github.com/krzyzanowskim/OpenSSL/archive/master.zip
         下载后，将OpenSSL的头文件和库文件添加到项目中。直接把include-ios和lib-ios目录拖到项目中即可。
 	  
-	▪	添加系统自带的libc++.dylib
-        在项目工程Targets的Build Phases里，在Link Binary With Libraries中直接添加libc++.dylib即可。
+	▪	添加系统自带的libc++.dylib、SystemConfiguration.framework
+        在项目工程Targets的Build Phases里，在Link Binary With Libraries中直接添加libc++.dylib、SystemConfiguration.framework即可。
 
         上述依赖库添加完之后，在工程项目Targets的Build Phases中会出现以下四个文件：
         Link Binary With Libraries会出现XPGWifiSDK.framework、libcrypto.a、libssl.a、libcrypto.a。
