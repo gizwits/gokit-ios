@@ -29,37 +29,40 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
 @optional
 
 /**
- * @brief 设备已断开
+ * @brief 回调接口，触发时机为设备主动或被动断开以及异常断开
+ * @see XPGWifiDevice:disconnect
  */
 - (void)XPGWifiDeviceDidDisconnected:(XPGWifiDevice *)device;
 
 /**
- * @brief 本地登录
+ * @brief 回调接口，返回设备登录结果
  * @param result：2=获取控制权
+ * @see 触发函数：XPGWifiDevice login:token:
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didLogin:(int)result;
 
 /**
- * @brief 接收数据
+ * @brief 回调接口，返回设备上发的数据内容，包括设备控制命令的应答、设备运行状态的上报、设备报警、设备故障信息
  * @param data：格式参考 write 方法
- * @note add by pomia 141112: return the detail reason
+ * @see 触发函数：XPGWifiDevice write:
  */
 - (BOOL)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data result:(int)result;
 
 /**
- * @brief 判断设备是否大循环在线
+ * @brief 回调接口，当设备在线状态发生变化时会被触发
  * @param isOnline：YES=在线，NO=不在线
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didDeviceIsOnline:(BOOL)isOnline;
 
 /*
- * @brief 设置设备的开关结果
+ * @brief 回调接口，返回设置设备调试模式的结果
  * @param result：0 成功，其他失败
+ * @see 触发函数：XPGWifiSDK setSwitchService:
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didSetSwitcher:(int)result;
 
 /**
- * @brief 设备推送日志信息
+ * @brief 回调接口，设备推送日志信息时会被触发
  * @param logInfo 日志信息
  * 键值定义：XPGWifiDeviceLog*Key
  */
@@ -67,9 +70,10 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didUpdateDeviceLog:(NSDictionary *)logInfo;
 
 /**
- * @brief 获取硬件信息
+ * @brief 回调接口，返回获取到的硬件信息
  * @param hwInfo 硬件信息
  * 键值定义：XPGWifiDeviceHardware*Key
+ * @see 触发函数：XPGWifiDevice getHardwareInfo
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didQueryHardwareInfo:(NSDictionary *)hwInfo;
 
@@ -95,7 +99,8 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
 @property (nonatomic, assign, readonly) BOOL isOnline;          //云端判断设备是否在线
 
 /**
- * @brief 获取硬件信息
+ * @brief 获取硬件信息。只有设备登录后才能获取到
+ * @see 对应的回调接口：XPGWifiDevice:didQueryHardwareInfo:
  */
 - (void)getHardwareInfo;
 
@@ -105,26 +110,29 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  * bit1: warning 日志级别的开与关，0 为关，1 为开；
  * bit2: info 日志级别的开与关，0 为关，1 为开；
  * bit3: WiFi 模组所有指示灯的总开关，0 为关，1 为开；
+ * @see 对应的回调接口：XPGWifiDevice:didUpdateDeviceLog:
  */
 - (void)setLogParam:(NSInteger)nLogLevel totalOnOff:(BOOL)totalOnOff;
 
 /**
- * @brief 断开当前的连接
+ * @brief 断开当前的设备连接
+ * @see 对应的回调接口：XPGWifiDeviceDidDisconnected:
  */
 - (BOOL)disconnect;
 
 /**
- * @brief 登录
+ * @brief 设备登录
  * @param uid：用户id
  * @param token：密码token
  * @note 设备连接后，如果需要绑定或控制，需要使用登录获取权限。
  * 小循环登录，传入的参数均为NULL
  * 大循环登录，传入的参数必须是注册过的合法的用户信息
+ * @see 对应的回调接口：XPGWifiDevice:didLogin:
  */
 - (void)login:(NSString *)uid token:(NSString *)token;
 
 /**
- * @brief 本地判断此设备是否绑定
+ * @brief 判断此设备是否绑定
  * @param uid：用户id（长度限定255字节，下同）
  */
 - (BOOL)isBind:(NSString *)uid;
@@ -222,6 +230,7 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  *
  * =================== 新版协议格式(v4.0)： ===================
  * http://site.gizwits.com/document/m2m/datapoint/
+ * @see 对应的回调接口：XPGWifiDevice:didReceiveData:result:
  */
 - (NSInteger)write:(NSDictionary *)data;
 
