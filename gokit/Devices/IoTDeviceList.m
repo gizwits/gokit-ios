@@ -273,7 +273,7 @@
         {
             AppDelegate.hud.labelText = [NSString stringWithFormat:@"正在绑定%@...", selectedDevices.macAddress];
             [AppDelegate.hud show:YES];
-            [[XPGWifiSDK sharedInstance] bindDeviceWithUid:AppDelegate.uid token:AppDelegate.token did:selectedDevices.did passCode:nil];
+            [[XPGWifiSDK sharedInstance] bindDeviceWithUid:AppDelegate.uid token:AppDelegate.token did:selectedDevices.did passCode:nil remark:nil];
         }
     }
 
