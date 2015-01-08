@@ -269,12 +269,14 @@ typedef enum _tagXPGCloudService
  */
 + (void)registerSSIDs:(NSString *)ssidPrefix, ... NS_REQUIRES_NIL_TERMINATION;
 
+#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE__
 /**
  * @brief 设置服务地址切换，用于切换云端的调试环境和发布环境
  * @param specialService XPGCloudService类型：0=生产环境 1=测试环境 2=开发环境 3=腾讯云
  * @note 默认生产环境
  */
 + (void)setSwitchService:(int)specialService;
+#endif
 
 #ifdef __INTERNAL_LOG_CACHE__
 /**
