@@ -315,6 +315,8 @@
     
     for(XPGWifiDevice *device in arrayList)
     {
+        if (device.isDisabled)
+            continue;
         if(device.isLAN && ![device isBind:AppDelegate.uid])
         {
             [arr2 addObject:device];
