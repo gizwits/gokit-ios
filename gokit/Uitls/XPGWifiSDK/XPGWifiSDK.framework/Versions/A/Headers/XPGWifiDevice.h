@@ -10,9 +10,8 @@
 
 #define XPG_WIFI_GUESTUSER          @"__guest_user"
 
+#define __INTERNAL_SUPPORT_SWITCH_SERVICE__
 //#define __INTERNAL_TESTING_API__
-
-#define __DEVICE_DISABLED_API__
 
 @class XPGWifiDevice;
 
@@ -61,12 +60,14 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didDeviceIsOnline:(BOOL)isOnline;
 
+#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE__
 /**
  * @brief 回调接口，返回设置设备调试模式的结果
  * @param result：0 成功，其他失败
  * @see 触发函数：[XPGWifiSDK setSwitchService:]
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didSetSwitcher:(int)result;
+#endif
 
 /**
  * @brief 回调接口，设备推送日志信息时会被触发
@@ -127,6 +128,11 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
 @property (nonatomic, assign, readonly) BOOL isConnected;       //是否连接
 @property (nonatomic, assign, readonly) BOOL isLAN;             //是否是小循环设备
 @property (nonatomic, assign, readonly) BOOL isOnline;          //云端判断设备是否在线
+
+#define pomia
+#ifdef pomia
+@property (nonatomic, assign, readonly) BOOL isDisabled;        //云端判断设备是否已注销
+#endif
 
 /**
  * @brief 获取硬件信息。只有设备登录后才能获取到
