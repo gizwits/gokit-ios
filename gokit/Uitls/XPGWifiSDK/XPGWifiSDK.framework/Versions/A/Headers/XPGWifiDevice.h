@@ -10,7 +10,7 @@
 
 #define XPG_WIFI_GUESTUSER          @"__guest_user"
 
-#define __INTERNAL_SUPPORT_SWITCH_SERVICE__
+//#define __INTERNAL_SUPPORT_SWITCH_SERVICE__
 //#define __INTERNAL_TESTING_API__
 
 @class XPGWifiDevice;
