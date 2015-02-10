@@ -118,14 +118,14 @@
 		EE4579C319F6511C00E1E9DF /* IoTDeviceList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTDeviceList.xib; sourceTree = "<group>"; };
 		EE4579CE19F6512400E1E9DF /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
 		EE4579CF19F6512400E1E9DF /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
-		EE4579D019F6512400E1E9DF /* IoTDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTDefinitions.h; sourceTree = "<group>"; };
+		EE4579D019F6512400E1E9DF /* IoTDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IoTDefinitions.h; path = Uitls/IoTDefinitions.h; sourceTree = "<group>"; };
 		EE4579F019F6512700E1E9DF /* align.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = align.png; sourceTree = "<group>"; };
 		EE4579F119F6512700E1E9DF /* rssi_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rssi_0@2x.png"; sourceTree = "<group>"; };
 		EE4579F219F6512700E1E9DF /* rssi_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rssi_1@2x.png"; sourceTree = "<group>"; };
 		EE4579F319F6512700E1E9DF /* rssi_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rssi_2@2x.png"; sourceTree = "<group>"; };
 		EE4579F419F6512700E1E9DF /* rssi_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rssi_3@2x.png"; sourceTree = "<group>"; };
 		EE4579F519F6512700E1E9DF /* rssi_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rssi_4@2x.png"; sourceTree = "<group>"; };
-		EE4579FC19F6544E00E1E9DF /* gokit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gokit.pch; sourceTree = "<group>"; };
+		EE4579FC19F6544E00E1E9DF /* gokit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gokit.pch; path = Resource/gokit.pch; sourceTree = "<group>"; };
 		EE6B62A11A1AED3100F08628 /* IoTWifiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTWifiUtil.h; sourceTree = "<group>"; };
 		EE6B62A21A1AED3100F08628 /* IoTWifiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTWifiUtil.m; sourceTree = "<group>"; };
 		EE6B62A41A1AF5A000F08628 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 			children = (
 				EE4579EE19F6512700E1E9DF /* Resource */,
 				EE33B4F91A1C94E70003854A /* On-boarding */,
-				EE4579CC19F6512400E1E9DF /* Uitls */,
+				EE4579CC19F6512400E1E9DF /* Utils */,
 				EE4579C019F6511C00E1E9DF /* Devices */,
 				EE4579B519F6511500E1E9DF /* NetStatus */,
 				EE45799A19F650FE00E1E9DF /* UserAccount */,
@@ -376,6 +376,9 @@
 		EE45796E19F64B0F00E1E9DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EECDA9FB1A02417200E35C82 /* libc++.dylib */,
+				EE4579D019F6512400E1E9DF /* IoTDefinitions.h */,
+				EE4579FC19F6544E00E1E9DF /* gokit.pch */,
 				EE45796F19F64B0F00E1E9DF /* Info.plist */,
 				EE45797019F64B0F00E1E9DF /* main.m */,
 			);
@@ -423,10 +426,9 @@
 			path = Devices;
 			sourceTree = "<group>";
 		};
-		EE4579CC19F6512400E1E9DF /* Uitls */ = {
+		EE4579CC19F6512400E1E9DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				EECDA9FB1A02417200E35C82 /* libc++.dylib */,
 				EE6B62A01A1AED3100F08628 /* Wifi */,
 				EECDA9361A023F0800E35C82 /* AFNetworking */,
 				EE4579CD19F6512400E1E9DF /* CAAnimationBlocks */,
@@ -437,8 +439,8 @@
 				EECDA9791A02406100E35C82 /* OpenSSL-Universal */,
 				EECDA9CB1A02407900E35C82 /* TPKeyboardAvoiding */,
 				EECDA96E1A023FAB00E35C82 /* XPGWifiSDK */,
-				EE4579D019F6512400E1E9DF /* IoTDefinitions.h */,
 			);
+			name = Utils;
 			path = Uitls;
 			sourceTree = "<group>";
 		};
@@ -456,7 +458,6 @@
 			children = (
 				EE6B62A41A1AF5A000F08628 /* data.json */,
 				EE4579EF19F6512700E1E9DF /* Images */,
-				EE4579FC19F6544E00E1E9DF /* gokit.pch */,
 			);
 			path = Resource;
 			sourceTree = "<group>";

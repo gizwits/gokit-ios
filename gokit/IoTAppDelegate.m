@@ -82,7 +82,7 @@ NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b3
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    // 跳转到检查更新页面
+    // 跳转到检查网络页面
     IoTCheckConnection *controller = [[IoTCheckConnection alloc] init];
     self.navCtrl = [[UINavigationController alloc] initWithRootViewController:controller];
     self.navCtrl.navigationBar.translucent = NO;
