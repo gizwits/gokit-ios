@@ -27,7 +27,7 @@
 #import <XPGWifiSDK/XPGWifiSDK.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
-@interface IoTAirlinkConfigure ()
+@interface IoTAirlinkConfigure () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *textSSID;
 @property (weak, nonatomic) IBOutlet UITextField *textKey;
@@ -78,6 +78,12 @@
     AppDelegate.hud.labelText = @"正在配置...";
     [AppDelegate.hud show:YES];
     [[XPGWifiSDK sharedInstance] setDeviceWifi:self.textSSID.text key:self.textKey.text mode:XPGWifiSDKAirLinkMode timeout:60];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self configure:nil];
+    return YES;
 }
 
 #pragma mark - delegate

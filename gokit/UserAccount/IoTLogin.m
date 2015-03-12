@@ -28,7 +28,7 @@
 #import <XPGWifiSDK/XPGWifiSDK.h>
 #import "IoTRegister.h"
 
-@interface IoTLogin ()
+@interface IoTLogin () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *textUser;
 @property (weak, nonatomic) IBOutlet UITextField *textPass;
@@ -99,6 +99,19 @@
 {
     IoTRegister *reg = [[IoTRegister alloc] init];
     [self.navigationController pushViewController:reg animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.textUser)
+    {
+        [self.textPass becomeFirstResponder];
+    }
+    else
+    {
+        [self login:nil];
+    }
+    return YES;
 }
 
 #pragma mark - delegate
