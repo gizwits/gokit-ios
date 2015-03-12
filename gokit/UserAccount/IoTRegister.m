@@ -63,6 +63,8 @@
     // Do any additional setup after loading the view from its nib.
     if(self.isForget)
         [self.btnRegister setTitle:@"重置" forState:UIControlStateNormal];
+    
+    self.navigationItem.title = @"注册新用户";
 }
 
 - (void)viewDidAppear:(BOOL)animated
