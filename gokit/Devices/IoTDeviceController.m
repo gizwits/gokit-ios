@@ -627,7 +627,7 @@ typedef enum
     
     fMonitorSpeed = [self prepareForUpdateFloatRows:motorSpeed value:fMonitorSpeed rows:rows index:5];
     iir = [self prepareForUpdateIntegerRows:ir value:iir rows:rows index:6];
-    fTemperature = [self prepareForUpdateFloatRows:temperature value:fTemperature rows:rows index:7];
+    fTemperature = [self prepareForUpdateFloatRows:temperature value:fTemperature rows:rows index:7] + 13;//y=x+13
     fHumidity = [self prepareForUpdateFloatRows:humidity value:fHumidity rows:rows index:8];
     
     if(rows.count > 0)
