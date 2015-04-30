@@ -11,16 +11,14 @@
 #import <XPGWifiSDK/XPGWifiDevice.h>
 #import <XPGWifiSDK/XPGWifiSSID.h>
 #import <XPGWifiSDK/XPGWifiBinary.h>
-
-#ifndef __INTERNAL_LOG_CACHE__
-#define __INTERNAL_LOG_CACHE__
-#endif
+#import <XPGWifiSDK/XPGWifiCentralControlDevice.h>
+#import <XPGWifiSDK/XPGWifiSubDevice.h>
+#import <XPGWifiSDK/XPGWifiGroup.h>
 
 typedef enum
 {
     XPGWifiThirdAccountTypeBAIDU = 0,
     XPGWifiThirdAccountTypeSINA,
-    XPGWifiThirdAccountTypeQQ,
 }XPGWifiThirdAccountType;
 
 typedef enum
@@ -35,19 +33,15 @@ typedef enum _tagXPGWifiErrorCode
     XPGWifiError_NONE = 0,
     XPGWifiError_GENERAL = -1,
     XPGWifiError_NOT_IMPLEMENTED = -2,
-    XPGWifiError_DESCRIPTOR_FAIL = -3,
     XPGWifiError_PACKET_DATALEN = -4,
     XPGWifiError_CONNECTION_ID = -5,
-    XPGWifiError_PATH = -6,
     XPGWifiError_CONNECTION_CLOSED = -7,
     XPGWifiError_PACKET_CHECKSUM = -8,
     XPGWifiError_LOGIN_FAIL = -10,
-    XPGWifiError_DOMAIN_NAME = -11,
     XPGWifiError_MQTT_FAIL = -12,
     XPGWifiError_DISCOVERY_MISMATCH = -13,
     XPGWifiError_SET_SOCK_OPT = -14,
     XPGWifiError_THREAD_CREATE = -15,
-    XPGWifiError_NULL_MAC = -16,
     XPGWifiError_CONNECTION_POOL_FULLED = -17,
     XPGWifiError_NULL_CLIENT_ID = -18,
     XPGWifiError_CONNECTION_ERROR = -19,
@@ -80,7 +74,7 @@ typedef enum
 {
     XPGWifiSDKSoftAPMode = 1,
     XPGWifiSDKAirLinkMode = 2,
-}ConfigureMode;
+}XPGConfigureMode;
 
 typedef enum _tagXPGCloudService
 {
@@ -117,6 +111,14 @@ typedef enum _tagXPGCloudService
  * @see 触发函数：[XPGWifiSDK getBoundDevicesWithUid:token:specialProductKeys:]
  */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didDiscovered:(NSArray *)deviceList result:(int)result;
+
+/**
+ * @brief 回调接口，返回组列表
+ * @param groupList：为 XPGWifiGroup* 的集合
+ * @param result：0为成功，其他失败
+ * @see 触发函数：[XPGWifiSDK getGroupsWithUid:token:specialProductKeys:]
+ */
+- (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didGetGroups:(NSArray *)groupList result:(int)result;
 
 /**
  * @brief 回调接口，自定义CRC算法，下发V3数据协议的设备控制命令会触发此回调接口
@@ -267,9 +269,14 @@ typedef enum _tagXPGCloudService
  * @param ssidPrefix：识别SSID的前缀
  * @note 在载入配置文件之前配置有效。默认nil
  */
-+ (void)registerSSIDs:(NSString *)ssidPrefix, ... NS_REQUIRES_NIL_TERMINATION;
++ (void)registerSSIDs:(NSString *)ssidPrefix, ... NS_REQUIRES_NIL_TERMINATION DEPRECATED_ATTRIBUTE;
 
-#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE__
+#ifdef SWIFT
++ (void)registerSSID:(NSString *)ssid;
++ (void)clearSSIDs;
+#endif
+
+#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE_AND_LOG_CACHE__
 /**
  * @brief 设置服务地址切换，用于切换云端的调试环境和发布环境
  * @param specialService XPGCloudService类型：0=生产环境 1=测试环境 2=开发环境 3=腾讯云
@@ -278,7 +285,7 @@ typedef enum _tagXPGCloudService
 + (void)setSwitchService:(int)specialService;
 #endif
 
-#ifdef __INTERNAL_LOG_CACHE__
+#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE_AND_LOG_CACHE__
 /**
  * @brief 设置SDK缓存日志条数
  * @param count 范围：0-10000
@@ -322,7 +329,25 @@ typedef enum _tagXPGCloudService
  * @param timeout: 配置的超时时间 SDK默认执行的最小超时时间为30秒
  * @see 对应的回调接口：[XPGWifiSDK XPGWifiSDK:didSetDeviceWifi:result:]
  */
-- (void)setDeviceWifi:(NSString*)ssid key:(NSString*)key mode:(ConfigureMode)mode timeout:(int)timeout;
+- (void)setDeviceWifi:(NSString*)ssid
+                  key:(NSString*)key
+                 mode:(XPGConfigureMode)mode
+              timeout:(int)timeout DEPRECATED_ATTRIBUTE;
+
+/**
+ * @brief 配置路由的方法
+ * @param ssid：需要配置到路由的SSID名
+ * @param key：需要配置到路由的密码
+ * @param mode：配置方式 SoftAPMode=软AP模式 AirLinkMode=一键配置模式
+ * @param softAPSSIDPrefix：SoftAPMode模式下SoftAP的SSID前缀或全名（XPGWifiSDK以此判断手机当前是否连上了SoftAP，AirLinkMode该参数无意义，传nil即可）
+ * @param timeout: 配置的超时时间 SDK默认执行的最小超时时间为30秒
+ * @see 对应的回调接口：[XPGWifiSDK XPGWifiSDK:didSetDeviceWifi:result:]
+ */
+- (void)setDeviceWifi:(NSString*)ssid
+                  key:(NSString*)key
+                 mode:(XPGConfigureMode)mode
+     softAPSSIDPrefix:(NSString*)softAPSSIDPrefix
+              timeout:(int)timeout;
 
 /**
  * @brief 获取设备Wifi在软AP模式下搜索到的SSID列表，SSID列表通过异步回调方式返回
@@ -482,5 +507,60 @@ typedef enum _tagXPGCloudService
  * @see 对应的回调接口：[XPGWifiSDK XPGWifiSDK:didDiscovered:result:]
  */
 - (void)getBoundDevicesWithUid:(NSString *)uid token:(NSString *)token specialProductKeys:(NSString *)specialProductKey, ... NS_REQUIRES_NIL_TERMINATION;
+
+/**
+ * @brief 获取组列表
+ * @param uid：登录成功后得到的uid
+ * @param token：登录成功后得到的token
+ * @param specialProductKey：指定待筛选的组类型标识（获取到未指定类型标识的组将其过滤，指定Nil则不过滤）
+ * @see 对应的回调接口：[XPGWifiSDK XPGWifiSDK:didGetGroups:result:]
+ */
+- (void)getGroupsWithUid:(NSString *)uid token:(NSString *)token specialProductKeys:(NSString *)specialProductKey, ... NS_REQUIRES_NIL_TERMINATION;
+
+/**
+ * @brief 新建组
+ * @param uid：登录成功后得到的uid
+ * @param token：登录成功后得到的token
+ * @param productKey：指定组类型标识
+ * @param groupName：指定组名称
+ * @param specialDevices：指定加入组内的设备（成员为字典，依赖键值sdid（子设备标识码）、did（父设备标识码），暂不加入设备则传空）
+ * @see 对应的回调接口：[XPGWifiSDK XPGWifiSDK:didGetGroups:result:]
+ */
+- (void)addGroup:(NSString *)uid
+           token:(NSString *)token
+      productKey:(NSString *)productKey
+       groupName:(NSString *)groupName
+  specialDevices:(NSArray *)specialDevices;
+
+/**
+ * @brief 删除组
+ * @param uid：登录成功后得到的uid
+ * @param token：登录成功后得到的token
+ * @param gid：指定组ID
+ * @see 对应的回调接口：[XPGWifiSDK XPGWifiSDK:didGetGroups:result:]
+ */
+- (void)removeGroup:(NSString *)uid token:(NSString *)token gid:(NSString *)gid;
+
+/**
+ * @brief 编辑组
+ * @param uid：登录成功后得到的uid
+ * @param token：登录成功后得到的token
+ * @param gid：指定组ID
+ * @param groupName：指定组昵称
+ * @param specialDevices：编辑组内的设备（成员为字典，依赖键值sdid（子设备标识码）、did（父设备标识码））
+ * @see 对应的回调接口：[XPGWifiSDK XPGWifiSDK:didGetGroups:result:]
+ */
+- (void)editGroup:(NSString *)uid
+            token:(NSString *)token
+              gid:(NSString *)gid
+        groupName:(NSString*)groupName
+   specialDevices:(NSArray *)specialDevices;
+
+#ifdef SWIFT
+- (void)getBoundDevice:(NSString *)uid token:(NSString *)token;
+- (void)EnableProductFilter:(BOOL)isEnable;
+- (void)RegisterProductKey:(NSString *)productKey;
+- (void)ClearProductKey;
+#endif
 
 @end

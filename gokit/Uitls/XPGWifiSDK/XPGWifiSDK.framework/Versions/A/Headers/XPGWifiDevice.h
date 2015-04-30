@@ -10,8 +10,10 @@
 
 #define XPG_WIFI_GUESTUSER          @"__guest_user"
 
-//#define __INTERNAL_SUPPORT_SWITCH_SERVICE__
 //#define __INTERNAL_TESTING_API__
+#ifndef __INTERNAL_SUPPORT_SWITCH_SERVICE_AND_LOG_CACHE__
+#define __INTERNAL_SUPPORT_SWITCH_SERVICE_AND_LOG_CACHE__
+#endif
 
 @class XPGWifiDevice;
 
@@ -27,6 +29,13 @@ extern NSString *XPGWifiDeviceHardwareMCUSoftVerKey;
 extern NSString *XPGWifiDeviceHardwareFirmwareIdKey;
 extern NSString *XPGWifiDeviceHardwareFirmwareVerKey;
 extern NSString *XPGWifiDeviceHardwareProductKey;
+
+typedef enum
+{
+    XPGWifiDeviceTypeNormal = 0,
+    XPGWifiDeviceTypeCenterControl,
+    XPGWifiDeviceTypeSub,
+} XPGWifiDeviceType;
 
 @protocol XPGWifiDeviceDelegate <NSObject>
 @optional
@@ -60,7 +69,7 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didDeviceIsOnline:(BOOL)isOnline;
 
-#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE__
+#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE_AND_LOG_CACHE__
 /**
  * @brief 回调接口，返回设置设备调试模式的结果
  * @param result：0 成功，其他失败
@@ -130,12 +139,15 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
 @property (nonatomic, assign, readonly) BOOL isOnline;          //云端判断设备是否在线
 @property (nonatomic, assign, readonly) BOOL isDisabled;        //云端判断设备是否已注销
 
+@property (nonatomic, assign, readonly) XPGWifiDeviceType type; //设备类型
+
 /**
  * @brief 获取硬件信息。只有设备登录后才能获取到
  * @see 对应的回调接口：[XPGWifiDevice XPGWifiDevice:didQueryHardwareInfo:]
  */
 - (void)getHardwareInfo;
 
+#ifdef __INTERNAL_SUPPORT_SWITCH_SERVICE_AND_LOG_CACHE__
 /**
  * @brief 设置硬件日志参数
  * bit0: error 日志级别的开与关，0 为关，1 为开；
@@ -145,6 +157,7 @@ extern NSString *XPGWifiDeviceHardwareProductKey;
  * @see 对应的回调接口：[XPGWifiDevice XPGWifiDevice:didUpdateDeviceLog:]
  */
 - (void)setLogParam:(NSInteger)nLogLevel switchAll:(BOOL)bSwitchAll;
+#endif
 
 /**
  * @brief 断开当前的设备连接

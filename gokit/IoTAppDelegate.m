@@ -45,7 +45,7 @@ NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b3
     else
     {
         NSString *destPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        destPath = [destPath stringByAppendingPathComponent:@"Devices"];
+        destPath = [destPath stringByAppendingPathComponent:@"XPGWifiSDK/Devices"];
         
         // 创建目录
         [[NSFileManager defaultManager] createDirectoryAtPath:destPath withIntermediateDirectories:YES attributes:nil error:nil];
