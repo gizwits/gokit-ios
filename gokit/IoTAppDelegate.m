@@ -35,7 +35,7 @@ NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b3
 @implementation IoTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // 拷贝配置文件到 /Documents/Devices 目录
+    // 拷贝配置文件到 /Documents/XPGWifiSDK/Devices 目录
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"];
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
     {
