@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2F1277F1C0DA8A7003374F7 /* RBBAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127701C0DA8A7003374F7 /* RBBAnimation.m */; };
+		E2F127801C0DA8A7003374F7 /* RBBBlockBasedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127721C0DA8A7003374F7 /* RBBBlockBasedArray.m */; };
+		E2F127811C0DA8A7003374F7 /* RBBCubicBezier.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127741C0DA8A7003374F7 /* RBBCubicBezier.m */; };
+		E2F127821C0DA8A7003374F7 /* RBBCustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127761C0DA8A7003374F7 /* RBBCustomAnimation.m */; };
+		E2F127831C0DA8A7003374F7 /* RBBEasingFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127781C0DA8A7003374F7 /* RBBEasingFunction.m */; };
+		E2F127841C0DA8A7003374F7 /* RBBLinearInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F1277A1C0DA8A7003374F7 /* RBBLinearInterpolation.m */; };
+		E2F127851C0DA8A7003374F7 /* RBBSpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F1277C1C0DA8A7003374F7 /* RBBSpringAnimation.m */; };
+		E2F127861C0DA8A7003374F7 /* RBBTweenAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F1277E1C0DA8A7003374F7 /* RBBTweenAnimation.m */; };
 		EE33B5051A1C94E70003854A /* IoTAirlinkConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = EE33B4FC1A1C94E70003854A /* IoTAirlinkConfigure.m */; };
 		EE33B5061A1C94E70003854A /* IoTAirlinkConfigure.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE33B4FD1A1C94E70003854A /* IoTAirlinkConfigure.xib */; };
 		EE33B5071A1C94E70003854A /* IoTDeviceAP.m in Sources */ = {isa = PBXBuildFile; fileRef = EE33B5001A1C94E70003854A /* IoTDeviceAP.m */; };
@@ -81,11 +89,26 @@
 		EECDA9F01A0240B500E35C82 /* LMModalSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9E61A0240B500E35C82 /* LMModalSegue.m */; };
 		EECDA9F11A0240B500E35C82 /* LMNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9E81A0240B500E35C82 /* LMNavigationBar.m */; };
 		EECDA9F21A0240B500E35C82 /* LMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9EA1A0240B500E35C82 /* LMNavigationController.m */; };
-		EECDA9F31A0240B500E35C82 /* Radial.png in Resources */ = {isa = PBXBuildFile; fileRef = EECDA9EB1A0240B500E35C82 /* Radial.png */; };
 		EECDA9FD1A02419800E35C82 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDA9FB1A02417200E35C82 /* libc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E2F1276F1C0DA8A7003374F7 /* RBBAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBAnimation.h; sourceTree = "<group>"; };
+		E2F127701C0DA8A7003374F7 /* RBBAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBAnimation.m; sourceTree = "<group>"; };
+		E2F127711C0DA8A7003374F7 /* RBBBlockBasedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBBlockBasedArray.h; sourceTree = "<group>"; };
+		E2F127721C0DA8A7003374F7 /* RBBBlockBasedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBBlockBasedArray.m; sourceTree = "<group>"; };
+		E2F127731C0DA8A7003374F7 /* RBBCubicBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBCubicBezier.h; sourceTree = "<group>"; };
+		E2F127741C0DA8A7003374F7 /* RBBCubicBezier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBCubicBezier.m; sourceTree = "<group>"; };
+		E2F127751C0DA8A7003374F7 /* RBBCustomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBCustomAnimation.h; sourceTree = "<group>"; };
+		E2F127761C0DA8A7003374F7 /* RBBCustomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBCustomAnimation.m; sourceTree = "<group>"; };
+		E2F127771C0DA8A7003374F7 /* RBBEasingFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBEasingFunction.h; sourceTree = "<group>"; };
+		E2F127781C0DA8A7003374F7 /* RBBEasingFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBEasingFunction.m; sourceTree = "<group>"; };
+		E2F127791C0DA8A7003374F7 /* RBBLinearInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBLinearInterpolation.h; sourceTree = "<group>"; };
+		E2F1277A1C0DA8A7003374F7 /* RBBLinearInterpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBLinearInterpolation.m; sourceTree = "<group>"; };
+		E2F1277B1C0DA8A7003374F7 /* RBBSpringAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBSpringAnimation.h; sourceTree = "<group>"; };
+		E2F1277C1C0DA8A7003374F7 /* RBBSpringAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBSpringAnimation.m; sourceTree = "<group>"; };
+		E2F1277D1C0DA8A7003374F7 /* RBBTweenAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBTweenAnimation.h; sourceTree = "<group>"; };
+		E2F1277E1C0DA8A7003374F7 /* RBBTweenAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBTweenAnimation.m; sourceTree = "<group>"; };
 		EE33B4FB1A1C94E70003854A /* IoTAirlinkConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTAirlinkConfigure.h; sourceTree = "<group>"; };
 		EE33B4FC1A1C94E70003854A /* IoTAirlinkConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTAirlinkConfigure.m; sourceTree = "<group>"; };
 		EE33B4FD1A1C94E70003854A /* IoTAirlinkConfigure.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTAirlinkConfigure.xib; sourceTree = "<group>"; };
@@ -289,7 +312,6 @@
 		EECDA9E81A0240B500E35C82 /* LMNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNavigationBar.m; sourceTree = "<group>"; };
 		EECDA9E91A0240B500E35C82 /* LMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNavigationController.h; sourceTree = "<group>"; };
 		EECDA9EA1A0240B500E35C82 /* LMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNavigationController.m; sourceTree = "<group>"; };
-		EECDA9EB1A0240B500E35C82 /* Radial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Radial.png; sourceTree = "<group>"; };
 		EECDA9FB1A02417200E35C82 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -308,6 +330,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E2F1276E1C0DA8A7003374F7 /* RBBAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				E2F1276F1C0DA8A7003374F7 /* RBBAnimation.h */,
+				E2F127701C0DA8A7003374F7 /* RBBAnimation.m */,
+				E2F127711C0DA8A7003374F7 /* RBBBlockBasedArray.h */,
+				E2F127721C0DA8A7003374F7 /* RBBBlockBasedArray.m */,
+				E2F127731C0DA8A7003374F7 /* RBBCubicBezier.h */,
+				E2F127741C0DA8A7003374F7 /* RBBCubicBezier.m */,
+				E2F127751C0DA8A7003374F7 /* RBBCustomAnimation.h */,
+				E2F127761C0DA8A7003374F7 /* RBBCustomAnimation.m */,
+				E2F127771C0DA8A7003374F7 /* RBBEasingFunction.h */,
+				E2F127781C0DA8A7003374F7 /* RBBEasingFunction.m */,
+				E2F127791C0DA8A7003374F7 /* RBBLinearInterpolation.h */,
+				E2F1277A1C0DA8A7003374F7 /* RBBLinearInterpolation.m */,
+				E2F1277B1C0DA8A7003374F7 /* RBBSpringAnimation.h */,
+				E2F1277C1C0DA8A7003374F7 /* RBBSpringAnimation.m */,
+				E2F1277D1C0DA8A7003374F7 /* RBBTweenAnimation.h */,
+				E2F1277E1C0DA8A7003374F7 /* RBBTweenAnimation.m */,
+			);
+			path = RBBAnimation;
+			sourceTree = "<group>";
+		};
 		EE33B4F91A1C94E70003854A /* On-boarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +474,7 @@
 		EE4579CC19F6512400E1E9DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E2F1276E1C0DA8A7003374F7 /* RBBAnimation */,
 				EE6B62A01A1AED3100F08628 /* Wifi */,
 				EECDA9361A023F0800E35C82 /* AFNetworking */,
 				EE4579CD19F6512400E1E9DF /* CAAnimationBlocks */,
@@ -739,7 +785,6 @@
 				EECDA9E81A0240B500E35C82 /* LMNavigationBar.m */,
 				EECDA9E91A0240B500E35C82 /* LMNavigationController.h */,
 				EECDA9EA1A0240B500E35C82 /* LMNavigationController.m */,
-				EECDA9EB1A0240B500E35C82 /* Radial.png */,
 			);
 			path = LMAlertView;
 			sourceTree = "<group>";
@@ -817,7 +862,6 @@
 				EE7D6D8919FE38EB0035DB51 /* IoTDeviceEnumCell.xib in Resources */,
 				EE4579F819F6512700E1E9DF /* rssi_1@2x.png in Resources */,
 				EE7D6D8419FE38CD0035DB51 /* IoTDeviceBoolCell.xib in Resources */,
-				EECDA9F31A0240B500E35C82 /* Radial.png in Resources */,
 				EE7D6D9019FE3DAD0035DB51 /* IoTDeviceEnumSelection.xib in Resources */,
 				EE6B62A51A1AF5A000F08628 /* data.json in Resources */,
 				EE4579F919F6512700E1E9DF /* rssi_2@2x.png in Resources */,
@@ -847,11 +891,13 @@
 				EE45797119F64B0F00E1E9DF /* main.m in Sources */,
 				EECDA9F01A0240B500E35C82 /* LMModalSegue.m in Sources */,
 				EECDA9EE1A0240B500E35C82 /* LMEmbeddedViewController.m in Sources */,
+				E2F1277F1C0DA8A7003374F7 /* RBBAnimation.m in Sources */,
 				EECDA96C1A023F0800E35C82 /* UIRefreshControl+AFNetworking.m in Sources */,
 				EECDA9D41A02407900E35C82 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				EECDA9661A023F0800E35C82 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EE7D6D8319FE38CD0035DB51 /* IoTDeviceBoolCell.m in Sources */,
 				EECDA96A1A023F0800E35C82 /* UIImageView+AFNetworking.m in Sources */,
+				E2F127861C0DA8A7003374F7 /* RBBTweenAnimation.m in Sources */,
 				EECDA9691A023F0800E35C82 /* UIButton+AFNetworking.m in Sources */,
 				EECDA9741A023FBC00E35C82 /* MBProgressHUD.m in Sources */,
 				EECDA9671A023F0800E35C82 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -871,14 +917,20 @@
 				EECDA9631A023F0800E35C82 /* AFURLRequestSerialization.m in Sources */,
 				EECDA9EF1A0240B500E35C82 /* LMModalItemTableViewCell.m in Sources */,
 				EE7D6D8F19FE3DAD0035DB51 /* IoTDeviceEnumSelection.m in Sources */,
+				E2F127841C0DA8A7003374F7 /* RBBLinearInterpolation.m in Sources */,
 				EECDA9D61A02407900E35C82 /* TPKeyboardAvoidingTableView.m in Sources */,
 				EE86C69119F7928000F661AB /* IoTDeviceSliderCell.m in Sources */,
 				EECDA95E1A023F0800E35C82 /* AFHTTPRequestOperationManager.m in Sources */,
+				E2F127821C0DA8A7003374F7 /* RBBCustomAnimation.m in Sources */,
+				E2F127801C0DA8A7003374F7 /* RBBBlockBasedArray.m in Sources */,
 				EE33B5051A1C94E70003854A /* IoTAirlinkConfigure.m in Sources */,
 				EECDA9F11A0240B500E35C82 /* LMNavigationBar.m in Sources */,
+				E2F127811C0DA8A7003374F7 /* RBBCubicBezier.m in Sources */,
 				EE33B5091A1C94E70003854A /* IoTWaitForConfigureAP.m in Sources */,
+				E2F127851C0DA8A7003374F7 /* RBBSpringAnimation.m in Sources */,
 				EE4579A619F650FE00E1E9DF /* IoTLogin.m in Sources */,
 				EE86C69619F7929800F661AB /* IoTDeviceLabelCell.m in Sources */,
+				E2F127831C0DA8A7003374F7 /* RBBEasingFunction.m in Sources */,
 				EECDA9601A023F0800E35C82 /* AFNetworkReachabilityManager.m in Sources */,
 				EECDA9D51A02407900E35C82 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				EECDA9DB1A0240B100E35C82 /* LMFixedTextView.m in Sources */,
@@ -987,6 +1039,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/gokit/Uitls/XPGWifiSDK",
@@ -1009,6 +1062,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/gokit/Uitls/XPGWifiSDK",
