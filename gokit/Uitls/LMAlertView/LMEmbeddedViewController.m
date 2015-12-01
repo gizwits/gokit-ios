@@ -19,9 +19,4 @@
 	[self.alertView dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
-- (BOOL)shouldAutorotate
-{
-    return self.alertView.autoRotate;
-}
-
 @end
