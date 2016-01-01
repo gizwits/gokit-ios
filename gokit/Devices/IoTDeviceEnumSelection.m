@@ -108,6 +108,7 @@
     }
     
     selected = YES;
+    NSLog(@"======================================\n点击了颜色: %@\n======================================", indexPath);
     [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@YES afterDelay:0.2];
 }
 

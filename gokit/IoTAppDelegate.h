@@ -49,6 +49,9 @@ extern NSString * const IOT_PRODUCT;
 @property (strong, nonatomic) NSString *token;      //token
 @property (assign, nonatomic) IoTUserType userType; //用户类型，第三方用户 Demo App 不支持
 
+@property (strong, nonatomic) NSString *appSecret;
+@property (assign, nonatomic) NSNumber* result;
+
 @property (readonly, nonatomic) BOOL isRegisteredUser;  //匿名用户是否已注册
 
 // 弹出进度
@@ -59,6 +62,9 @@ extern NSString * const IOT_PRODUCT;
 
 // 助手函数：压缩大图片到指定的图片
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
+
+- (void)safePushController:(UIViewController *)controller animated:(BOOL)animated;
+- (void)safePopController:(BOOL)animated currentViewController:(UIViewController *)controller;
 
 @end
 

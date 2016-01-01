@@ -267,7 +267,9 @@
         IoTWaitForConfigureAP *waitCfg = [[IoTWaitForConfigureAP alloc] init];
         waitCfg.ssid = ssid;
         waitCfg.key = key;
+        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
         [self.navigationController pushViewController:waitCfg animated:YES];
+        
     }
 }
 

@@ -31,6 +31,7 @@
 #import <XPGWifiSDK/XPGWifiSDK.h>
 #import <iToast.h>
 #import "IoTDeviceController.h"
+#import "IoTVersionViewController.h"
 
 #define QR_SIMULATOR 0
 
@@ -259,7 +260,8 @@
     NSArray *arrSection = self.arrayList[indexPath.section];
     selectedDevices = arrSection[indexPath.row];
     selectedDevices.delegate = self;
-
+    
+#pragma 此处应使用isBind()作为判断条件，下个版本更新
     if ([selectedDevices.passcode length]) {
         AppDelegate.hud.labelText = [NSString stringWithFormat:@"正在登录%@...", selectedDevices.macAddress];
         [AppDelegate.hud show:YES];
@@ -346,6 +348,7 @@
     
     self.arrayList = deviceList;
 }
+
 
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUpdateProduct:(NSString *)product result:(int)result
 {
@@ -481,7 +484,7 @@
 - (void)rightMenu
 {
     NSString *loginText = AppDelegate.isRegisteredUser && AppDelegate.username.length ? @"退出登录" : @"账号登录";
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"添加设备",loginText,nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"添加设备",loginText,@"关于",nil];
     actionSheet.tag = 0;
     [actionSheet showInView:self.view];
 }
@@ -526,6 +529,12 @@
                     //登录
                     IoTLogin *login = [[IoTLogin alloc] init];
                     [self.navigationController pushViewController:login animated:YES];
+                    break;
+                }
+                case 2://关于
+                {
+                    IoTVersionViewController *version = [[IoTVersionViewController alloc] init];
+                    [self.navigationController pushViewController:version animated:YES];
                     break;
                 }
                 default:

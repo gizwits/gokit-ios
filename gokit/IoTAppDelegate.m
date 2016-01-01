@@ -25,16 +25,20 @@
 #import "IoTAppDelegate.h"
 #import "IoTCheckConnection.h"
 
+static NSString *const APP_SECRET = @"dc5b945db45f427c97ec9ae881850623";
+
 @interface IoTAppDelegate ()
 
 @end
 
-static NSString * const IOT_APPKEY = @"7ac10dec7dba436785ac23949536a6eb";
+//static NSString * const IOT_APPKEY = @"7ac10dec7dba436785ac23949536a6eb";
+static NSString * const IOT_APPKEY = @"42a7563f305342ae805cbb21d968a0ce";
 NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b34d441b59d7eba2c080ff805";
 
 @implementation IoTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.appSecret = APP_SECRET;
     // 拷贝配置文件到 /Documents/XPGWifiSDK/Devices 目录
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"];
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
@@ -140,6 +144,11 @@ NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b3
     DefaultSetValue(@"uid", uid)
 }
 
+- (void)setResult:(NSString *)result
+{
+    DefaultSetValue(@"result", result)
+}
+
 - (void)setUserType:(IoTUserType)userType
 {
     DefaultSetValue(@"userType", @(userType))
@@ -209,6 +218,41 @@ NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b3
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+- (void)safePushController:(UIViewController *)controller animated:(BOOL)animated
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @try {
+            if(_navCtrl.viewControllers.lastObject == controller)
+                return;
+            
+            NSUInteger index = [_navCtrl.viewControllers indexOfObject:controller];
+            if(index < _navCtrl.viewControllers.count)
+                [self.navCtrl popToViewController:controller animated:animated];
+            else
+                [self.navCtrl pushViewController:controller animated:animated];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"safePushController cause an exception: %@\nCurrent controller: %@\nStacks: %@\n\n", exception, controller, _navCtrl.viewControllers);
+        }
+    });
+}
+
+- (void)safePopController:(BOOL)animated currentViewController:(UIViewController *)controller
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @try {
+            if(_navCtrl.viewControllers.count == 1)
+                return;
+            
+            if(nil == controller || _navCtrl.viewControllers.lastObject == controller)
+                [self.navCtrl popViewControllerAnimated:animated];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"safePushController cause an exception: %@\nStacks: %@\n\n", exception, _navCtrl.viewControllers);
+        }
+    });
 }
 
 #pragma mark - Application Cycle

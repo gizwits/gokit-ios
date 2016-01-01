@@ -33,6 +33,8 @@
 
 #ifdef __OBJC__
     #import "IoTDefinitions.h"
+
+    #define NSLS(x) NSLocalizedString(x, nil)
 #endif
 
 #endif

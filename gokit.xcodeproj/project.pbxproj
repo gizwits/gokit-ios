@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A05B1AB1C2BF622000F26B2 /* IoTVersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05B1A91C2BF621000F26B2 /* IoTVersionViewController.m */; };
+		1A05B1AC1C2BF622000F26B2 /* IoTVersionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B1AA1C2BF622000F26B2 /* IoTVersionViewController.xib */; };
+		1A05B1AE1C2BFA08000F26B2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B1AD1C2BFA08000F26B2 /* Icon@2x.png */; };
+		1A05B1D01C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05B1C61C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.m */; };
+		1A05B1D11C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B1C71C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.xib */; };
+		1A05B1D21C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05B1C91C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.m */; };
+		1A05B1D31C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B1CA1C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.xib */; };
+		1A05B1D41C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05B1CC1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.m */; };
+		1A05B1D51C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B1CD1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.xib */; };
+		1A05B1D61C2CEA2F000F26B2 /* IoTRegisterProcessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05B1CF1C2CEA2F000F26B2 /* IoTRegisterProcessModel.m */; };
+		1A05B1D81C2CF7D1000F26B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B1D71C2CF7D1000F26B2 /* Localizable.strings */; };
+		1A05B2051C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05B2031C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.m */; };
+		1A05B2061C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B2041C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.xib */; };
+		1A05B20A1C2D420B000F26B2 /* IoTGokitConfigureTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05B2081C2D420B000F26B2 /* IoTGokitConfigureTypeCell.m */; };
+		1A05B20B1C2D420B000F26B2 /* IoTGokitConfigureTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A05B2091C2D420B000F26B2 /* IoTGokitConfigureTypeCell.xib */; };
+		1A6EBC331C310877002981C3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6EBC311C310798002981C3 /* CoreTelephony.framework */; };
+		6631CEB91C0DB6C500CC1E35 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDA9C71A02406100E35C82 /* libcrypto.a */; };
+		6631CEBF1C0DB72400CC1E35 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631CEBB1C0DB72400CC1E35 /* libEasyLink.a */; };
+		6631CEC01C0DB72400CC1E35 /* libEsptouch_v0.3.3.4_4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631CEBC1C0DB72400CC1E35 /* libEsptouch_v0.3.3.4_4.a */; };
+		6631CEC11C0DB72400CC1E35 /* libLibSimpleConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631CEBD1C0DB72400CC1E35 /* libLibSimpleConfig.a */; };
+		6631CEC21C0DB72400CC1E35 /* XPGWifiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631CEBE1C0DB72400CC1E35 /* XPGWifiSDK.framework */; };
 		E2F1277F1C0DA8A7003374F7 /* RBBAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127701C0DA8A7003374F7 /* RBBAnimation.m */; };
 		E2F127801C0DA8A7003374F7 /* RBBBlockBasedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127721C0DA8A7003374F7 /* RBBBlockBasedArray.m */; };
 		E2F127811C0DA8A7003374F7 /* RBBCubicBezier.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F127741C0DA8A7003374F7 /* RBBCubicBezier.m */; };
@@ -72,10 +93,8 @@
 		EECDA96B1A023F0800E35C82 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9581A023F0800E35C82 /* UIProgressView+AFNetworking.m */; };
 		EECDA96C1A023F0800E35C82 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA95A1A023F0800E35C82 /* UIRefreshControl+AFNetworking.m */; };
 		EECDA96D1A023F0800E35C82 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA95C1A023F0800E35C82 /* UIWebView+AFNetworking.m */; };
-		EECDA9701A023FAB00E35C82 /* XPGWifiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDA96F1A023FAB00E35C82 /* XPGWifiSDK.framework */; };
 		EECDA9741A023FBC00E35C82 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9731A023FBC00E35C82 /* MBProgressHUD.m */; };
 		EECDA9781A02402F00E35C82 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9771A02402F00E35C82 /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EECDA9C91A02406100E35C82 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDA9C71A02406100E35C82 /* libcrypto.a */; };
 		EECDA9CA1A02406200E35C82 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EECDA9C81A02406100E35C82 /* libssl.a */; };
 		EECDA9D41A02407900E35C82 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9CD1A02407900E35C82 /* TPKeyboardAvoidingCollectionView.m */; };
 		EECDA9D51A02407900E35C82 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EECDA9CF1A02407900E35C82 /* TPKeyboardAvoidingScrollView.m */; };
@@ -93,6 +112,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A05B1A81C2BF621000F26B2 /* IoTVersionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTVersionViewController.h; sourceTree = "<group>"; };
+		1A05B1A91C2BF621000F26B2 /* IoTVersionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTVersionViewController.m; sourceTree = "<group>"; };
+		1A05B1AA1C2BF622000F26B2 /* IoTVersionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTVersionViewController.xib; sourceTree = "<group>"; };
+		1A05B1AD1C2BFA08000F26B2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		1A05B1C51C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IoTNewEnterValidateNumViewController.h; path = IoTRegister/IoTNewEnterValidateNumViewController.h; sourceTree = "<group>"; };
+		1A05B1C61C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IoTNewEnterValidateNumViewController.m; path = IoTRegister/IoTNewEnterValidateNumViewController.m; sourceTree = "<group>"; };
+		1A05B1C71C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IoTNewEnterValidateNumViewController.xib; path = IoTRegister/IoTNewEnterValidateNumViewController.xib; sourceTree = "<group>"; };
+		1A05B1C81C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IoTNewRegisterSendMessage.h; path = IoTRegister/IoTNewRegisterSendMessage.h; sourceTree = "<group>"; };
+		1A05B1C91C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IoTNewRegisterSendMessage.m; path = IoTRegister/IoTNewRegisterSendMessage.m; sourceTree = "<group>"; };
+		1A05B1CA1C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IoTNewRegisterSendMessage.xib; path = IoTRegister/IoTNewRegisterSendMessage.xib; sourceTree = "<group>"; };
+		1A05B1CB1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IoTRegisterPasswordViewController.h; path = IoTRegister/IoTRegisterPasswordViewController.h; sourceTree = "<group>"; };
+		1A05B1CC1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IoTRegisterPasswordViewController.m; path = IoTRegister/IoTRegisterPasswordViewController.m; sourceTree = "<group>"; };
+		1A05B1CD1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IoTRegisterPasswordViewController.xib; path = IoTRegister/IoTRegisterPasswordViewController.xib; sourceTree = "<group>"; };
+		1A05B1CE1C2CEA2F000F26B2 /* IoTRegisterProcessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IoTRegisterProcessModel.h; path = IoTRegister/IoTRegisterProcessModel.h; sourceTree = "<group>"; };
+		1A05B1CF1C2CEA2F000F26B2 /* IoTRegisterProcessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IoTRegisterProcessModel.m; path = IoTRegister/IoTRegisterProcessModel.m; sourceTree = "<group>"; };
+		1A05B1D71C2CF7D1000F26B2 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resource/Localizable.strings; sourceTree = "<group>"; };
+		1A05B2021C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTGokitConfigureTypeSelection.h; sourceTree = "<group>"; };
+		1A05B2031C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTGokitConfigureTypeSelection.m; sourceTree = "<group>"; };
+		1A05B2041C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTGokitConfigureTypeSelection.xib; sourceTree = "<group>"; };
+		1A05B2071C2D420B000F26B2 /* IoTGokitConfigureTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoTGokitConfigureTypeCell.h; sourceTree = "<group>"; };
+		1A05B2081C2D420B000F26B2 /* IoTGokitConfigureTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoTGokitConfigureTypeCell.m; sourceTree = "<group>"; };
+		1A05B2091C2D420B000F26B2 /* IoTGokitConfigureTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IoTGokitConfigureTypeCell.xib; sourceTree = "<group>"; };
+		1A6EBC311C310798002981C3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6631CEBB1C0DB72400CC1E35 /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEasyLink.a; sourceTree = "<group>"; };
+		6631CEBC1C0DB72400CC1E35 /* libEsptouch_v0.3.3.4_4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEsptouch_v0.3.3.4_4.a; sourceTree = "<group>"; };
+		6631CEBD1C0DB72400CC1E35 /* libLibSimpleConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLibSimpleConfig.a; sourceTree = "<group>"; };
+		6631CEBE1C0DB72400CC1E35 /* XPGWifiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XPGWifiSDK.framework; sourceTree = "<group>"; };
 		E2F1276F1C0DA8A7003374F7 /* RBBAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBAnimation.h; sourceTree = "<group>"; };
 		E2F127701C0DA8A7003374F7 /* RBBAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBAnimation.m; sourceTree = "<group>"; };
 		E2F127711C0DA8A7003374F7 /* RBBBlockBasedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBBlockBasedArray.h; sourceTree = "<group>"; };
@@ -206,7 +252,6 @@
 		EECDA95A1A023F0800E35C82 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		EECDA95B1A023F0800E35C82 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		EECDA95C1A023F0800E35C82 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
-		EECDA96F1A023FAB00E35C82 /* XPGWifiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XPGWifiSDK.framework; sourceTree = "<group>"; };
 		EECDA9721A023FBC00E35C82 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EECDA9731A023FBC00E35C82 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EECDA9761A02402F00E35C82 /* iToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iToast.h; sourceTree = "<group>"; };
@@ -320,16 +365,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A6EBC331C310877002981C3 /* CoreTelephony.framework in Frameworks */,
+				6631CEC01C0DB72400CC1E35 /* libEsptouch_v0.3.3.4_4.a in Frameworks */,
+				6631CEC21C0DB72400CC1E35 /* XPGWifiSDK.framework in Frameworks */,
 				EECDA9FD1A02419800E35C82 /* libc++.dylib in Frameworks */,
-				EECDA9C91A02406100E35C82 /* libcrypto.a in Frameworks */,
-				EECDA9701A023FAB00E35C82 /* XPGWifiSDK.framework in Frameworks */,
 				EECDA9CA1A02406200E35C82 /* libssl.a in Frameworks */,
+				6631CEB91C0DB6C500CC1E35 /* libcrypto.a in Frameworks */,
+				6631CEBF1C0DB72400CC1E35 /* libEasyLink.a in Frameworks */,
+				6631CEC11C0DB72400CC1E35 /* libLibSimpleConfig.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A05B1C41C2CEA1C000F26B2 /* IoTRegister */ = {
+			isa = PBXGroup;
+			children = (
+				1A05B1C51C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.h */,
+				1A05B1C61C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.m */,
+				1A05B1C71C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.xib */,
+				1A05B1C81C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.h */,
+				1A05B1C91C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.m */,
+				1A05B1CA1C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.xib */,
+				1A05B1CB1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.h */,
+				1A05B1CC1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.m */,
+				1A05B1CD1C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.xib */,
+				1A05B1CE1C2CEA2F000F26B2 /* IoTRegisterProcessModel.h */,
+				1A05B1CF1C2CEA2F000F26B2 /* IoTRegisterProcessModel.m */,
+			);
+			name = IoTRegister;
+			sourceTree = "<group>";
+		};
+		6631CEBA1C0DB72400CC1E35 /* XPGWifiSDK */ = {
+			isa = PBXGroup;
+			children = (
+				6631CEBB1C0DB72400CC1E35 /* libEasyLink.a */,
+				6631CEBC1C0DB72400CC1E35 /* libEsptouch_v0.3.3.4_4.a */,
+				6631CEBD1C0DB72400CC1E35 /* libLibSimpleConfig.a */,
+				6631CEBE1C0DB72400CC1E35 /* XPGWifiSDK.framework */,
+			);
+			path = XPGWifiSDK;
+			sourceTree = "<group>";
+		};
 		E2F1276E1C0DA8A7003374F7 /* RBBAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +443,12 @@
 		EE33B4FA1A1C94E70003854A /* Airlink */ = {
 			isa = PBXGroup;
 			children = (
+				1A05B2071C2D420B000F26B2 /* IoTGokitConfigureTypeCell.h */,
+				1A05B2081C2D420B000F26B2 /* IoTGokitConfigureTypeCell.m */,
+				1A05B2091C2D420B000F26B2 /* IoTGokitConfigureTypeCell.xib */,
+				1A05B2021C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.h */,
+				1A05B2031C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.m */,
+				1A05B2041C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.xib */,
 				EE33B4FB1A1C94E70003854A /* IoTAirlinkConfigure.h */,
 				EE33B4FC1A1C94E70003854A /* IoTAirlinkConfigure.m */,
 				EE33B4FD1A1C94E70003854A /* IoTAirlinkConfigure.xib */,
@@ -388,6 +472,7 @@
 		EE45796219F64B0F00E1E9DF = {
 			isa = PBXGroup;
 			children = (
+				1A6EBC311C310798002981C3 /* CoreTelephony.framework */,
 				EE45796D19F64B0F00E1E9DF /* gokit */,
 				EE45796C19F64B0F00E1E9DF /* Products */,
 			);
@@ -421,6 +506,7 @@
 		EE45796E19F64B0F00E1E9DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1A05B1D71C2CF7D1000F26B2 /* Localizable.strings */,
 				EECDA9FB1A02417200E35C82 /* libc++.dylib */,
 				EE4579D019F6512400E1E9DF /* IoTDefinitions.h */,
 				EE4579FC19F6544E00E1E9DF /* gokit.pch */,
@@ -433,6 +519,7 @@
 		EE45799A19F650FE00E1E9DF /* UserAccount */ = {
 			isa = PBXGroup;
 			children = (
+				1A05B1C41C2CEA1C000F26B2 /* IoTRegister */,
 				EE45799E19F650FE00E1E9DF /* IoTLogin.h */,
 				EE45799F19F650FE00E1E9DF /* IoTLogin.m */,
 				EE4579A019F650FE00E1E9DF /* IoTLogin.xib */,
@@ -467,6 +554,9 @@
 				EE86C68719F749EF00F661AB /* IoTDeviceController.h */,
 				EE86C68819F749EF00F661AB /* IoTDeviceController.m */,
 				EE86C68919F749EF00F661AB /* IoTDeviceController.xib */,
+				1A05B1A81C2BF621000F26B2 /* IoTVersionViewController.h */,
+				1A05B1A91C2BF621000F26B2 /* IoTVersionViewController.m */,
+				1A05B1AA1C2BF622000F26B2 /* IoTVersionViewController.xib */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -474,6 +564,7 @@
 		EE4579CC19F6512400E1E9DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6631CEBA1C0DB72400CC1E35 /* XPGWifiSDK */,
 				E2F1276E1C0DA8A7003374F7 /* RBBAnimation */,
 				EE6B62A01A1AED3100F08628 /* Wifi */,
 				EECDA9361A023F0800E35C82 /* AFNetworking */,
@@ -484,7 +575,6 @@
 				EECDA9711A023FBC00E35C82 /* MBProgressHUD */,
 				EECDA9791A02406100E35C82 /* OpenSSL-Universal */,
 				EECDA9CB1A02407900E35C82 /* TPKeyboardAvoiding */,
-				EECDA96E1A023FAB00E35C82 /* XPGWifiSDK */,
 			);
 			name = Utils;
 			path = Uitls;
@@ -511,6 +601,7 @@
 		EE4579EF19F6512700E1E9DF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1A05B1AD1C2BFA08000F26B2 /* Icon@2x.png */,
 				EE4579F019F6512700E1E9DF /* align.png */,
 				EE4579F119F6512700E1E9DF /* rssi_0@2x.png */,
 				EE4579F219F6512700E1E9DF /* rssi_1@2x.png */,
@@ -616,14 +707,6 @@
 				EECDA95C1A023F0800E35C82 /* UIWebView+AFNetworking.m */,
 			);
 			path = "UIKit+AFNetworking";
-			sourceTree = "<group>";
-		};
-		EECDA96E1A023FAB00E35C82 /* XPGWifiSDK */ = {
-			isa = PBXGroup;
-			children = (
-				EECDA96F1A023FAB00E35C82 /* XPGWifiSDK.framework */,
-			);
-			path = XPGWifiSDK;
 			sourceTree = "<group>";
 		};
 		EECDA9711A023FBC00E35C82 /* MBProgressHUD */ = {
@@ -846,23 +929,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A05B2061C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.xib in Resources */,
 				EE4579BD19F6511500E1E9DF /* IoTCheckConnection.xib in Resources */,
+				1A05B1AE1C2BFA08000F26B2 /* Icon@2x.png in Resources */,
 				EE4579F719F6512700E1E9DF /* rssi_0@2x.png in Resources */,
 				EE86C69219F7928000F661AB /* IoTDeviceSliderCell.xib in Resources */,
 				EE4579BF19F6511500E1E9DF /* IoTNotReachable.xib in Resources */,
+				1A05B1D11C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.xib in Resources */,
 				EE45797C19F64B0F00E1E9DF /* Images.xcassets in Resources */,
 				EE4579F619F6512700E1E9DF /* align.png in Resources */,
+				1A05B1D51C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.xib in Resources */,
 				EE33B5061A1C94E70003854A /* IoTAirlinkConfigure.xib in Resources */,
+				1A05B1AC1C2BF622000F26B2 /* IoTVersionViewController.xib in Resources */,
 				EE33B5081A1C94E70003854A /* IoTDeviceAP.xib in Resources */,
+				1A05B1D31C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.xib in Resources */,
 				EE86C68B19F749EF00F661AB /* IoTDeviceController.xib in Resources */,
 				EE86C69719F7929800F661AB /* IoTDeviceLabelCell.xib in Resources */,
 				EE4579FA19F6512700E1E9DF /* rssi_3@2x.png in Resources */,
 				EE4579FB19F6512700E1E9DF /* rssi_4@2x.png in Resources */,
+				1A05B1D81C2CF7D1000F26B2 /* Localizable.strings in Resources */,
 				EE33B50A1A1C94E70003854A /* IoTWaitForConfigureAP.xib in Resources */,
 				EE7D6D8919FE38EB0035DB51 /* IoTDeviceEnumCell.xib in Resources */,
 				EE4579F819F6512700E1E9DF /* rssi_1@2x.png in Resources */,
 				EE7D6D8419FE38CD0035DB51 /* IoTDeviceBoolCell.xib in Resources */,
 				EE7D6D9019FE3DAD0035DB51 /* IoTDeviceEnumSelection.xib in Resources */,
+				1A05B20B1C2D420B000F26B2 /* IoTGokitConfigureTypeCell.xib in Resources */,
 				EE6B62A51A1AF5A000F08628 /* data.json in Resources */,
 				EE4579F919F6512700E1E9DF /* rssi_2@2x.png in Resources */,
 				EE4579A719F650FE00E1E9DF /* IoTLogin.xib in Resources */,
@@ -882,8 +973,10 @@
 				EE6B62A31A1AED3100F08628 /* IoTWifiUtil.m in Sources */,
 				EE4579BC19F6511500E1E9DF /* IoTCheckConnection.m in Sources */,
 				EECDA9EC1A0240B500E35C82 /* CALayer+ModalAlert.m in Sources */,
+				1A05B20A1C2D420B000F26B2 /* IoTGokitConfigureTypeCell.m in Sources */,
 				EE4579C419F6511C00E1E9DF /* IoTDeviceList.m in Sources */,
 				EE33B5071A1C94E70003854A /* IoTDeviceAP.m in Sources */,
+				1A05B1D01C2CEA2F000F26B2 /* IoTNewEnterValidateNumViewController.m in Sources */,
 				EE45797419F64B0F00E1E9DF /* IoTAppDelegate.m in Sources */,
 				EECDA96D1A023F0800E35C82 /* UIWebView+AFNetworking.m in Sources */,
 				EECDA9F21A0240B500E35C82 /* LMNavigationController.m in Sources */,
@@ -913,15 +1006,19 @@
 				EECDA9621A023F0800E35C82 /* AFURLConnectionOperation.m in Sources */,
 				EE4579E419F6512400E1E9DF /* CAAnimation+Blocks.m in Sources */,
 				EECDA9681A023F0800E35C82 /* UIAlertView+AFNetworking.m in Sources */,
+				1A05B1D21C2CEA2F000F26B2 /* IoTNewRegisterSendMessage.m in Sources */,
 				EECDA9D71A02407900E35C82 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				1A05B1D41C2CEA2F000F26B2 /* IoTRegisterPasswordViewController.m in Sources */,
 				EECDA9631A023F0800E35C82 /* AFURLRequestSerialization.m in Sources */,
 				EECDA9EF1A0240B500E35C82 /* LMModalItemTableViewCell.m in Sources */,
+				1A05B2051C2D41AB000F26B2 /* IoTGokitConfigureTypeSelection.m in Sources */,
 				EE7D6D8F19FE3DAD0035DB51 /* IoTDeviceEnumSelection.m in Sources */,
 				E2F127841C0DA8A7003374F7 /* RBBLinearInterpolation.m in Sources */,
 				EECDA9D61A02407900E35C82 /* TPKeyboardAvoidingTableView.m in Sources */,
 				EE86C69119F7928000F661AB /* IoTDeviceSliderCell.m in Sources */,
 				EECDA95E1A023F0800E35C82 /* AFHTTPRequestOperationManager.m in Sources */,
 				E2F127821C0DA8A7003374F7 /* RBBCustomAnimation.m in Sources */,
+				1A05B1AB1C2BF622000F26B2 /* IoTVersionViewController.m in Sources */,
 				E2F127801C0DA8A7003374F7 /* RBBBlockBasedArray.m in Sources */,
 				EE33B5051A1C94E70003854A /* IoTAirlinkConfigure.m in Sources */,
 				EECDA9F11A0240B500E35C82 /* LMNavigationBar.m in Sources */,
@@ -935,6 +1032,7 @@
 				EECDA9D51A02407900E35C82 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				EECDA9DB1A0240B100E35C82 /* LMFixedTextView.m in Sources */,
 				EECDA9ED1A0240B500E35C82 /* LMAlertView.m in Sources */,
+				1A05B1D61C2CEA2F000F26B2 /* IoTRegisterProcessModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,7 +1136,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 蓉 关 (C55L69J37Q)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1050,9 +1148,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/gokit/Uitls/XPGWifiSDK",
 					"$(PROJECT_DIR)/gokit/Uitls/OpenSSL-Universal/library",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xtremeprog.gokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1061,7 +1162,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 蓉 关 (C55L69J37Q)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1073,9 +1174,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/gokit/Uitls/XPGWifiSDK",
 					"$(PROJECT_DIR)/gokit/Uitls/OpenSSL-Universal/library",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xtremeprog.gokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

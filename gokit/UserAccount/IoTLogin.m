@@ -26,7 +26,8 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 
 #import <XPGWifiSDK/XPGWifiSDK.h>
-#import "IoTRegister.h"
+//#import "IoTRegister.h"
+#import "IoTNewRegisterSendMessage.h"
 
 @interface IoTLogin () <UITextFieldDelegate>
 
@@ -88,17 +89,18 @@
     [hud show:YES];
     
     [[XPGWifiSDK sharedInstance] userLoginWithUserName:self.textUser.text password:self.textPass.text];
+    NSLog(@"username: %@, password: %@",self.textUser.text, self.textPass.text);
 }
 
 - (IBAction)forgetPassword:(id)sender {
-    IoTRegister *fp = [[IoTRegister alloc] initWithForgetMode];
-    [self.navigationController pushViewController:fp animated:YES];
+    IoTNewRegisterSendMessage *fp = [[IoTNewRegisterSendMessage alloc] initWithToForgetPassword:YES];
+    [AppDelegate safePushController:fp animated:YES];
 }
 
 - (void)onRegister
 {
-    IoTRegister *reg = [[IoTRegister alloc] init];
-    [self.navigationController pushViewController:reg animated:YES];
+    IoTNewRegisterSendMessage *reg = [[IoTNewRegisterSendMessage alloc] initWithToForgetPassword:NO];
+    [AppDelegate safePushController:reg animated:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

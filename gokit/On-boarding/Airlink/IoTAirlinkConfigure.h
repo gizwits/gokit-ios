@@ -25,6 +25,6 @@
 #import <UIKit/UIKit.h>
 #import <XPGWifiSDK/XPGWifiSDK.h>
 
-@interface IoTAirlinkConfigure : UIViewController<XPGWifiSDKDelegate>
+@interface IoTAirlinkConfigure : UIViewController<XPGWifiSDKDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

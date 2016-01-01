@@ -62,15 +62,33 @@ typedef enum
 
 #define DATA_CMD                        @"cmd"      //命令
 #define DATA_ENTITY                     @"entity0"  //实体
-#define DATA_ATTR_LED_R_ONOFF           @"attr0"    //属性：LED R开关
-#define DATA_ATTR_LED_COLOR             @"attr1"    //属性：LED 组合颜色
-#define DATA_ATTR_LED_R                 @"attr2"    //属性：LED R值
-#define DATA_ATTR_LED_G                 @"attr3"    //属性：LED G值
-#define DATA_ATTR_LED_B                 @"attr4"    //属性：LED B值
-#define DATA_ATTR_MOTORSPEED            @"attr5"    //属性：电机转速
-#define DATA_ATTR_IR                    @"attr6"    //属性：红外探测
-#define DATA_ATTR_TEMPERATURE           @"attr7"    //属性：温度
-#define DATA_ATTR_HUMIDITY              @"attr8"    //属性：湿度
+//#define DATA_ATTR_LED_R_ONOFF           @"attr0"    //属性：LED R开关
+//#define DATA_ATTR_LED_COLOR             @"attr1"    //属性：LED 组合颜色
+//#define DATA_ATTR_LED_R                 @"attr2"    //属性：LED R值
+//#define DATA_ATTR_LED_G                 @"attr3"    //属性：LED G值
+//#define DATA_ATTR_LED_B                 @"attr4"    //属性：LED B值
+//#define DATA_ATTR_MOTORSPEED            @"attr5"    //属性：电机转速
+//#define DATA_ATTR_IR                    @"attr6"    //属性：红外探测
+//#define DATA_ATTR_TEMPERATURE           @"attr7"    //属性：温度
+//#define DATA_ATTR_HUMIDITY              @"attr8"    //属性：湿度
+
+#define DATA_ATTR_LED_R_ONOFF           @"LED_OnOff"    //属性：LED R开关
+#define DATA_ATTR_LED_COLOR             @"LED_Color"    //属性：LED 组合颜色
+#define DATA_ATTR_LED_R                 @"LED_R"    //属性：LED R值
+#define DATA_ATTR_LED_G                 @"LED_G"    //属性：LED G值
+#define DATA_ATTR_LED_B                 @"LED_B"    //属性：LED B值
+#define DATA_ATTR_MOTORSPEED            @"Motor_Speed"    //属性：电机转速
+#define DATA_ATTR_IR                    @"Infrared"    //属性：红外探测
+#define DATA_ATTR_TEMPERATURE           @"Temperature"    //属性：温度
+#define DATA_ATTR_HUMIDITY              @"Humidity"    //属性：湿度
+
+#define DATA_ATTR_ALERT_1               @"Alert_1"     //报警1
+#define DATA_ATTR_ALERT_2               @"Alert_2"     //报警2
+#define DATA_ATTR_FAULT_LED             @"Fault_LED"   //LED故障
+#define DATA_ATTR_FAULT_MOTOR           @"Fault_Motor"     //电机故障
+#define DATA_ATTR_FAULT_TEMHUM          @"Fault_TemHum"     //温湿度传感器故障
+#define DATA_ATTR_FAULT_IR              @"Fault_IR"     //红外传感器故障
+
 
 @interface IoTDeviceController ()
 {
@@ -460,8 +478,13 @@ typedef enum
 
 - (void)rightMenu
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"断开连接",@"解除绑定",@"获取设备状态",
-                                  nil];
+    UIActionSheet *actionSheet = nil;
+    if (self.device.isLAN) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"断开连接",@"解除绑定",@"获取设备状态",@"获取设备硬件信息", nil];
+    }
+    else {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"断开连接",@"解除绑定",@"获取设备状态", nil];
+    }
     actionSheet.tag = 1;
     [actionSheet showInView:self.view];
 }
@@ -553,6 +576,12 @@ typedef enum
                     [self writeDataPoint:IoTDeviceWriteUpdateData value:nil];
                     break;
                 }
+                case 3:
+                {
+                    //获取设备硬件信息
+                    [self onGetHardwareInfo];
+                    break;
+                }
                 default:
                     break;
             }
@@ -563,28 +592,61 @@ typedef enum
     }
 }
 
+- (void)onGetHardwareInfo
+{
+    if (self.device.isLAN) {
+        [self.device getHardwareInfo];
+    }
+}
+
+- (void)XPGWifiDevice:(XPGWifiDevice *)device didQueryHardwareInfo:(NSDictionary *)hwInfo
+{
+    NSString *hardWareInfo = [NSString stringWithFormat:@"WiFi Hardware Version: %@,\n\
+WiFi Software Version: %@,\n\
+MCU Hardware Version: %@,\n\
+MCU Software Version: %@,\n\
+Firmware Id: %@,\n\
+Firmware Version: %@,\n\
+Product Key: %@,\n\
+Device ID: %@,\n\
+Device IP: %@,\n\
+Device MAC: %@", [hwInfo valueForKey:XPGWifiDeviceHardwareWifiHardVerKey]
+, [hwInfo valueForKey:XPGWifiDeviceHardwareWifiSoftVerKey]
+, [hwInfo valueForKey:XPGWifiDeviceHardwareMCUHardVerKey]
+, [hwInfo valueForKey:XPGWifiDeviceHardwareMCUSoftVerKey]
+, [hwInfo valueForKey:XPGWifiDeviceHardwareFirmwareIdKey]
+, [hwInfo valueForKey:XPGWifiDeviceHardwareFirmwareVerKey]
+, [hwInfo valueForKey:XPGWifiDeviceHardwareProductKey]
+, self.device.did, self.device.ipAddress, self.device.macAddress];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"device_hardwareinformation") message:hardWareInfo delegate:self cancelButtonTitle:NSLS(@"device_confirm") otherButtonTitles:nil];
+        [_alertView show];
+    });
+}
+
 - (CGFloat)prepareForUpdateFloatRows:(NSString *)str value:(CGFloat)value rows:(NSMutableArray *)rows index:(NSInteger)index
 {
-    if([self isElementRemaining:index])
-        return value;
+//    if([self isElementRemaining:index])
+//        return value;
     
     if([str isKindOfClass:[NSNumber class]] ||
        ([str isKindOfClass:[NSString class]] && str.length > 0))
     {
         CGFloat newValue = [str floatValue];
-        if(newValue != value)
-        {
+//        if(newValue != value)
+//        {
             value = newValue;
             [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        }
+//        }
     }
     return value;
 }
 
 - (NSInteger)prepareForUpdateIntegerRows:(NSString *)str value:(NSInteger)value rows:(NSMutableArray *)rows index:(NSInteger)index
 {
-    if([self isElementRemaining:index])
-        return value;
+//    if([self isElementRemaining:index])
+//        return value;
     
     if([str isKindOfClass:[NSNumber class]] ||
         ([str isKindOfClass:[NSString class]] && str.length > 0))
@@ -599,14 +661,28 @@ typedef enum
     return value;
 }
 
-- (BOOL)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data result:(int)result
+- (void)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data result:(int)result
 {
+    NSLog(@"\n======================================\n收到了:%d上报: %@\n======================================", result, data);
+    
+    if (result == -7) {
+        [[[UIAlertView alloc] initWithTitle:nil message:@"设备连接已断开" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
     /**
      * 数据部分
      */
     NSDictionary *_data = [data valueForKey:@"data"];
+    if (_data.count == 0) {
+        return;
+    }
+    
+    
     
     NSString *ledRonOff = [self readDataPoint:IoTDeviceWriteLED_R_onOff data:_data];
+    
+
+    
     NSString *ledColor = [self readDataPoint:IoTDeviceWriteLED_Color data:_data];
     NSString *ledR = [self readDataPoint:IoTDeviceWriteLED_R data:_data];
     NSString *ledG = [self readDataPoint:IoTDeviceWriteLED_G data:_data];
@@ -619,6 +695,7 @@ typedef enum
     NSMutableArray *rows = [NSMutableArray array];
     
     iLedR = [self prepareForUpdateIntegerRows:ledRonOff value:iLedR rows:rows index:0];
+    NSLog(@"/n======ledRonOff,iLedR=====%@,%ld\n", ledRonOff, (long)iLedR);
     iledColor = [self prepareForUpdateIntegerRows:ledColor value:iledColor rows:rows index:1];
     
     fLedR = [self prepareForUpdateFloatRows:ledR value:fLedR rows:rows index:2];
@@ -627,15 +704,17 @@ typedef enum
     
     fMonitorSpeed = [self prepareForUpdateFloatRows:motorSpeed value:fMonitorSpeed rows:rows index:5];
     iir = [self prepareForUpdateIntegerRows:ir value:iir rows:rows index:6];
-    fTemperature = [self prepareForUpdateFloatRows:temperature value:fTemperature rows:rows index:7] + 13;//y=x+13
+    fTemperature = [self prepareForUpdateFloatRows:temperature value:fTemperature rows:rows index:7];
     fHumidity = [self prepareForUpdateFloatRows:humidity value:fHumidity rows:rows index:8];
+    
+//    [self.tableView reloadData];
     
     if(rows.count > 0)
         [self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
     
     // 如果 LED 组合颜色不是自定义，则 LED 不可控制
     if(iledColor > 0)
-        [self setCustomLEDMode:NO];
+        [self setCustomLEDMode:YES];
     else
         [self setCustomLEDMode:YES];
     
@@ -644,53 +723,69 @@ typedef enum
      */
     if([self.navigationController.viewControllers lastObject] != self ||
        self.isToasted)
-        return YES;
+        return;
     
     NSString *str = @"";
+    NSString *str_alerts = @"";
+    NSString *str_faults = @"";
     NSArray *alerts = [data valueForKey:@"alerts"];
     NSArray *faults = [data valueForKey:@"faults"];
     
     if(alerts.count == 0 && faults.count == 0)
-        return YES;
+        return;
     
     if(alerts.count > 0)
     {
-        str = @"设备报警：";
+        BOOL alertsFlag = false;
+        str_alerts = @"设备报警：";
         for(NSDictionary *dict in alerts)
         {
             for(NSString *name in dict.allKeys)
             {
-                if(str.length > 0)
-                    str = [str stringByAppendingString:@"\n"];
+                if(str_alerts.length > 0)
+                    str_alerts = [str_alerts stringByAppendingString:@"\n"];
                 NSNumber *value = [dict valueForKey:name];
+                if ([value intValue] == 0) continue;
+                else alertsFlag = true;
                 NSString *alert = [NSString stringWithFormat:@"%@ 错误码：%@", name, value];
-                str = [str stringByAppendingString:alert];
+                str_alerts = [str_alerts stringByAppendingString:alert];
             }
+        }
+        if (!alertsFlag) {
+            str_alerts = @"";
         }
     }
     
     if(faults.count > 0)
     {
-        if(str.length > 0)
-            str = [str stringByAppendingString:@"\n"];
-        str = [str stringByAppendingString:@"设备错误："];
+        if(str_alerts.length > 0) str_faults = @"\n";
+        BOOL faultsFlag = false;
+        str_faults = [str_faults stringByAppendingString:@"设备故障："];
         
         for(NSDictionary *dict in faults)
         {
             for(NSString *name in dict.allKeys)
             {
-                if(str.length > 0)
-                    str = [str stringByAppendingString:@"\n"];
+                if(str_faults.length > 0)
+                    str_faults = [str_faults stringByAppendingString:@"\n"];
                 NSNumber *value = [dict valueForKey:name];
+                if ([value intValue] == 0) continue;
+                else faultsFlag = true;
                 NSString *fault = [NSString stringWithFormat:@"%@ 错误码：%@", name, value];
-                str = [str stringByAppendingString:fault];
+                str_faults = [str_faults stringByAppendingString:fault];
             }
         }
+        if (!faultsFlag) {
+            str_faults = @"";
+        }
+    }
+    str = [NSString stringWithFormat:@"%@%@", str_alerts, str_faults];
+    if (str.length > 0) {
+        [self performSelectorInBackground:@selector(toast:) withObject:str];
     }
     
-    [self performSelectorInBackground:@selector(toast:) withObject:str];
-    
-    return YES;
+    return
+    ;
 }
 
 - (void)XPGWifiDeviceDidDisconnected:(XPGWifiDevice *)device
@@ -718,7 +813,7 @@ typedef enum
           @"delegate": self}:
         @{@"title": @"解除绑定失败"};
         [[[UIAlertView alloc] initWithTitle:[params valueForKey:@"title"] message:@"" delegate:[params valueForKey:@"delegate"] cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
-        [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+         [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
     }
 }
 
@@ -752,7 +847,7 @@ typedef enum
 - (void)addRemainElement:(NSInteger)row
 {
     BOOL isEqual = NO;
-    NSNumber *timeout = @3;    // 发控制指令后，等待3s后才可接收指定控件的变更
+    NSNumber *timeout = @0;    // 发控制指令后，等待3s后才可接收指定控件的变更
     
     for(NSMutableDictionary *dict in updateCtrl)
     {
