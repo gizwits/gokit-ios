@@ -25,15 +25,14 @@
 #import "IoTAppDelegate.h"
 #import "IoTCheckConnection.h"
 
-static NSString *const APP_SECRET = @"dc5b945db45f427c97ec9ae881850623";
+static NSString *const APP_SECRET = @"your_app_secret";
 
 @interface IoTAppDelegate ()
 
 @end
 
-//static NSString * const IOT_APPKEY = @"7ac10dec7dba436785ac23949536a6eb";
-static NSString * const IOT_APPKEY = @"42a7563f305342ae805cbb21d968a0ce";
-NSString * const IOT_PRODUCT = @"6f3074fe43894547a4f1314bd7e3ae0b";//@"be606a7b34d441b59d7eba2c080ff805";
+static NSString * const IOT_APPKEY = @"your_app_id";
+NSString * const IOT_PRODUCT = @"your_product_key";
 
 @implementation IoTAppDelegate
 
