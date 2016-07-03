@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="GizDeviceSliderCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9E-Ag-0PW">
+                        <rect key="frame" x="278" y="8" width="24" height="25"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.042763197817995119" green="0.36088968396781779" blue="0.57512626262626265" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCu-N2-ibj">
+                        <rect key="frame" x="8" y="31" width="30" height="34"/>
+                        <state key="normal" title="-">
+                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" red="0.0" green="0.52549019610000003" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="minute:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Yrv-W1-qRQ"/>
+                        </connections>
+                    </button>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0Vy-ZK-FD6">
+                        <rect key="frame" x="44" y="31" width="231" height="31"/>
+                        <connections>
+                            <action selector="sliderChanged:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6dM-j6-HV7"/>
+                            <action selector="sliderChanging:" destination="KGk-i7-Jjw" eventType="valueChanged" id="C4s-ta-AGZ"/>
+                        </connections>
+                    </slider>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-1M-TFe">
+                        <rect key="frame" x="281" y="31" width="30" height="34"/>
+                        <state key="normal" title="+">
+                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected">
+                            <color key="titleColor" red="0.0" green="0.52549019610000003" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="add:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zz7-vC-kkF"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdH-dv-zsg">
+                        <rect key="frame" x="18" y="8" width="45" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="5d2-1M-TFe" secondAttribute="trailing" constant="1" id="4bw-Rl-nId"/>
+                    <constraint firstAttribute="topMargin" secondItem="XdH-dv-zsg" secondAttribute="top" id="IgW-om-rpl"/>
+                    <constraint firstItem="5d2-1M-TFe" firstAttribute="top" secondItem="f9E-Ag-0PW" secondAttribute="bottom" constant="-2" id="OQo-oN-aX8"/>
+                    <constraint firstItem="FCu-N2-ibj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="23" id="Sft-bf-ugB"/>
+                    <constraint firstItem="XdH-dv-zsg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="U5M-Hx-5rW"/>
+                    <constraint firstItem="0Vy-ZK-FD6" firstAttribute="leading" secondItem="FCu-N2-ibj" secondAttribute="trailing" constant="8" id="Yjb-e5-vee"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="f9E-Ag-0PW" secondAttribute="trailing" constant="10" id="bfO-y3-2Kb"/>
+                    <constraint firstItem="0Vy-ZK-FD6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="23" id="p4K-FE-4bC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5d2-1M-TFe" secondAttribute="trailing" constant="1" id="qcY-od-zNx"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="FCu-N2-ibj" secondAttribute="leading" id="qoa-Hf-oVe"/>
+                    <constraint firstItem="5d2-1M-TFe" firstAttribute="leading" secondItem="0Vy-ZK-FD6" secondAttribute="trailing" constant="8" id="x53-JN-Ofo"/>
+                    <constraint firstAttribute="topMargin" secondItem="f9E-Ag-0PW" secondAttribute="top" id="y3v-3k-QvX"/>
+                    <constraint firstItem="5d2-1M-TFe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="23" id="zg0-gI-ByR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnAdd" destination="5d2-1M-TFe" id="v5G-ch-RWL"/>
+                <outlet property="btnMinute" destination="FCu-N2-ibj" id="7uo-NN-mc8"/>
+                <outlet property="slider" destination="0Vy-ZK-FD6" id="lKX-c8-dAC"/>
+                <outlet property="titleText" destination="XdH-dv-zsg" id="QVa-jv-CNC"/>
+                <outlet property="valueText" destination="f9E-Ag-0PW" id="jNo-Fp-aw5"/>
+            </connections>
+            <point key="canvasLocation" x="364" y="222"/>
+        </tableViewCell>
+    </objects>
+</document>

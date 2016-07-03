@@ -1,0 +1,30 @@
+{
+    "buttonColor":{
+        "R":0.973,
+        "G":0.855,
+        "B":0.247
+    },
+    "buttonTextColor":{
+        "R":0.973,
+        "G":0.855,
+        "B":0.247
+    },
+    "navigationBarColor":{
+        "R":0.973,
+        "G":0.855,
+        "B":0.247
+    },
+    "navigationBarTextColor":{
+        "R":0.973,
+        "G":0.855,
+        "B":0.247
+    },
+    "configProgressViewColor":{
+        "R":0.973,
+        "G":0.855,
+        "B":0.247
+    },
+    "pk":[],
+    "statusBarStyle":0,
+    "addDeviceTitle":""
+}
