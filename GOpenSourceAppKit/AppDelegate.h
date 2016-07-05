@@ -21,7 +21,7 @@
 /******************** 推送开关 ********************/
 // 只能同时支持其中一种
 //#define __JPush     // 极光推送
-#define __BPush     // 百度推送
+//#define __BPush     // 百度推送
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

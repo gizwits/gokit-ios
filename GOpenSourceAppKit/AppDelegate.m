@@ -36,7 +36,6 @@
     // 初始化 GizWifiSDK
     
     [GizWifiSDK startWithAppID:APP_ID];
-    [GizWifiSDK setLogLevel:GizLogPrintAll];
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
 //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    self.window.backgroundColor = [UIColor whiteColor];
