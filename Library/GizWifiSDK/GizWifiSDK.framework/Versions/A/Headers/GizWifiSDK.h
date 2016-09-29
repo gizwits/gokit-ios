@@ -140,6 +140,11 @@
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didRequestSendPhoneSMSCode:(NSError *)result token:(NSString *)token;
 
 /*
+ @deprecated 此接口功能已废弃，不再提供支持。请使用替代接口：[GizWifiSDKDelegate wifiSDK:didRequestSendPhoneSMSCode:token:]
+ */
+- (void)wifiSDK:(GizWifiSDK *)wifiSDK didRequestSendPhoneSMSCode:(NSError*)result DEPRECATED_ATTRIBUTE;
+
+/*
  验证手机短信验证码的回调接口
  @param wifiSDK 回调的 GizWifiSDK 单例
  @param result 详细见 GizWifiErrorCode 枚举定义。result.code 为 GIZ_SDK_SUCCESS 表示成功，其他为失败。失败时，其他回调参数为 nil
@@ -275,9 +280,11 @@
     "openAPIPort" : xxx,
     "siteDomain" : "xxx",
     "sitePort" : xxx,
+    "pushDomain": xxx,
+    "pushPort": xxx
  }
 
- @see 触发函数：[GizWifiSDK setCloudService:openAPIPort:siteDomain:sitePort:]
+ @see 触发函数：[GizWifiSDK setCloudService:]
  @see GizWifiErrorCode
  */
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didGetCurrentCloudService:(NSError *)result cloudServiceInfo:(NSDictionary *)cloudServiceInfo;
@@ -286,7 +293,7 @@
  绑定推送id结果（此接口待发布）
  @param wifiSDK 为回调的 GizWifiSDK 单例
  @param result 详细见 GizWifiErrorCode 枚举定义。result.code 为 GIZ_SDK_SUCCESS 表示成功，其他为失败。失败时，其他回调参数为 nil
- @see 触发函数：[GizWifiSDK channelIDBind:channelID:pushType:]
+ @see 触发函数：[GizWifiSDK channelIDBind:channelID:alias:pushType:]
  */
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didChannelIDBind:(NSError *)result;
 
@@ -681,13 +688,22 @@
 
 /*
  切换服务器
- @param openAPIDomain open-api 域名
- @param port open-api 端口号
- @param siteDomain site 域名
- @param sitePort site 端口号
+ @param cloudServiceInfo 服务器信息。格式： {
+ "openAPIDomain": xxx,
+ "openAPIPort": xxx,
+ "siteDomain": xxx,
+ "sitePort": xxx,
+ "pushDomain": xxx.
+ "pushPort": xxx
+ }
  @see 对应的回调接口：[GizWifiSDKDelegate wifiSDK:didGetCurrentCloudService:cloudServiceInfo:]
  */
-+ (void)setCloudService:(NSString *)openAPIDomain openAPIPort:(int)port siteDomain:(NSString *)domain sitePort:(int)sitePort;
++ (void)setCloudService:(NSDictionary *)cloudServiceInfo;
+
+/*
+ @deprecated 此接口已废弃，不再提供支持。替代接口：[setCloudService:]
+ */
++ (void)setCloudService:(NSString *)openAPIDomain openAPIPort:(int)port siteDomain:(NSString *)domain sitePort:(int)sitePort DEPRECATED_ATTRIBUTE;
 
 /*
  获取当前的服务器
@@ -699,10 +715,11 @@
  绑定推送的id（此接口待发布）
  @param token 用户登录或注册时得到的 token
  @param channelID 推送ID
+ @param alias 别名
  @param pushType 推送类型，详细见 GizPushType 枚举定义
  @see 对应的回调接口：[GizWifiSDKDelegate wifiSDK:didChannelIDBind:]
  */
-- (void)channelIDBind:(NSString *)token channelID:(NSString *)channelID pushType:(GizPushType)pushType;
+- (void)channelIDBind:(NSString *)token channelID:(NSString *)channelID alias:(NSString *)alias pushType:(GizPushType)pushType;
 
 /*
  解绑推送的id（此接口待发布）

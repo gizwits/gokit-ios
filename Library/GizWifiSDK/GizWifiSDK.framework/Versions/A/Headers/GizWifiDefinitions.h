@@ -10,6 +10,23 @@
 #define GizWifiSDK_GizWifiDefinitions_h
 
 /*
+ 升级SDK兼容定义
+ @note 仅为A1的APP无缝过渡升级使用。全新开发APP的过程中，请不要使用XPG开头的定义，以免以后升级SDK时遇到麻烦
+ */
+#define XPGWifiSDK GizWifiSDK
+#define XPGWifiSDKDelegate GizWifiSDKDelegate
+#define XPGWifiDevice GizWifiDevice
+#define XPGWifiDeviceDelegate GizWifiDeviceDelegate
+#define XPGWifiCentralControlDevice GizWifiCentralControlDevice
+#define XPGWifiCentralControlDeviceDelegate GizWifiCentralControlDeviceDelegate
+#define XPGWifiSubDevice GizWifiSubDevice
+#define XPGWifiGroup GizWifiGroup
+#define XPGWifiGroupDelegate GizWifiGroupDelegate
+#define XPGWifiBinary GizWifiBinary
+#define XPGUserInfo GizUserInfo
+#define XPGWifiSSID GizWifiSSID
+
+/*
  * @brief 这里会定义 APP 能够用到的错误码枚举定义
  */
 typedef NS_ENUM(NSInteger, GizWifiErrorCode) {
@@ -658,7 +675,7 @@ typedef NS_ENUM(NSInteger, XPGConfigureMode) {
  */
 typedef NS_ENUM(NSInteger, GizWifiGAgentType) {
     /*
-     庆科模组
+     庆科3162模组
      */
     GizGAgentMXCHIP = 0,
     /*
@@ -666,7 +683,7 @@ typedef NS_ENUM(NSInteger, GizWifiGAgentType) {
      */
     GizGAgentHF = 1,
     /*
-     睿昱模组
+     瑞昱模组
      */
     GizGAgentRTK = 2,
     /*
@@ -690,11 +707,11 @@ typedef NS_ENUM(NSInteger, GizWifiGAgentType) {
      */
     GizGAgentFSK = 7,
     /*
-     庆科mico模组
+     庆科V3
      */
     GizGAgentMXCHIP3 = 8,
     /*
-     庆科mico模组
+     古北模组
      */
     GizGAgentBL = 9,
 };
@@ -758,6 +775,11 @@ typedef NS_ENUM(NSInteger, GizThirdAccountType) {
      QQ 账号
      */
     GizThirdQQ = 2,
+    
+    /**
+     微信帐号
+     */
+    GizThirdWeChat = 3,
 };
 
 /*

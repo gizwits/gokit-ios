@@ -25,6 +25,7 @@
     [super viewDidLoad];
     self.btnConnect.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.btnConnect setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.btnConnect.layer setCornerRadius:19.0];
     if (nil == [GosCommon sharedInstance].ssid) {
         [GosCommon sharedInstance].ssid = @"";
     }
@@ -102,7 +103,7 @@
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
     } else {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Manually click \"Settings\" icon on your desktop, then select \"Wi-Fi\"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        [[GosCommon sharedInstance] showAlert:NSLocalizedString(@"Manually click \"Settings\" icon on your desktop, then select \"Wi-Fi\"", nil) disappear:YES];
     }
 }
 

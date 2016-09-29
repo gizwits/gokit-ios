@@ -8,7 +8,7 @@
 
 #import "GosConfigStart.h"
 #import "GosSSIDCell.h"
-#import "GosPasswordCell.h"
+#import "GosWifiPasswordCell.h"
 #import "GosCommon.h"
 #import "GosConfigModuleSelection.h"
 
@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) GosSSIDCell *ssidCell;
-@property (strong, nonatomic) GosPasswordCell *passwordCell;
+@property (strong, nonatomic) GosWifiPasswordCell *passwordCell;
 
 @property (assign, nonatomic) CGFloat top;
 @property (weak, nonatomic) IBOutlet UIButton *btnAutoJump;
@@ -34,6 +34,7 @@
 
 - (void)didEnterBackground {
     [self.passwordCell.textPassword resignFirstResponder];
+    
 }
 
 - (void)didBecomeActive {
@@ -67,17 +68,20 @@
 //    self.currentSelectionIndex = 0;
     self.tableView.scrollEnabled = NO;
     self.top = self.navigationController.navigationBar.translucent ? 0 : 64;
-    [self.navigationController.navigationBar setHidden:NO];
+    if ([GosCommon sharedInstance].moduleSelectOn) {
+        [self.selectModuleBtn setHidden:NO];
+    }
     
     self.nextBtn.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.nextBtn setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.nextBtn.layer setCornerRadius:19.0];
     NSString *titleString = [GosCommon sharedInstance].addDeviceTitle;
     if (titleString && titleString.length > 0) {
-        self.navigationItem.title = titleString;
+        self.navigationItem.title = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Add", nil), titleString];
     }
     
     if (0 == GetCurrentSSID().length) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"No open Wi-Fi", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        [[GosCommon sharedInstance] showAlert:NSLocalizedString(@"No open Wi-Fi", nil) disappear:YES];
     }
 }
 
@@ -147,7 +151,7 @@
             return self.ssidCell;
         case 1:
             if (nil == self.passwordCell) {
-                self.passwordCell = GetControllerWithClass([GosPasswordCell class], tableView, @"passwordCell");
+                self.passwordCell = GetControllerWithClass([GosWifiPasswordCell class], tableView, @"passwordCell");
                 self.passwordCell.textPassword.delegate = self;
                 self.passwordCell.textPassword.returnKeyType = UIReturnKeyDone;
 //                [self.passwordCell.btnClearPassword addTarget:self action:@selector(onClearPassword) forControlEvents:UIControlEventTouchUpInside];
@@ -175,6 +179,9 @@
     if ([[UIScreen mainScreen] bounds].size.height == 480) {
         [self setViewY:-118];
     }
+    NSString *textPassword = self.passwordCell.textPassword.text;
+    self.passwordCell.textPassword.text = @"";
+    self.passwordCell.textPassword.text = textPassword;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -209,9 +216,11 @@
 }
 
 - (void)setShowText:(BOOL)isShow {
-    UITextField *textPassword = self.passwordCell.textPassword;
-    textPassword.secureTextEntry = !isShow;
+//    NSString *textPassword = self.passwordCell.textPassword.text;
+//    self.passwordCell.textPassword.text = @"";
+    self.passwordCell.textPassword.secureTextEntry = !isShow;
     self.passwordCell.btnShowText.selected = isShow;
+//    self.passwordCell.textPassword.text = textPassword;
 }
 
 #pragma mark - Event

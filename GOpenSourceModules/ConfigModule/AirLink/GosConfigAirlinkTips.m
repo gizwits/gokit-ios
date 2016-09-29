@@ -22,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.btnNext setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.btnNext.layer setCornerRadius:19.0];
     self.imgAirlink.gifPath = [[NSBundle mainBundle] pathForResource:@"02-airlink" ofType:@"gif"];
 }
 

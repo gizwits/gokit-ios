@@ -21,7 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.btnNext setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.btnNext.layer setCornerRadius:19.0];
     self.imgSoftap.gifPath = [[NSBundle mainBundle] pathForResource:@"04-softap" ofType:@"gif"];
 }
 

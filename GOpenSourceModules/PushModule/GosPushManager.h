@@ -15,7 +15,7 @@
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 + (void)handleRemoteNotification:(NSDictionary *)remoteInfo;
 + (void)bindToGDMS;
-+ (void)unbindToGDMS;
++ (void)unbindToGDMS:(BOOL)isLogout;
 + (void)didBind:(NSError *)result;
 + (void)didUnbind:(NSError *)result;
 @end

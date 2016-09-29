@@ -21,6 +21,7 @@
     [super viewDidLoad];
     self.retryBtn.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.retryBtn setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.retryBtn.layer setCornerRadius:19.0];
 }
 
 - (void)didReceiveMemoryWarning {

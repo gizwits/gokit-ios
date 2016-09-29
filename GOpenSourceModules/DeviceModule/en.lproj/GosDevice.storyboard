@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -21,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="-404" y="322"/>
         </scene>
-        <!--Device List-->
+        <!--My Device-->
         <scene sceneID="3Yt-4y-aXG">
             <objects>
                 <viewController id="1aQ-H0-RTz" customClass="GosDeviceListViewController" sceneMemberID="viewController">
@@ -42,15 +43,18 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzp-eJ-eiN">
-                                <rect key="frame" x="241" y="257" width="119" height="86"/>
+                                <rect key="frame" x="241" y="154" width="119" height="86"/>
                                 <state key="normal" image="08-icon-add.png"/>
                                 <connections>
                                     <action selector="toAirLink:" destination="1aQ-H0-RTz" eventType="touchUpInside" id="ZFd-ui-Qzr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ge6-cj-r94">
-                                <rect key="frame" x="215.5" y="357" width="169" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <rect key="frame" x="60" y="280" width="480" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="rxW-d0-iFe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="No devices, please add">
                                     <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -62,18 +66,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="dgv-1j-SMt" secondAttribute="trailing" id="24q-ee-dIJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ge6-cj-r94" secondAttribute="trailing" constant="40" id="V73-PK-BXH"/>
                             <constraint firstItem="1bv-JN-mNy" firstAttribute="top" secondItem="dgv-1j-SMt" secondAttribute="bottom" id="YVI-w2-God"/>
-                            <constraint firstItem="Ge6-cj-r94" firstAttribute="top" secondItem="tzp-eJ-eiN" secondAttribute="bottom" constant="14" id="YYh-IK-SPs"/>
+                            <constraint firstItem="Ge6-cj-r94" firstAttribute="top" secondItem="tzp-eJ-eiN" secondAttribute="bottom" constant="40" id="YYh-IK-SPs"/>
                             <constraint firstItem="dgv-1j-SMt" firstAttribute="top" secondItem="Qqh-eu-H7z" secondAttribute="bottom" id="aJS-QT-cCY"/>
+                            <constraint firstItem="Ge6-cj-r94" firstAttribute="centerY" secondItem="l1g-Xe-McI" secondAttribute="centerY" id="ekM-tB-Rmf"/>
+                            <constraint firstItem="Ge6-cj-r94" firstAttribute="leading" secondItem="l1g-Xe-McI" secondAttribute="leadingMargin" constant="40" id="fdQ-ue-SWQ"/>
                             <constraint firstItem="tzp-eJ-eiN" firstAttribute="centerX" secondItem="l1g-Xe-McI" secondAttribute="centerX" id="jfs-pt-uJ9"/>
-                            <constraint firstItem="tzp-eJ-eiN" firstAttribute="centerY" secondItem="l1g-Xe-McI" secondAttribute="centerY" id="jv2-jT-YS5"/>
                             <constraint firstItem="dgv-1j-SMt" firstAttribute="leading" secondItem="l1g-Xe-McI" secondAttribute="leading" id="lOU-wZ-L5d"/>
-                            <constraint firstItem="Ge6-cj-r94" firstAttribute="centerX" secondItem="l1g-Xe-McI" secondAttribute="centerX" id="rGv-Bc-fjV"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Device List" id="dLD-Q7-c39">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="30B-nD-0Of">
+                    <navigationItem key="navigationItem" title="My Device" id="dLD-Q7-c39">
+                        <barButtonItem key="leftBarButtonItem" image="nav_btn_update" id="30B-nD-0Of">
                             <connections>
                                 <action selector="refreshBtnPressed:" destination="1aQ-H0-RTz" id="KaP-eP-EZ7"/>
                             </connections>
@@ -99,5 +104,6 @@
     <resources>
         <image name="08-icon-add.png" width="119" height="86"/>
         <image name="more" width="119" height="86"/>
+        <image name="nav_btn_update" width="119" height="86"/>
     </resources>
 </document>

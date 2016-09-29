@@ -12,6 +12,8 @@
 #import "MBProgressHUD.h"
 #import "GizLog.h"
 #import <GizWifiSDK/GizWifiDefinitions.h>
+#import <GizWifiSDK/GizWifiSDK.h>
+#import "WXApi.h"
 
 /**
  登录类型类型
@@ -48,6 +50,7 @@ typedef NS_ENUM(NSInteger, GizLoginStatus) {
 
 @class GizWifiDevice;
 typedef void (^GosControlBlock)(GizWifiDevice *device, UIViewController *deviceListController);
+typedef void (^WXApiOnRespBlock)(BaseResp *resp);
 
 @interface GosCommon : NSObject
 
@@ -68,12 +71,35 @@ typedef void (^GosControlBlock)(GizWifiDevice *device, UIViewController *deviceL
 @property (strong) NSString *token;
 @property (assign) GizLoginStatus currentLoginStatus;
 @property (strong) GosControlBlock controlHandler;
+@property (strong) WXApiOnRespBlock WXApiOnRespHandler;
 
 @property (nonatomic, strong) NSArray *configModuleValueArray;
 @property (nonatomic, strong) NSArray *configModuleTextArray;
 @property (assign) GizWifiGAgentType airlinkConfigType;
 
 @property (nonatomic, strong) UIAlertView *cancelAlertView;
+
+@property (nonatomic, strong) NSString *cid;
+/********************* 初始化参数 *********************/
+@property (nonatomic, strong) NSString *appID;
+@property (nonatomic, strong) NSString *appSecret;
+@property (nonatomic, strong) NSArray *productKey;
+@property (nonatomic, assign) BOOL moduleSelectOn;
+@property (nonatomic, strong) NSString *tencentAppID;
+@property (nonatomic, strong) NSString *wechatAppID;
+@property (nonatomic, strong) NSString *wechatAppSecret;
+@property (nonatomic, assign) NSInteger pushType;
+@property (nonatomic, strong) NSString *jpushAppKey;
+@property (nonatomic, strong) NSString *bpushAppKey;
+
+//@property (nonatomic, strong) NSString *openAPIDomain;
+//@property (nonatomic, assign) NSInteger openAPIPort;
+//@property (nonatomic, strong) NSString *siteDomain;
+//@property (nonatomic, assign) NSInteger sitePort;
+//@property (nonatomic, strong) NSString *pushDomain;
+//@property (nonatomic, assign) NSInteger pushPort;
+
+@property (nonatomic, strong) NSMutableDictionary *cloudDomainDict;
 
 /******************** 定制界面样式 ********************/
 @property (nonatomic, strong) UIColor *buttonColor;
@@ -98,6 +124,16 @@ typedef void (^GosControlBlock)(GizWifiDevice *device, UIViewController *deviceL
  */
 - (void)saveSSID:(NSString *)ssid key:(NSString *)key;
 - (NSString *)getPasswrodFromSSID:(NSString *)ssid;
+
+/*
+ * 判断错误码
+ */
+- (NSString *)checkErrorCode:(GizWifiErrorCode)errorCode;
+
+/*
+ * UIAlertView
+ */
+- (void)showAlert:(NSString *)message disappear:(BOOL)disappear;
 
 /*
  * 回到主页
@@ -136,10 +172,13 @@ static inline void SHOW_ALERT_CANCEL_CONFIG(id delegate) {
 }
 
 static inline void SHOW_ALERT_EMPTY_PASSWORD(id delegate) {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Password is empty?", nil) delegate:delegate cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Password is empty?", nil) delegate:delegate cancelButtonTitle:NSLocalizedString(@"NO", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
     alertView.tag = ALERT_TAG_EMPTY_PASSWORD;
     [alertView show];
 }
 
 #define CUSTOM_YELLOW_COLOR() \
 [UIColor colorWithRed:249/255.0 green:220/255.0 blue:39/255.0 alpha:1]
+
+#define CUSTOM_GOKIT_COLOR() \
+[UIColor colorWithRed:0.255 green:0.557 blue:0.796 alpha:1]

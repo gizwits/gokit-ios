@@ -60,6 +60,12 @@
 		1A35CD4F1CE99B3C0073627C /* UAProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD371CE99B3C0073627C /* UAProgressView.m */; };
 		1A35CD501CE99B3C0073627C /* UIImageView+PlayGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD3A1CE99B3C0073627C /* UIImageView+PlayGIF.m */; };
 		1A35CD511CE99B3C0073627C /* YFGIFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD3C1CE99B3C0073627C /* YFGIFImageView.m */; };
+		1A55E2A91D2B7A6600E6F8E2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A55E2A41D2B7A6600E6F8E2 /* libWeChatSDK.a */; };
+		1A55E2AA1D2B7A6700E6F8E2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A55E2A51D2B7A6600E6F8E2 /* README.txt */; };
+		1A55E2AF1D2E48F900E6F8E2 /* GosWifiPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A55E2AE1D2E48F900E6F8E2 /* GosWifiPasswordCell.m */; };
+		1A55E2B01D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A55E2B21D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib */; };
+		1A55E2B71D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A55E2B61D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png */; };
+		1A56149F1D8691A800D618CB /* lst_icon_gokit-device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A56149E1D8691A800D618CB /* lst_icon_gokit-device@2x.png */; };
 		1AAC332F1CF6F80300A5D1A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33251CF6F80300A5D1A9 /* AppDelegate.m */; };
 		1AAC33301CF6F80300A5D1A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33261CF6F80300A5D1A9 /* Assets.xcassets */; };
 		1AAC33311CF6F80300A5D1A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33271CF6F80300A5D1A9 /* LaunchScreen.storyboard */; };
@@ -75,7 +81,6 @@
 		1AAC33971CF6FBFC00A5D1A9 /* GosCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33491CF6FBFC00A5D1A9 /* GosCommon.m */; };
 		1AAC33981CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334B1CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png */; };
 		1AAC33991CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334C1CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png */; };
-		1AAC339A1CF6FBFC00A5D1A9 /* 01-iconfont-yincangmima@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334D1CF6FBFC00A5D1A9 /* 01-iconfont-yincangmima@x.png */; };
 		1AAC339B1CF6FBFC00A5D1A9 /* 02-airlink.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334E1CF6FBFC00A5D1A9 /* 02-airlink.gif */; };
 		1AAC339C1CF6FBFC00A5D1A9 /* 04-softap-tips.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334F1CF6FBFC00A5D1A9 /* 04-softap-tips.gif */; };
 		1AAC339D1CF6FBFC00A5D1A9 /* 04-softap.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33501CF6FBFC00A5D1A9 /* 04-softap.gif */; };
@@ -119,7 +124,13 @@
 		1AAC342F1CFC3BAC00A5D1A9 /* GosSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC34311CFC3BAC00A5D1A9 /* GosSettings.storyboard */; };
 		1AAC34351CFC3D6300A5D1A9 /* GosAirLink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC34371CFC3D6300A5D1A9 /* GosAirLink.storyboard */; };
 		1AAC343B1CFC3E2C00A5D1A9 /* GosSoftAP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC343D1CFC3E2C00A5D1A9 /* GosSoftAP.storyboard */; };
+		1AB45C3C1D534C8F008F7333 /* launch@2x_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C371D534C8F008F7333 /* launch@2x_640x960.png */; };
+		1AB45C3D1D534C8F008F7333 /* launch@2x_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C381D534C8F008F7333 /* launch@2x_640x1136.png */; };
+		1AB45C3E1D534C8F008F7333 /* launch@2x_750x1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C391D534C8F008F7333 /* launch@2x_750x1334.png */; };
+		1AB45C3F1D534C8F008F7333 /* launch@3x_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C3A1D534C8F008F7333 /* launch@3x_1242x2208.png */; };
+		1AB45C401D534C8F008F7333 /* nav_btn_update@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C3B1D534C8F008F7333 /* nav_btn_update@2x.png */; };
 		1AE53F521CEAC78200FFA01B /* GizWifiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE53F511CEAC78200FFA01B /* GizWifiSDK.framework */; };
+		1AE769531D3779C7006CDE34 /* icon_notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE769521D3779C7006CDE34 /* icon_notice@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +206,17 @@
 		1A35CD3B1CE99B3C0073627C /* YFGIFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFGIFImageView.h; sourceTree = "<group>"; };
 		1A35CD3C1CE99B3C0073627C /* YFGIFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFGIFImageView.m; sourceTree = "<group>"; };
 		1A38874B1CA11CB3001D4BAF /* GosGokit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GosGokit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A55E2A41D2B7A6600E6F8E2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		1A55E2A51D2B7A6600E6F8E2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		1A55E2A61D2B7A6600E6F8E2 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		1A55E2A71D2B7A6600E6F8E2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		1A55E2A81D2B7A6600E6F8E2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		1A55E2AD1D2E48F900E6F8E2 /* GosWifiPasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosWifiPasswordCell.h; sourceTree = "<group>"; };
+		1A55E2AE1D2E48F900E6F8E2 /* GosWifiPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosWifiPasswordCell.m; sourceTree = "<group>"; };
+		1A55E2B11D2E4AC900E6F8E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GosWifiPasswordCell.xib; sourceTree = "<group>"; };
+		1A55E2B51D2E4AD500E6F8E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/GosWifiPasswordCell.xib"; sourceTree = "<group>"; };
+		1A55E2B61D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-iconfont-yincangmima@2x.png"; sourceTree = "<group>"; };
+		1A56149E1D8691A800D618CB /* lst_icon_gokit-device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lst_icon_gokit-device@2x.png"; sourceTree = "<group>"; };
 		1AAC33241CF6F80300A5D1A9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1AAC33251CF6F80300A5D1A9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1AAC33261CF6F80300A5D1A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,7 +241,6 @@
 		1AAC33491CF6FBFC00A5D1A9 /* GosCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosCommon.m; sourceTree = "<group>"; };
 		1AAC334B1CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-icon-wifi@2x.png"; sourceTree = "<group>"; };
 		1AAC334C1CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-iconfont-xianshimima@2x.png"; sourceTree = "<group>"; };
-		1AAC334D1CF6FBFC00A5D1A9 /* 01-iconfont-yincangmima@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-iconfont-yincangmima@x.png"; sourceTree = "<group>"; };
 		1AAC334E1CF6FBFC00A5D1A9 /* 02-airlink.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "02-airlink.gif"; sourceTree = "<group>"; };
 		1AAC334F1CF6FBFC00A5D1A9 /* 04-softap-tips.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "04-softap-tips.gif"; sourceTree = "<group>"; };
 		1AAC33501CF6FBFC00A5D1A9 /* 04-softap.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "04-softap.gif"; sourceTree = "<group>"; };
@@ -291,7 +312,13 @@
 		1AAC343A1CFC3D6800A5D1A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/GosAirLink.storyboard"; sourceTree = "<group>"; };
 		1AAC343C1CFC3E2C00A5D1A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/GosSoftAP.storyboard; sourceTree = "<group>"; };
 		1AAC34401CFC3E3100A5D1A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/GosSoftAP.storyboard"; sourceTree = "<group>"; };
+		1AB45C371D534C8F008F7333 /* launch@2x_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x_640x960.png"; sourceTree = "<group>"; };
+		1AB45C381D534C8F008F7333 /* launch@2x_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x_640x1136.png"; sourceTree = "<group>"; };
+		1AB45C391D534C8F008F7333 /* launch@2x_750x1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x_750x1334.png"; sourceTree = "<group>"; };
+		1AB45C3A1D534C8F008F7333 /* launch@3x_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@3x_1242x2208.png"; sourceTree = "<group>"; };
+		1AB45C3B1D534C8F008F7333 /* nav_btn_update@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_btn_update@2x.png"; sourceTree = "<group>"; };
 		1AE53F511CEAC78200FFA01B /* GizWifiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GizWifiSDK.framework; sourceTree = "<group>"; };
+		1AE769521D3779C7006CDE34 /* icon_notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_notice@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +338,7 @@
 				1A083C471D111FEA0050B161 /* Security.framework in Frameworks */,
 				1A35CD471CE99B3C0073627C /* libssl.a in Frameworks */,
 				1A0098081D2682A800402367 /* libEsptouch_v0.3.5.0.a in Frameworks */,
+				1A55E2A91D2B7A6600E6F8E2 /* libWeChatSDK.a in Frameworks */,
 				1A35CD461CE99B3C0073627C /* libcrypto.a in Frameworks */,
 				1A35CD3F1CE99B3C0073627C /* libEasyLink.a in Frameworks */,
 				1AE53F521CEAC78200FFA01B /* GizWifiSDK.framework in Frameworks */,
@@ -343,6 +371,7 @@
 		1A083C621D11698C0050B161 /* DeviceController */ = {
 			isa = PBXGroup;
 			children = (
+				1A56149E1D8691A800D618CB /* lst_icon_gokit-device@2x.png */,
 				1A083C631D11698C0050B161 /* align@2x.png */,
 				1A083C641D11698C0050B161 /* DeviceController.h */,
 				1A083C651D11698C0050B161 /* DeviceController.m */,
@@ -404,6 +433,7 @@
 		1A35CD171CE99B3C0073627C /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1A55E2A31D2B7A6600E6F8E2 /* WechatOpenSDK */,
 				1A189A3D1D1A55380032FBF6 /* BPush */,
 				1A189A401D1A55380032FBF6 /* JPush */,
 				1A083C411D111E5A0050B161 /* TencentOpenAPI */,
@@ -528,6 +558,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1A55E2A31D2B7A6600E6F8E2 /* WechatOpenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				1A55E2A41D2B7A6600E6F8E2 /* libWeChatSDK.a */,
+				1A55E2A51D2B7A6600E6F8E2 /* README.txt */,
+				1A55E2A61D2B7A6600E6F8E2 /* WechatAuthSDK.h */,
+				1A55E2A71D2B7A6600E6F8E2 /* WXApi.h */,
+				1A55E2A81D2B7A6600E6F8E2 /* WXApiObject.h */,
+			);
+			path = WechatOpenSDK;
+			sourceTree = "<group>";
+		};
 		1AAC33231CF6F80300A5D1A9 /* GOpenSourceAppKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +615,9 @@
 		1AAC33381CF6FBFC00A5D1A9 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
+				1A55E2AD1D2E48F900E6F8E2 /* GosWifiPasswordCell.h */,
+				1A55E2AE1D2E48F900E6F8E2 /* GosWifiPasswordCell.m */,
+				1A55E2B21D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib */,
 				1AAC33391CF6FBFC00A5D1A9 /* GosPasswordCell.h */,
 				1AAC333A1CF6FBFC00A5D1A9 /* GosPasswordCell.m */,
 				1AAC340F1CF859D200A5D1A9 /* GosPasswordCell.xib */,
@@ -595,6 +640,12 @@
 		1AAC334A1CF6FBFC00A5D1A9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1AB45C371D534C8F008F7333 /* launch@2x_640x960.png */,
+				1AB45C381D534C8F008F7333 /* launch@2x_640x1136.png */,
+				1AB45C391D534C8F008F7333 /* launch@2x_750x1334.png */,
+				1AB45C3A1D534C8F008F7333 /* launch@3x_1242x2208.png */,
+				1AB45C3B1D534C8F008F7333 /* nav_btn_update@2x.png */,
+				1AE769521D3779C7006CDE34 /* icon_notice@2x.png */,
 				1A083C8B1D13FE1C0050B161 /* more@2x.png */,
 				1A083C601D1142F70050B161 /* skip.png */,
 				1A083C5E1D112CAD0050B161 /* wechat.png */,
@@ -602,7 +653,7 @@
 				1A083C591D1126060050B161 /* weibo.png */,
 				1AAC334B1CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png */,
 				1AAC334C1CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png */,
-				1AAC334D1CF6FBFC00A5D1A9 /* 01-iconfont-yincangmima@x.png */,
+				1A55E2B61D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png */,
 				1AAC334E1CF6FBFC00A5D1A9 /* 02-airlink.gif */,
 				1AAC334F1CF6FBFC00A5D1A9 /* 04-softap-tips.gif */,
 				1AAC33501CF6FBFC00A5D1A9 /* 04-softap.gif */,
@@ -751,6 +802,7 @@
 				TargetAttributes = {
 					1A38874A1CA11CB3001D4BAF = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = PQ4M5DLLZT;
 					};
 				};
 			};
@@ -778,14 +830,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A55E2AA1D2B7A6700E6F8E2 /* README.txt in Resources */,
 				1AAC339B1CF6FBFC00A5D1A9 /* 02-airlink.gif in Resources */,
-				1AAC339A1CF6FBFC00A5D1A9 /* 01-iconfont-yincangmima@x.png in Resources */,
 				1AAC343B1CFC3E2C00A5D1A9 /* GosSoftAP.storyboard in Resources */,
 				1AAC33A51CF6FBFC00A5D1A9 /* login_user.png in Resources */,
 				1AAC33A81CF6FBFC00A5D1A9 /* sms.png in Resources */,
 				1AAC34071CF8586A00A5D1A9 /* GosUser.storyboard in Resources */,
 				1AAC33921CF6FBFC00A5D1A9 /* GosSSIDCell.xib in Resources */,
 				1AAC339E1CF6FBFC00A5D1A9 /* 06-softap-fail@2x.png in Resources */,
+				1AB45C3D1D534C8F008F7333 /* launch@2x_640x1136.png in Resources */,
 				1AAC34291CFC1C6100A5D1A9 /* GosDevice.storyboard in Resources */,
 				1AAC339F1CF6FBFC00A5D1A9 /* 08-icon-add@2x.png in Resources */,
 				1AAC339D1CF6FBFC00A5D1A9 /* 04-softap.gif in Resources */,
@@ -794,6 +847,7 @@
 				1AAC33301CF6F80300A5D1A9 /* Assets.xcassets in Resources */,
 				1AAC33A61CF6FBFC00A5D1A9 /* LoginBanner.png in Resources */,
 				1AAC33B81CF6FBFC00A5D1A9 /* GosDeviceController.xib in Resources */,
+				1A55E2B01D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib in Resources */,
 				1AAC34351CFC3D6300A5D1A9 /* GosAirLink.storyboard in Resources */,
 				1A35CD4B1CE99B3C0073627C /* QRCodeBackBtn@2x.png in Resources */,
 				1AAC33321CF6F80300A5D1A9 /* Main.storyboard in Resources */,
@@ -814,13 +868,18 @@
 				1AAC34021CF8541600A5D1A9 /* Localizable.strings in Resources */,
 				1A083C771D11698C0050B161 /* align@2x.png in Resources */,
 				1A083C7F1D11698C0050B161 /* GizDeviceEnumSelection.xib in Resources */,
+				1AB45C3C1D534C8F008F7333 /* launch@2x_640x960.png in Resources */,
+				1A55E2B71D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png in Resources */,
 				1AAC33A71CF6FBFC00A5D1A9 /* phone.png in Resources */,
 				1A35CD4A1CE99B3C0073627C /* QRCodeLine@2x.png in Resources */,
 				1AAC33991CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png in Resources */,
 				1A35CD4C1CE99B3C0073627C /* checked@2x.png in Resources */,
+				1AE769531D3779C7006CDE34 /* icon_notice@2x.png in Resources */,
 				1A083C3C1D08112A0050B161 /* GosDeviceListCell.xib in Resources */,
 				1AAC33A21CF6FBFC00A5D1A9 /* check.png in Resources */,
 				1AAC33A31CF6FBFC00A5D1A9 /* Icon@2x.png in Resources */,
+				1AB45C401D534C8F008F7333 /* nav_btn_update@2x.png in Resources */,
+				1AB45C3E1D534C8F008F7333 /* launch@2x_750x1334.png in Resources */,
 				1A083C8C1D13FE1C0050B161 /* more@2x.png in Resources */,
 				1AAC33A01CF6FBFC00A5D1A9 /* 08-icon-Device@2x.png in Resources */,
 				1AAC340D1CF859D200A5D1A9 /* GosPasswordCell.xib in Resources */,
@@ -828,7 +887,9 @@
 				1A083C5B1D1126060050B161 /* qq.png in Resources */,
 				1AAC34171CF85A4D00A5D1A9 /* GosPhoneCell.xib in Resources */,
 				1A35CD4D1CE99B3C0073627C /* unchecked@2x.png in Resources */,
+				1AB45C3F1D534C8F008F7333 /* launch@3x_1242x2208.png in Resources */,
 				1AAC342F1CFC3BAC00A5D1A9 /* GosSettings.storyboard in Resources */,
+				1A56149F1D8691A800D618CB /* lst_icon_gokit-device@2x.png in Resources */,
 				1AAC33981CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,6 +932,7 @@
 				1A083C3B1D08112A0050B161 /* GosDeviceListCell.m in Sources */,
 				1AAC33AA1CF6FBFC00A5D1A9 /* GosConfigAirlinkTips.m in Sources */,
 				1A35CD4F1CE99B3C0073627C /* UAProgressView.m in Sources */,
+				1A55E2AF1D2E48F900E6F8E2 /* GosWifiPasswordCell.m in Sources */,
 				1A35CD481CE99B3C0073627C /* QRCodeController.m in Sources */,
 				1AAC33B71CF6FBFC00A5D1A9 /* GosDeviceController.m in Sources */,
 				1AAC33B51CF6FBFC00A5D1A9 /* GosSoftAPDetection.m in Sources */,
@@ -889,6 +951,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1A55E2B21D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A55E2B11D2E4AC900E6F8E2 /* en */,
+				1A55E2B51D2E4AD500E6F8E2 /* zh-Hans */,
+			);
+			name = GosWifiPasswordCell.xib;
+			sourceTree = "<group>";
+		};
 		1AAC33271CF6F80300A5D1A9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1084,7 +1155,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chao zhang (P7LZM8BSXM)";
+				DEVELOPMENT_TEAM = PQ4M5DLLZT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1103,10 +1176,12 @@
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/OpenSSL",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/BPush",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/JPush",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/WechatOpenSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gizwits.OpenSourceGokit;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.zono.opensource.gokit;
 				PRODUCT_NAME = GosGokit;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2a113112-83bc-4137-8fc9-a4e91c84fe10";
+				PROVISIONING_PROFILE_SPECIFIER = UniversalAppDevelopment;
 			};
 			name = Debug;
 		};
@@ -1114,7 +1189,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chao zhang (PQ4M5DLLZT)";
+				DEVELOPMENT_TEAM = PQ4M5DLLZT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1133,10 +1210,12 @@
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/OpenSSL",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/BPush",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/JPush",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/WechatOpenSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gizwits.OpenSourceGokit;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.zono.opensource.gokit;
 				PRODUCT_NAME = GosGokit;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "413393ab-f7d2-47de-b13d-c94452fbcdf5";
+				PROVISIONING_PROFILE_SPECIFIER = UniversalAppDistribution;
 			};
 			name = Release;
 		};

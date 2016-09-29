@@ -42,10 +42,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9W-2g-8zy">
-                                <rect key="frame" x="169" y="413" width="263" height="39"/>
+                                <rect key="frame" x="20" y="413" width="560" height="39"/>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.86274509799999999" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="263" id="2uh-VV-cv8"/>
                                     <constraint firstAttribute="height" constant="39" id="Efc-eC-JkQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -89,7 +88,7 @@
                                     <segue destination="jHt-hR-VYZ" kind="show" id="E9n-NT-sLi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAY-bW-2Ld">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAY-bW-2Ld">
                                 <rect key="frame" x="20" y="249" width="560" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wxe-PH-ekV"/>
@@ -123,11 +122,13 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1LD-XV-2xB" secondAttribute="bottom" constant="8" id="a7y-fo-14C"/>
                             <constraint firstItem="PAY-bW-2Ld" firstAttribute="top" secondItem="GgQ-hf-yCw" secondAttribute="bottom" id="bIW-fd-7tr"/>
                             <constraint firstItem="mxl-Js-8z6" firstAttribute="top" secondItem="PAY-bW-2Ld" secondAttribute="bottom" constant="12" id="dgu-CA-9Uf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="E9W-2g-8zy" secondAttribute="trailing" id="maI-ep-cnO"/>
                             <constraint firstItem="PjP-B2-JH4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="oY2-Mp-cA5"/>
                             <constraint firstItem="E9W-2g-8zy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qhS-zb-cho"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mxl-Js-8z6" secondAttribute="trailing" constant="-20" id="r9y-md-pGX"/>
                             <constraint firstItem="1LD-XV-2xB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t7P-oo-SAc"/>
                             <constraint firstItem="PjP-B2-JH4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xjP-Xl-aG9"/>
+                            <constraint firstItem="E9W-2g-8zy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yEu-cP-M1k"/>
                             <constraint firstItem="E9W-2g-8zy" firstAttribute="top" secondItem="mxl-Js-8z6" secondAttribute="bottom" constant="35" id="zhb-xp-0sK"/>
                         </constraints>
                         <connections>
@@ -179,10 +180,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhq-G0-pTE">
-                                <rect key="frame" x="169" y="541" width="263" height="39"/>
+                                <rect key="frame" x="20" y="541" width="560" height="39"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="263" id="EhV-tk-gkS"/>
                                     <constraint firstAttribute="height" constant="39" id="f8T-XW-ZcX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -206,13 +206,13 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAC-TF-iR5" customClass="RadioButton">
-                                <rect key="frame" x="185.5" y="501" width="230" height="27"/>
+                                <rect key="frame" x="185" y="501" width="230" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="VfB-8K-sv1"/>
                                     <constraint firstAttribute="height" constant="27" id="ipS-0d-FgE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Steps have been completed" image="unchecked.png">
+                                <state key="normal" title=" Steps have been completed" image="unchecked.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -226,10 +226,12 @@
                         <constraints>
                             <constraint firstItem="1j6-4h-2xa" firstAttribute="top" secondItem="5iJ-lL-o6S" secondAttribute="bottom" constant="8" id="0fF-hH-rhj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5iJ-lL-o6S" secondAttribute="trailing" constant="-20" id="Bz8-My-7tb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bhq-G0-pTE" secondAttribute="trailing" id="CDw-y4-5Mg"/>
                             <constraint firstItem="bhq-G0-pTE" firstAttribute="top" secondItem="TAC-TF-iR5" secondAttribute="bottom" constant="13" id="FZO-1Q-dLL"/>
                             <constraint firstItem="5iJ-lL-o6S" firstAttribute="leading" secondItem="dwM-7P-20Q" secondAttribute="leadingMargin" constant="-20" id="bud-FG-Bks"/>
                             <constraint firstItem="1j6-4h-2xa" firstAttribute="leading" secondItem="dwM-7P-20Q" secondAttribute="leadingMargin" constant="-20" id="ghY-wZ-tmn"/>
                             <constraint firstItem="TAC-TF-iR5" firstAttribute="centerX" secondItem="dwM-7P-20Q" secondAttribute="centerX" id="i4a-Xq-uHa"/>
+                            <constraint firstItem="bhq-G0-pTE" firstAttribute="leading" secondItem="dwM-7P-20Q" secondAttribute="leadingMargin" id="iPp-Xn-Kzv"/>
                             <constraint firstItem="1j6-4h-2xa" firstAttribute="trailing" secondItem="dwM-7P-20Q" secondAttribute="trailingMargin" constant="20" id="oUB-aK-PjN"/>
                             <constraint firstItem="3UJ-zO-Soi" firstAttribute="top" secondItem="bhq-G0-pTE" secondAttribute="bottom" constant="20" id="pyQ-h1-CaY"/>
                             <constraint firstItem="bhq-G0-pTE" firstAttribute="centerX" secondItem="dwM-7P-20Q" secondAttribute="centerX" id="s9K-sc-d2z"/>
@@ -323,8 +325,8 @@
     </scenes>
     <resources>
         <image name="08-icon-add.png" width="119" height="86"/>
-        <image name="back_arrow.png" width="12" height="19"/>
-        <image name="checked.png" width="24" height="24"/>
-        <image name="unchecked.png" width="24" height="24"/>
+        <image name="back_arrow.png" width="12" height="22"/>
+        <image name="checked.png" width="15" height="15"/>
+        <image name="unchecked.png" width="15" height="15"/>
     </resources>
 </document>

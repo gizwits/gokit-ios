@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GosCommon.h"
 #import "GosDeviceListViewController.h"
+#define common [GosCommon sharedInstance]
 
 @interface GosLoginViewController : UIViewController <UITextFieldDelegate>
 
