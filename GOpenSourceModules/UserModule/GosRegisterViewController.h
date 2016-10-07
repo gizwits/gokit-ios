@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GosCommon.h"
+#define common [GosCommon sharedInstance]
 
 @interface GosRegisterViewController : UIViewController <UITextFieldDelegate>
 

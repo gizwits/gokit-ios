@@ -48,6 +48,7 @@
     [super viewDidLoad];
     self.nextBtn.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.nextBtn setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.nextBtn.layer setCornerRadius:19.0];
     self.tableView.scrollEnabled = NO;
     self.top = self.navigationController.navigationBar.translucent ? 0 : 64;
     self.isFirstRun = YES;
@@ -142,6 +143,10 @@
     } else {
         [self setViewY:self.top];
     }
+    
+    NSString *textPassword = self.passwordCell.textPassword.text;
+    self.passwordCell.textPassword.text = @"";
+    self.passwordCell.textPassword.text = textPassword;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

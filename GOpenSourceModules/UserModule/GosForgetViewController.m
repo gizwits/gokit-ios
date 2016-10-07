@@ -31,6 +31,7 @@
     [super viewDidLoad];
     self.forgetBtn.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.forgetBtn setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.forgetBtn.layer setCornerRadius:22.0];
     self.automaticallyAdjustsScrollViewInsets = false;
 }
 
@@ -117,26 +118,31 @@
 }
 
 - (void)didSendCodeBtnPressed {
-    if([GosCommon isMobileNumber:self.phoneCell.textInput.text]) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [[GizWifiSDK sharedInstance] requestSendPhoneSMSCode:APP_SECRET phone:self.phoneCell.textInput.text];
+    if([self.phoneCell.textInput.text isEqualToString:@""]) {
+        [common showAlert:NSLocalizedString(@"please input cellphone", nil) disappear:YES];
+        return;
     }
     else {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"the phone number is incorrect", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[GizWifiSDK sharedInstance] requestSendPhoneSMSCode:APP_SECRET phone:self.phoneCell.textInput.text];
     }
 }
 
 - (IBAction)retsetBtnPressed:(id)sender {
-    if(![GosCommon isMobileNumber:self.phoneCell.textInput.text]) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"the phone number is incorrect", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+    if([self.phoneCell.textInput.text isEqualToString:@""]) {
+        [common showAlert:NSLocalizedString(@"please input cellphone", nil) disappear:YES];
         return;
     }
     if (self.verfiyCell.textInput.text.length != 6) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Verification code error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        [common showAlert:NSLocalizedString(@"Verification code error", nil) disappear:YES];
+        return;
+    }
+    if ([self.passwordCell.textPassword.text isEqualToString:@""]) {
+        [common showAlert:NSLocalizedString(@"please input password", nil) disappear:YES];
         return;
     }
     if (self.passwordCell.textPassword.text.length < 6) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"The password must be at least six characters", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        [common showAlert:NSLocalizedString(@"The password must be at least six characters", nil) disappear:YES];
         return;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -146,7 +152,7 @@
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didRequestSendPhoneSMSCode:(NSError *)result token:(NSString *)token {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (result.code == GIZ_SDK_SUCCESS) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Phone verification code sent successfully", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        [common showAlert:NSLocalizedString(@"Phone verification code sent successfully", nil) disappear:YES];
         [self.phoneCell.textInput setEnabled:NO];
         [self.phoneCell.textInput setTextColor:[UIColor grayColor]];
         [self.verfiyCell.textInput becomeFirstResponder];
@@ -155,21 +161,21 @@
         self.verifyTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateVerifyButton) userInfo:nil repeats:YES];
     }
     else {
-        NSString *info = [NSString stringWithFormat:@"%@\n%@ - %@", NSLocalizedString(@"Phone verification code sent failure", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:info delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        NSString *info = [[GosCommon sharedInstance] checkErrorCode:result.code];
+        [common showAlert:info disappear:YES];
     }
 }
 
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didChangeUserPassword:(NSError *)result {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (result.code == GIZ_SDK_SUCCESS) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Reset success", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        [common showAlert:NSLocalizedString(@"Reset success", nil) disappear:YES];
         [[GosCommon sharedInstance] saveUserDefaults:self.phoneCell.textInput.text password:self.passwordCell.textPassword.text uid:nil token:nil];
         [self.navigationController popViewControllerAnimated:YES];
     }
     else {
-        NSString *info = [NSString stringWithFormat:@"%@\n%@ - %@", NSLocalizedString(@"Reset failed", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:info delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        NSString *info = [[GosCommon sharedInstance] checkErrorCode:result.code];
+        [common showAlert:info disappear:YES];
     }
 }
 
@@ -196,6 +202,12 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.passwordCell.textPassword resignFirstResponder];
     return NO;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSString *textPassword = self.passwordCell.textPassword.text;
+    self.passwordCell.textPassword.text = @"";
+    self.passwordCell.textPassword.text = textPassword;
 }
 
 #pragma mark - Others

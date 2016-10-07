@@ -216,21 +216,21 @@
     msg.text = NSLocalizedString(@"Put the QR Code into the frame", nil);
     [self.view addSubview:msg];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(downView.frame)+14, self.view.frame.size.width, 100)];
     label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [UIColor colorWithRed:0.996 green:0.816 blue:0.184 alpha:1];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:24];
+    label.font = [UIFont systemFontOfSize:16];
     label.text = NSLocalizedString(@"Scanning code, Binding Device", nil);
     [self.view addSubview:label];
     
     
     CGRect leftFrame;
-    leftFrame = CGRectMake(-2, 10, 60, 64);
+    leftFrame = CGRectMake(10, 20, 24, 44);
     UIButton *leftButton= [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.frame =leftFrame;
     [leftButton addTarget:self action:@selector(dismissOverlayView:) forControlEvents:UIControlEventTouchUpInside];
-    [leftButton setImage:[UIImage imageNamed:@"QRCodeBackBtn"] forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
     [self.view addSubview:leftButton];
 }
 

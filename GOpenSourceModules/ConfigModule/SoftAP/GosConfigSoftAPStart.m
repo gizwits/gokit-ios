@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgSoftapTips;
 
 @property (weak, nonatomic) IBOutlet UIButton *connectToSoftApBtn;
+@property (weak, nonatomic) IBOutlet UILabel *currentSSID;
 
 @end
 
@@ -28,6 +29,7 @@
     
     self.connectToSoftApBtn.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.connectToSoftApBtn setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.connectToSoftApBtn.layer setCornerRadius:19.0];
     
     // Do any additional setup after loading the view.
     // 为按钮添加下划线
@@ -37,6 +39,8 @@
     [self.btnHelp setAttributedTitle:mstr forState:UIControlStateNormal];
 
     self.imgSoftapTips.gifPath = [[NSBundle mainBundle] pathForResource:@"04-softap-tips" ofType:@"gif"];
+    
+    self.currentSSID.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"current connect", nil), GetCurrentSSID()];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,7 +114,7 @@
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
     } else {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Manually click \"Settings\" icon on your desktop, then select \"Wi-Fi\"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        [[GosCommon sharedInstance] showAlert:NSLocalizedString(@"Manually click \"Settings\" icon on your desktop, then select \"Wi-Fi\"", nil) disappear:YES];
     }
 }
 

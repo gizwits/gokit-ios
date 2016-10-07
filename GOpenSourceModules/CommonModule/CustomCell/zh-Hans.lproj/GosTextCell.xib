@@ -15,11 +15,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-4F-o4h">
-                        <rect key="frame" x="28" y="12" width="16" height="20"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-4F-o4h">
+                        <rect key="frame" x="30" y="12" width="12" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="1za-rD-nxt"/>
-                            <constraint firstAttribute="width" constant="16" id="oFe-U4-rB5"/>
+                            <constraint firstAttribute="width" constant="12" id="oFe-U4-rB5"/>
                         </constraints>
                     </imageView>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Slu-6V-eLh">
@@ -31,8 +31,8 @@
                 <constraints>
                     <constraint firstItem="b2n-4F-o4h" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VFN-HK-A0V"/>
                     <constraint firstItem="Slu-6V-eLh" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="W4o-NP-2Qb"/>
-                    <constraint firstItem="Slu-6V-eLh" firstAttribute="leading" secondItem="b2n-4F-o4h" secondAttribute="trailing" constant="26" id="Weg-WP-wt1"/>
-                    <constraint firstItem="b2n-4F-o4h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="aV8-AZ-eJH"/>
+                    <constraint firstItem="Slu-6V-eLh" firstAttribute="leading" secondItem="b2n-4F-o4h" secondAttribute="trailing" constant="28" id="Weg-WP-wt1"/>
+                    <constraint firstItem="b2n-4F-o4h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="22" id="aV8-AZ-eJH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Slu-6V-eLh" secondAttribute="trailing" constant="20" id="bV5-lc-OqQ"/>
                     <constraint firstItem="Slu-6V-eLh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hJy-7j-EGw"/>
                 </constraints>
@@ -44,6 +44,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="login_user.png" width="34" height="43"/>
+        <image name="phone.png" width="39" height="66"/>
     </resources>
 </document>

@@ -14,12 +14,13 @@
 
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/TencentApiInterface.h>
+#import "WXApi.h"
 
 #import "GosPushManager.h"
 
 #define APPDELEGATE ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
-@interface GosLoginViewController () <GizWifiSDKDelegate, TencentSessionDelegate>
+@interface GosLoginViewController () <GizWifiSDKDelegate, TencentSessionDelegate, WXApiDelegate>
 
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) GosTextCell *textCell;
@@ -29,9 +30,10 @@
 @property (assign, nonatomic) IBOutlet UIView *loginQQBtn;
 @property (assign, nonatomic) IBOutlet UIView *loginWechatBtn;
 @property (assign, nonatomic) IBOutlet UIView *loginWeiboBtn;
-@property (assign, nonatomic) IBOutlet UIView *loginSkipBtn;
+//@property (assign, nonatomic) IBOutlet UIView *loginSkipBtn;
 @property (strong, nonatomic) TencentOAuth *tencentOAuth;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
 
 @end
 
@@ -40,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //虚线
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [shapeLayer setBounds:self.view.bounds];
     [shapeLayer setPosition:self.view.center];
@@ -50,21 +53,28 @@
     [shapeLayer setLineDashPattern:
      [NSArray arrayWithObjects:[NSNumber numberWithInt:3], [NSNumber numberWithInt:2],nil]];
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 0);
-    CGPathAddLineToPoint(path, NULL, self.view.frame.size.width,0);
+    CGPathMoveToPoint(path, NULL, 20, 0);
+    CGPathAddLineToPoint(path, NULL, self.view.frame.size.width-20,0);
     [shapeLayer setPath:path];
     CGPathRelease(path);
     [[self.loginBtnsBar layer] addSublayer:shapeLayer];
     
     self.loginBtn.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.loginBtn setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
+    [self.loginBtn.layer setCornerRadius:22.0];
     self.automaticallyAdjustsScrollViewInsets = false;
     self.top = self.navigationController.navigationBar.translucent ? 0 : 64;
     [self setShowText:YES];
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelInput)];
     [self.view addGestureRecognizer:tapGesture];
     [self.loginQQBtn addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginQQBtnPressed)]];
-    [self.loginSkipBtn addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginSkipBtnPressed)]];
+    [self.loginWechatBtn addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginWechatBtnPressed)]];
+//    [self.loginSkipBtn addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginSkipBtnPressed)]];
+    // 给忘记密码按钮添加下划线
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:self.forgetBtn.titleLabel.text];
+    NSRange strRange = {0, [str length]};
+    [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
+    [self.forgetBtn setAttributedTitle:str forState:UIControlStateNormal];
     
     // 默认进入设备列表界面
 //    [self toDeviceListWithoutLogin:NO];
@@ -74,7 +84,6 @@
     
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    [self.navigationController.navigationBar setHidden:YES];
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     if (username && [username length] > 0 && password && [password length] > 0) {
@@ -102,6 +111,10 @@
 }
 
 - (void)loginQQBtnPressed {
+    if ([TENCENT_APP_ID isEqualToString:@"your_tencent_app_id"] || TENCENT_APP_ID.length == 0) {
+        [[[UIAlertView alloc] initWithTitle:nil message:@"请替换 GOpenSourceModules/CommonModule/UIConfig.json 中的参数定义为您申请到的QQ登录授权 app id" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        return;
+    }
     [GosCommon sharedInstance].currentLoginStatus = GizLoginNone;
     NSArray* permissions = [NSArray arrayWithObjects:
                             kOPEN_PERMISSION_GET_USER_INFO,
@@ -111,7 +124,52 @@
     [self.tencentOAuth authorize:permissions inSafari:NO];
 }
 
-- (void)loginSkipBtnPressed {
+- (void)loginWechatBtnPressed {
+    if ([WECHAT_APP_ID isEqualToString:@"your_wechat_app_id"] || WECHAT_APP_ID.length == 0 || [WECHAT_APP_SECRET isEqualToString:@"your_wechat_app_secret"] || WECHAT_APP_SECRET.length == 0) {
+        [[[UIAlertView alloc] initWithTitle:nil message:@"请替换 GOpenSourceModules/CommonModule/UIConfig.json 中的参数定义为您申请到的微信登录授权 app id 及 app secret" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        return;
+    }
+    [WXApi registerApp:WECHAT_APP_ID];
+    if (![WXApi isWXAppInstalled]) {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:@"未检测到微信，请安装后重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        return;
+    }
+    [GosCommon sharedInstance].currentLoginStatus = GizLoginNone;
+    //构造SendAuthReq结构体
+    SendAuthReq* req =[[SendAuthReq alloc] init];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"123" ;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    [WXApi sendReq:req];
+    [GosCommon sharedInstance].WXApiOnRespHandler = ^(BaseResp *resp) {
+        SendAuthResp *aresp = (SendAuthResp *)resp;
+        if (aresp.errCode== 0) {
+            NSString *code = aresp.code;
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [self getAccessToken:code];
+        }
+    };
+}
+
+-(void)getAccessToken:(NSString *)code {
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",WECHAT_APP_ID,WECHAT_APP_SECRET,code];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSString *accessToken = [dic objectForKey:@"access_token"];
+                NSString *openId = [dic objectForKey:@"openid"];
+                [[GizWifiSDK sharedInstance] userLoginWithThirdAccount:GizThirdWeChat uid:openId token:accessToken];
+                
+            }
+        });
+    });
+}
+
+- (IBAction)loginSkipBtnPressed:(id)sender {
     [self toDeviceListWithoutLogin:YES];
 }
 
@@ -181,11 +239,11 @@
         password = self.passwordCell.textPassword.text;
     }
     if([username isEqualToString:@""]) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Username can not be empty", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        [common showAlert:NSLocalizedString(@"please input cellphone", nil) disappear:YES];
         return;
     }
-    if (password.length < 6) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"The password must be at least six characters", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+    if ([password isEqualToString:@""]) {
+        [common showAlert:NSLocalizedString(@"please input password", nil) disappear:YES];
         return;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -204,7 +262,7 @@
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (result.code == GIZ_SDK_SUCCESS) {
-//        [GizCommon sharedInstance].hasBeenLoggedIn = YES;
+        [common showAlert:NSLocalizedString(@"Login successful", nil) disappear:YES];
         [[GosCommon sharedInstance] saveUserDefaults:nil password:nil uid:uid token:token];
         self.textCell.textInput.text = @"";
         self.passwordCell.textPassword.text = @"";
@@ -213,6 +271,7 @@
         devListCtrl.parent = self;
         devListCtrl.needRefresh = YES;
         [GosCommon sharedInstance].currentLoginStatus = GizLoginUser;
+        [GosPushManager unbindToGDMS:NO];
         [GosPushManager bindToGDMS];
         [self.navigationController pushViewController:devListCtrl animated:YES];
     }
@@ -221,8 +280,8 @@
 //    }
     else {
         [[GosCommon sharedInstance] removeUserDefaults];
-        NSString *info = [NSString stringWithFormat:@"%@\n%@ - %@", NSLocalizedString(@"Login failed", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:info delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        NSString *info = [[GosCommon sharedInstance] checkErrorCode:result.code];
+        [common showAlert:info disappear:YES];
     }
 }
 
@@ -245,15 +304,12 @@
 }
 
 - (void)tencentDidNotLogin:(BOOL)cancelled {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Login Cancel", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alertView show];
+
 }
 
 - (void)tencentDidNotNetWork {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Login failed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alertView show];
+    [common showAlert:NSLocalizedString(@"Login failed", nil) disappear:YES];
 }
-
 
 #pragma mark - textField Delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -264,6 +320,10 @@
             [self setViewY:-20];
         }
     }
+    
+    NSString *textPassword = self.passwordCell.textPassword.text;
+    self.passwordCell.textPassword.text = @"";
+    self.passwordCell.textPassword.text = textPassword;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

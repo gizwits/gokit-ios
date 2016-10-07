@@ -15,13 +15,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Slu-6V-eLh">
-                        <rect key="frame" x="70" y="0.0" width="250" height="43.5"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Slu-6V-eLh">
+                        <rect key="frame" x="82" y="0.0" width="238" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
                     </textField>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="01-icon-wifi.png" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-4F-o4h">
-                        <rect key="frame" x="25" y="14" width="21" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01-icon-wifi.png" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-4F-o4h">
+                        <rect key="frame" x="25" y="10.5" width="33" height="22"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -41,6 +41,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="01-icon-wifi.png" width="21" height="15"/>
+        <image name="01-icon-wifi.png" width="33" height="22"/>
     </resources>
 </document>

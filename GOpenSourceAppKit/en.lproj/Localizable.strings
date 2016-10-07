@@ -6,8 +6,158 @@
   Copyright © 2016年 Gizwits. All rights reserved.
 */
 
+"GIZ_SDK_PARAM_FORM_INVALID" = "SDK's intenal data form is invalid";
+"GIZ_SDK_CLIENT_NOT_AUTHEN" = "SDK is not started";
+"GIZ_SDK_CLIENT_VERSION_INVALID" = "SDK version is invalid";
+"GIZ_SDK_UDP_PORT_BIND_FAILED" = "UDP port bind failed";
+"GIZ_SDK_DAEMON_EXCEPTION" = "Exception happened with SDK's daemon service ";
+"GIZ_SDK_PARAM_INVALID" = "SDK API param is invalid";
+"GIZ_SDK_APPID_LENGTH_ERROR" = "The length of AppID is invalid";
+"GIZ_SDK_LOG_PATH_INVALID" = "SDK's Log file path is invalid";
+"GIZ_SDK_LOG_LEVEL_INVALID" = "The log level is invalid";
+"GIZ_SDK_DEVICE_CONFIG_SEND_FAILED" = "Device‘s wifi configuration send failed";
+"GIZ_SDK_DEVICE_CONFIG_IS_RUNNING" = "Device‘s wifi configuration is running";
+"GIZ_SDK_DEVICE_CONFIG_TIMEOUT" = "Device‘s wifi configuration is timeout";
+"GIZ_SDK_DEVICE_DID_INVALID" = "DID is invalid";
+"GIZ_SDK_DEVICE_MAC_INVALID" = "MAC is invalid";
+"GIZ_SDK_SUBDEVICE_DID_INVALID" = "DID of the sub device is invalid";
+"GIZ_SDK_DEVICE_PASSCODE_INVALID" = "The passcode is invalid";
+"GIZ_SDK_DEVICE_NOT_SUBSCRIBED" = "The device is not subscribed";
+"GIZ_SDK_DEVICE_NO_RESPONSE" = "The device has no response to APP‘s command";
+"GIZ_SDK_DEVICE_NOT_READY" = "The device is not ready";
+"GIZ_SDK_DEVICE_NOT_BINDED" = "The device is not binded";
+"GIZ_SDK_DEVICE_CONTROL_WITH_INVALID_COMMAND" = "There is some invalid command in the control command";
+"GIZ_SDK_DEVICE_CONTROL_FAILED" = "Failed to controll device";
+"GIZ_SDK_DEVICE_GET_STATUS_FAILED" = "Failed to get device status";
+"GIZ_SDK_DEVICE_CONTROL_VALUE_TYPE_ERROR" = "The command param type is error";
+"GIZ_SDK_DEVICE_CONTROL_VALUE_OUT_OF_RANGE" = "The command param value is out of range";
+"GIZ_SDK_DEVICE_CONTROL_NOT_WRITABLE_COMMAND" = "There is readonly command in the control command";
+"GIZ_SDK_BIND_DEVICE_FAILED" = "Failed to bind device";
+"GIZ_SDK_UNBIND_DEVICE_FAILED" = "Failed to unbind device";
+
+"GIZ_SDK_DNS_FAILED" = "Failed to parse DNS";
+"GIZ_SDK_M2M_CONNECTION_SUCCESS" = "Connect to M2M successfully";
+"GIZ_SDK_SET_SOCKET_NON_BLOCK_FAILED" = "Failed to set socket non block";
+"GIZ_SDK_CONNECTION_TIMEOUT" = "Connection timeout";
+"GIZ_SDK_CONNECTION_REFUSED" = "Connection is refused";
+"GIZ_SDK_CONNECTION_ERROR" = "Connection error happened";
+"GIZ_SDK_CONNECTION_CLOSED" = "Connection is cloesed by peer";
+"GIZ_SDK_SSL_HANDSHAKE_FAILED" = "SSL handshake is failed";
+"GIZ_SDK_DEVICE_LOGIN_VERIFY_FAILED" = "Device login verified failed";
+"GIZ_SDK_INTERNET_NOT_REACHABLE" = "The internet is not reachable";
+
+"GIZ_SDK_HTTP_ANSWER_FORMAT_ERROR" = "HTTP response data format is error";
+"GIZ_SDK_HTTP_ANSWER_PARAM_ERROR" = "HTTP response data is error";
+"GIZ_SDK_HTTP_SERVER_NO_ANSWER" = "HTTP server can not response";
+"GIZ_SDK_HTTP_REQUEST_FAILED" = "HTTP request failed";
+
+"GIZ_SDK_OTHERWISE" = "Other errors";
+"GIZ_SDK_MEMORY_MALLOC_FAILED" = "Memory malloc failed";
+"GIZ_SDK_THREAD_CREATE_FAILED" = "Thread create failed";
+
+"GIZ_SDK_USER_ID_INVALID" = "The login user ID is invalid";
+"GIZ_SDK_TOKEN_INVALID" = "The login token is invalid";
+"GIZ_SDK_GROUP_ID_INVALID" = "The group ID is invalid";
+"GIZ_SDK_GROUPNAME_INVALID" = "The group name is invalid";
+"GIZ_SDK_GROUP_PRODUCTKEY_INVALID" = "The group type is invalid";
+"GIZ_SDK_GROUP_FAILED_DELETE_DEVICE" = "Failed to delete group";
+"GIZ_SDK_GROUP_FAILED_ADD_DEVICE" = "Failed to add group";
+"GIZ_SDK_GROUP_GET_DEVICE_FAILED" = "Failed to get the group list";
+
+"GIZ_SDK_DATAPOINT_NOT_DOWNLOAD" = "The device datapoint is not download yet";
+"GIZ_SDK_DATAPOINT_SERVICE_UNAVAILABLE" = "The device datapoint server is unavaliable";
+"GIZ_SDK_DATAPOINT_PARSE_FAILED" = "Failed to parse the device datapoint";
+
+"GIZ_SDK_SDK_NOT_INITIALIZED" = "SDK is not initialized yet";
+"GIZ_SDK_APK_CONTEXT_IS_NULL" = "The context is null，so can not start SDK";
+"GIZ_SDK_APK_PERMISSION_NOT_SET" = "The permission for SDK is not set";
+"GIZ_SDK_CHMOD_DAEMON_REFUSED" = "Failed to change permissions for SDK daemon";
+"GIZ_SDK_EXEC_DAEMON_FAILED" = "Failed to excute SDK daemon";
+"GIZ_SDK_EXEC_CATCH_EXCEPTION" = "Exception happened when excute SDK daemon";
+"GIZ_SDK_APPID_IS_EMPTY" = "The AppId is null，so can not use SDK";
+"GIZ_SDK_UNSUPPORTED_API" = "It is deprecated API, no longer to provide support ";
+"GIZ_SDK_REQUEST_TIMEOUT" = "SDK API is timeout";
+"GIZ_SDK_DAEMON_VERSION_INVALID" = "SDK daemon version is invalid";
+"GIZ_SDK_PHONE_NOT_CONNECT_TO_SOFTAP_SSID" = "Phone is not connect to the device softap ssid";
+"GIZ_SDK_DEVICE_CONFIG_SSID_NOT_MATCHED" = "The phone's wifi and the device onboarding ssid is not the same";
+"GIZ_SDK_NOT_IN_SOFTAPMODE" = "Device is not in SoftAP mode";
+"GIZ_SDK_PHONE_WIFI_IS_UNAVAILABLE" = "Phone is not in Wifi network";
+"GIZ_SDK_RAW_DATA_TRANSMIT" = "It is the raw data transmission";
+"GIZ_SDK_PRODUCT_IS_DOWNLOADING" = "The device datapoint file is downloading";
+"GIZ_SDK_START_SUCCESS" = "SDK started successfully";
+
+"GIZ_SITE_PRODUCTKEY_INVALID" = "The product key is invalid";
+"GIZ_SITE_DATAPOINTS_NOT_DEFINED" = "The product datapoint is not defined";
+"GIZ_SITE_DATAPOINTS_NOT_MALFORME" = "The product datapoint is unavailable";
+
+
+"GIZ_OPENAPI_MAC_ALREADY_REGISTERED" = "mac already registered!";
+"GIZ_OPENAPI_PRODUCT_KEY_INVALID" = "product_key invalid";
+"GIZ_OPENAPI_APPID_INVALID" = "appid invalid";
+"GIZ_OPENAPI_TOKEN_INVALID" = "token invalid";
+"GIZ_OPENAPI_USER_NOT_EXIST" = "user not exist";
+"GIZ_OPENAPI_TOKEN_EXPIRED" = "token expired";
+"GIZ_OPENAPI_M2M_ID_INVALID" = "m2m_id invalid";
+"GIZ_OPENAPI_SERVER_ERROR" = "server error";
+"GIZ_OPENAPI_CODE_EXPIRED" = "code expired";
+"GIZ_OPENAPI_CODE_INVALID" = "code invalid";
+"GIZ_OPENAPI_SANDBOX_SCALE_QUOTA_EXHAUSTED" = "sandbox scale quota exhausted!";
+"GIZ_OPENAPI_PRODUCTION_SCALE_QUOTA_EXHAUSTED" = "production scale quota exhausted!";
+"GIZ_OPENAPI_PRODUCT_HAS_NO_REQUEST_SCALE" = "product has no request scale!";
+"GIZ_OPENAPI_DEVICE_NOT_FOUND" = "device not found!";
+"GIZ_OPENAPI_FORM_INVALID" = "form invalid!";
+"GIZ_OPENAPI_DID_PASSCODE_INVALID" = "did or passcode invalid!";
+"GIZ_OPENAPI_DEVICE_NOT_BOUND" = "device not bound!";
+"GIZ_OPENAPI_PHONE_UNAVALIABLE" = "phone unavailable!";
+"GIZ_OPENAPI_USERNAME_UNAVALIABLE" = "username unavailable!";
+"GIZ_OPENAPI_USERNAME_PASSWORD_ERROR" = "username or password error!";
+"GIZ_OPENAPI_SEND_COMMAND_FAILED" = "send command failed!";
+"GIZ_OPENAPI_EMAIL_UNAVALIABLE" = "email unavailable!";
+"GIZ_OPENAPI_DEVICE_DISABLED" = "device is disabled!";
+"GIZ_OPENAPI_FAILED_NOTIFY_M2M" = "fail to notify m2m!";
+"GIZ_OPENAPI_ATTR_INVALID" = "attr invalid!";
+"GIZ_OPENAPI_USER_INVALID" = "user invalid!";
+"GIZ_OPENAPI_FIRMWARE_NOT_FOUND" = "firmware not found!";
+"GIZ_OPENAPI_JD_PRODUCT_NOT_FOUND" = "JD product info not found!";
+"GIZ_OPENAPI_DATAPOINT_DATA_NOT_FOUND" = "datapoint data not found!";
+"GIZ_OPENAPI_SCHEDULER_NOT_FOUND" = "scheduler not found!";
+"GIZ_OPENAPI_QQ_OAUTH_KEY_INVALID" = "qq oauth key invalid!";
+"GIZ_OPENAPI_OTA_SERVICE_OK_BUT_IN_IDLE" = "ota upgrade service OK, but in idle or disable!";
+"GIZ_OPENAPI_BT_FIRMWARE_UNVERIFIED" = "bt firmware unverified, except verify device!";
+"GIZ_OPENAPI_BT_FIRMWARE_NOTHING_TO_UPGRADE" = "bt firmware is OK, but nothing to upgrade!";
+"GIZ_OPENAPI_SAVE_KAIROSDB_ERROR" = "Save kairosdb error!";
+"GIZ_OPENAPI_EVENT_NOT_DEFINED" = "event not defined!";
+"GIZ_OPENAPI_SEND_SMS_FAILED" = "send sms failed!";
+"GIZ_OPENAPI_APPLICATION_AUTH_INVALID" = "X-Gizwits-Application-Auth invalid!";
+"GIZ_OPENAPI_NOT_ALLOWED_CALL_API" = "Not allowed to call deprecated API!";
+"GIZ_OPENAPI_BAD_QRCODE_CONTENT" = "bad qrcode content!";
+"GIZ_OPENAPI_REQUEST_THROTTLED" = "request was throttled";
+"GIZ_OPENAPI_DEVICE_OFFLINE" = "device offline!";
+"GIZ_OPENAPI_TIMESTAMP_INVALID" = "'X-Gizwits-Timestamp invalid!";
+"GIZ_OPENAPI_SIGNATURE_INVALID" = "X-Gizwits-Signature invalid!";
+"GIZ_OPENAPI_DEPRECATED_API" = "API deprecated!";
+"GIZ_OPENAPI_RESERVED" = "reserved";
+
+
+"GIZ_PUSHAPI_BODY_JSON_INVALID" = "body json invalid";
+"GIZ_PUSHAPI_DATA_NOT_EXIST" = "Data Not Exist";
+"GIZ_PUSHAPI_NO_CLIENT_CONFIG" = "No Client config";
+"GIZ_PUSHAPI_NO_SERVER_DATA" = "No Server Data";
+"GIZ_PUSHAPI_GIZWITS_APPID_EXIST" = "Gizwits_appid Already Exist";
+"GIZ_PUSHAPI_PARAM_ERROR" = "Param Error";
+"GIZ_PUSHAPI_AUTH_KEY_INVALID" = "Auth_Key Invalid";
+"GIZ_PUSHAPI_APPID_OR_TOKEN_ERROR" = "Appid or User-Token Error";
+"GIZ_PUSHAPI_TYPE_PARAM_ERROR" = "Type Param Error";
+"GIZ_PUSHAPI_ID_PARAM_ERROR" = "Id Param Error";
+"GIZ_PUSHAPI_APPKEY_SECRETKEY_INVALID" = "ApiKey or SecretKey Param Invalid";
+"GIZ_PUSHAPI_CHANNELID_ERROR_INVALID" = "ChannelId Param Error";
+"GIZ_PUSHAPI_PUSH_ERROR" = "Push Error";
+
+"UNKNOWN_ERROR" = "unknown error";
+
 "tip" = "tip";
-"Username can not be empty" = "Username can not be empty";
+"please input cellphone" = "please input cellphone";
+"please input password" = "please input password";
 "The password must be at least six characters" = "The password must be at least six characters";
 "OK" = "OK";
 "Login failed" = "Login failed";
@@ -24,7 +174,7 @@
 "Registered successfully" = "Registered successfully";
 "Registration failed" = "Registration failed";
 "Try again" = "Try again";
-"Verification code error" = "Verification code error";
+"Verification code error" = "code invalid";
 
 "Reset success" = "Reset success";
 "Reset failed" = "Reset failed";
@@ -33,6 +183,7 @@
 
 "Scan QR code" = "Scan QR code";
 "Add Device" = "Add Device";
+"Add" = "Add ";
 "Setting" = "Setting";
 "Logout" = "Logout";
 "Login" = "Login";
@@ -54,6 +205,8 @@
 "Camera access restricted" = "Camera access restricted";
 "Allow camera prepend" = "Please in your iPhone settings –> privacy-> camera, Allow";
 "Allow camera append" = "to access your camera";
+
+"Unknown QR Code" = "Unknown QR Code";
 
 "About" = "About";
 "Program Version" = "Program Version";
@@ -83,6 +236,7 @@
 "ESP" = "ESP";
 "HF" = "HF";
 "MXCHIP" = "MXCHIP";
+"MXCHIP3" = "MXCHIP3";
 "RTK" = "RTK";
 "WM" = "WM";
 "QCA" = "QCA";
@@ -91,15 +245,18 @@
 "Atmel" = "Atmel";
 "FSK" = "FSK";
 
+"current connect" = "current connect: ";
+
 "get device status" = "get device status";
 "get device hardware info" = "get device hardware info";
 "set device info" = "set device info";
-"device hardware info" = "device hardware info";
+"device hardware info" = "tip";
 "Waiting for device ready" = "Waiting for device ready";
 
-"set alias and remark" = "set alias and remark";
+"set alias and remark" = "set device info";
 "input alias" = "input alias";
 "input remark" = "input remark";
 
 "set successful" = "set successful";
 "set failed" = "set failed";
+"connection dropped" = "connection dropped";

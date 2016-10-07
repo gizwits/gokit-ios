@@ -93,6 +93,7 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     GIZ_LOG_BIZ("device_control_page_show", "success", "device control page is shown");
     [super viewWillAppear:animated];
+    [self.device getDeviceStatus];
     
     //大循环判断设备是否在线
 //    if (!self.device.isOnline && !self.device.isLAN) {
@@ -214,20 +215,20 @@ typedef enum {
 //        [self toast:NSLocalizedString(@"success", nil)];
     }
     else {
-        NSString *info = [NSString stringWithFormat:@"%@\n%@ - %@", NSLocalizedString(@"set failed", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
+        NSString *info = [[GosCommon sharedInstance] checkErrorCode:result.code];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:info delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
 //        [self toast:info];
     }
 }
 
 - (void)device:(GizWifiDevice *)device didGetHardwareInfo:(NSError *)result hardwareInfo:(NSDictionary *)hardwareInfo {
-    NSString *hardWareInfo = [NSString stringWithFormat:@"WiFi Hardware Version: %@,\nWiFi Software Version: %@,\nFirmware Id: %@,\nFirmware Version: %@,\nMCU Hardware Version: %@,\nMCU Software Version: %@,\nProduct Key: %@,\nDevice ID: %@,\nDevice IP: %@,\nDevice MAC: %@"
+    NSString *hardWareInfo = [NSString stringWithFormat:@"WiFi Hardware Version: %@,\nWiFi Software Version: %@,\nMCU Hardware Version: %@,\nMCU Software Version: %@,\nFirmware Id: %@,\nFirmware Version: %@,\nProduct Key: %@,\nDevice ID: %@,\nDevice IP: %@,\nDevice MAC: %@"
                               , [hardwareInfo valueForKey:@"wifiHardVersion"]
                               , [hardwareInfo valueForKey:@"wifiSoftVersion"]
-                              , [hardwareInfo valueForKey:@"wifiFirmwareId"]
-                              , [hardwareInfo valueForKey:@"wifiFirmwareVer"]
                               , [hardwareInfo valueForKey:@"mcuHardVersion"]
                               , [hardwareInfo valueForKey:@"mcuSoftVersion"]
+                              , [hardwareInfo valueForKey:@"wifiFirmwareId"]
+                              , [hardwareInfo valueForKey:@"wifiFirmwareVer"]
                               , [hardwareInfo valueForKey:@"productKey"]
                               , self.device.did, self.device.ipAddress, self.device.macAddress];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -589,19 +590,28 @@ typedef enum {
 }
 
 - (NSInteger)prepareForUpdateColorRows:(NSString *)str value:(NSInteger)value rows:(NSMutableArray *)rows index:(NSInteger)index {
-    if ([str isKindOfClass:[NSString class]] && str.length > 0) {
-        NSInteger newValue = -1;
-        if ([str isEqualToString:@"自定义"]) newValue = 0;
-        else if ([str isEqualToString:@"黄色"]) newValue = 1;
-        else if ([str isEqualToString:@"紫色"]) newValue = 2;
-        else if ([str isEqualToString:@"粉色"]) newValue = 3;
-        if (newValue != value) {
-            value = newValue;
-            [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        }
+    NSInteger newValue = [str integerValue];
+    if (newValue != value) {
+        value = newValue;
+        [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
     }
     return value;
 }
+
+//- (NSInteger)prepareForUpdateColorRows:(NSString *)str value:(NSInteger)value rows:(NSMutableArray *)rows index:(NSInteger)index {
+//    if ([str isKindOfClass:[NSString class]] && str.length > 0) {
+//        NSInteger newValue = -1;
+//        if ([str isEqualToString:@"自定义"]) newValue = 0;
+//        else if ([str isEqualToString:@"黄色"]) newValue = 1;
+//        else if ([str isEqualToString:@"紫色"]) newValue = 2;
+//        else if ([str isEqualToString:@"粉色"]) newValue = 3;
+//        if (newValue != value) {
+//            value = newValue;
+//            [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+//        }
+//    }
+//    return value;
+//}
 
 #pragma mark - GizWifiDeviceDelegate
 - (void)device:(GizWifiDevice *)device didReceiveData:(NSError *)result data:(NSDictionary *)data withSN:(NSNumber *)sn {
@@ -764,7 +774,8 @@ typedef enum {
     //    NSLog(@"str = \"%@\"", str);
     
     if (str.length > 0) {
-        [self performSelectorInBackground:@selector(toast:) withObject:str];
+//        [self performSelectorInBackground:@selector(toast:) withObject:str];
+        [[GosCommon sharedInstance] showAlert:str disappear:YES];
     }
 }
 
@@ -772,7 +783,7 @@ typedef enum {
     if (netStatus == GizDeviceOffline || netStatus == GizDeviceUnavailable) {
         GIZ_LOG_BIZ("device_notify_disconnected", "success", "device notify disconnected, device mac is %s, did is %s, LAN is %s", self.device.macAddress.UTF8String, self.device.did.UTF8String, self.device.isLAN?"true":"false");
         [_alertView dismissWithClickedButtonIndex:0 animated:YES];
-        _alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"连接已断开" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        _alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"connection dropped", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [_alertView show];
         [self performSelector:@selector(onBack) withObject:nil afterDelay:0.5];
     }

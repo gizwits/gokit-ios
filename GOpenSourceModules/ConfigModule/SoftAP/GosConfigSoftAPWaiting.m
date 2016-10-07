@@ -98,19 +98,9 @@
 
 - (void)onConfigSucceed:(GizWifiDevice *)device {
     [self.timer invalidate];
-    
     [[GosCommon sharedInstance] cancelAlertViewDismiss];
-    
-    __block UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Configuration success", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-    [alertView show];
+    [[GosCommon sharedInstance] showAlert:NSLocalizedString(@"Configuration success", nil) disappear:YES];
     [[GosCommon sharedInstance] onSucceed:device];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sleep(1);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:YES];
-        });
-    });
 }
 
 - (void)onConfigSSIDMotMatched {

@@ -67,13 +67,16 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     } else {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            usleep(500000);//0.5s
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Device is not connected to Wi-Fi, can not configure", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-                [self onPushToSoftapFailed];
-            });
-        });
+        [[GosCommon sharedInstance] showAlert:NSLocalizedString(@"Device is not connected to Wi-Fi, can not configure", nil) disappear:YES];
+        [self onPushToSoftapFailed];
+        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            usleep(500000);//0.5s
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Device is not connected to Wi-Fi, can not configure", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+//                [self onPushToSoftapFailed];
+//            });
+//        });
     }
 }
 
@@ -134,46 +137,15 @@
 
 - (void)onConfigSucceed:(GizWifiDevice *)device {
     [self.timer invalidate];
-    
-//    for (UIAlertView *alertView in self.view.subviews) {
-//        if ([alertView isKindOfClass:[UIAlertView class]]) {
-//            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:YES];
-//        }
-//    }
-    
     [[GosCommon sharedInstance] cancelAlertViewDismiss];
-    
-    __block UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Configuration success", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-    [alertView show];
+    [[GosCommon sharedInstance] showAlert:NSLocalizedString(@"Configuration success", nil) disappear:YES];
     [[GosCommon sharedInstance] onSucceed:device];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sleep(1);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:YES];
-        });
-    });
 }
 
 - (void)onConfigFailed {
-//    double delayInSeconds = 1.0;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    
     [[GosCommon sharedInstance] cancelAlertViewDismiss];
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Bad network, switch to manual connection", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alertView show];
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        sleep(2);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:YES];
-//            alertView = nil;
-//        });
-//    });
+    [[GosCommon sharedInstance] showAlert:NSLocalizedString(@"Bad network, switch to manual connection", nil) disappear:YES];
     [self onPushToSoftapFailed];
-//    });
 }
 
 - (void)onWillEnterForeground {
@@ -233,6 +205,7 @@
     }
     else if (result.code == GIZ_SDK_DEVICE_CONFIG_IS_RUNNING) {
         GIZ_LOG_BIZ("airlink_config_end", "warn", "end airlink config，result is :%s, current ssid is %s, elapsed: %i(s)", info.UTF8String, GetCurrentSSID().UTF8String, CONFIG_TIMEOUT-self.timeout);
+        /*
         __block UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:info delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
         [alertView show];
         
@@ -243,6 +216,8 @@
                 alertView = nil;
             });
         });
+         
+         */
     }
     else {
         GIZ_LOG_BIZ("airlink_config_end", "failed", "end airlink config，result is :%s, current ssid is %s, elapsed: %i(s)", info.UTF8String, GetCurrentSSID().UTF8String, CONFIG_TIMEOUT-self.timeout);

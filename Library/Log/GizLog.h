@@ -69,6 +69,8 @@
  */
 #define GIZ_LOG_DEBUG(fmt, args...)  GizPrintDebug("[APPSYS][DEBUG][%s][%s:%d %s][" fmt"]", GizTimeStr(), __FILENAME__, __LINE__, __FUNCTION__, ##args)
     
+#define GIZ_CLOSE(fd)    GizClose(fd, __FILENAME__, __LINE__, __FUNCTION__)
+
 /*
  * 日志信息结构体
  */
@@ -89,9 +91,58 @@ typedef struct _GizLog_t {
     FILE *fileSys; //系统日志文件句柄
 } GizLog_t;
 
+/**
+ * @brief 日志初始化.
+ * @param[in] sysInfoJson- 系统信息(Json字符串，例:{"phone_id":"AE27466D-9C8F-4184-A6A3-2A0CDEDAA4FD","os":"iOS","os_ver":"9.2","app_version":"1.5.1","phone_model":"iPhone 6 (A1549/A1586)"}).
+ * @param[in] logDir- 存储日志目录的路径(推荐采用程序私有目录,例:/var/mobile/Containers/Data/Application/1D7A5CD8-70D2-4B46-A76A-8B9BE5CBC88C/Documents").
+ * @param[in] printLevel- 日志打印到屏幕的级别(0:不打印屏幕,1:打印error+busi,2:打印error+debug+busi).
+ * @return 返回日志初始化结果,0:成功,1:sysInfoJson非法,2:logDir指定错误(目录为空、不存在或无法创建文件等),3:printLevel非法.
+ *
+ */
+int GizLogInit(const char *sysInfoJson, const char *logDir, int printLevel);
+
+/**
+ * @brief 日志上传检测,如要上传则新建线程上传日志.
+ * @param[in] domain- 日志待上传的服务器域名地址.
+ * @param[in] port- 日志待上传的服务器端口.
+ * @param[in] appID- 指定应用标识地址.
+ * @param[in] uid- 指定用户标识码地址.
+ * @param[in] token- 指定远程用户令牌地址.
+ * @return 日志上传检测结果,0:成功,1:失败.
+ *
+ */
+int GizLogProvision(const char *domain, int port, const char *appID, const char *uid, const char *token);
+
+/**
+ * @brief 打印来至上层的业务日志.
+ * @param[in] content- 业务日志内容.
+ * @see content内容格式为[BIZ][时间][业务码][执行结果][描述]
+ * @see 例:[BIZ][2015-11-24 11:20:49.309][usr_login_req][SUCCESS][用户登录请求]
+ *
+ */
+void GizPrintBizFromUp(const char *content);
+
+/**
+ * @brief 打印来至上层的错误日志.
+ * @param[in] content- 错误日志内容.
+ * @see content内容格式为[SYS][ERROR][时间][文件名:行号 函数名][日志体]
+ * @see 例:[SYS][ERROR][2015-11-24 11:20:49.309][tool.c:937 connect] [conect 192.168.1.108:12906 failed, connection refused]
+ *
+ */
+void GizPrintErrorFromUp(const char *content);
+
+/**
+ * @brief 打印来至上层的调试日志.
+ * @param[in] content- 调试日志内容.
+ * @see content内容格式为[SYS][DEBUG][时间][文件名:行号 函数名][日志体]
+ * @see 例:[SYS][DEBUG][2015-11-24 11:20:49.309][tool.c:937 connect] [conect 192.168.1.108:12906 success, fd 127]
+ *
+ */
+void GizPrintDebugFromUp(const char *content);
 
 //内部使用
 char *GizTimeStr(void);
+void GizClose(int fd, const char *file, int line, const char *function);
 void GizPrintBiz(const char *businessCode, const char *result, const char *format, ...);
 void GizPrintError(const char *format, ...);
 void GizPrintDebug(const char *format, ...);
