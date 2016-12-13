@@ -68,7 +68,8 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
 + (BOOL)hideHUDForView:(UIView *)view animated:(BOOL)animated {
     MBProgressHUD *hud = [self HUDForView:view];
-    if (hud != nil) {
+    if (hud != nil)
+    {
         hud.removeFromSuperViewOnHide = YES;
         [hud hideAnimated:animated];
         return YES;

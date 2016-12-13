@@ -43,6 +43,7 @@
         [(UILabel *)progressView.centralView setText:[NSString stringWithFormat:@"%2.0f%%", progress * 100]];
     };
     [self.progressView setProgress:0.1];
+    self.progressView.userInteractionEnabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -108,7 +109,9 @@
     double delayInSeconds = 1.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.btnAutoJump2 sendActionsForControlEvents:UIControlEventTouchUpInside];
+        if (self.navigationController.viewControllers.lastObject == self) {
+            [self.btnAutoJump2 sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
     });
 }
 
@@ -117,7 +120,9 @@
     double delayInSeconds = 1.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.btnAutoJump sendActionsForControlEvents:UIControlEventTouchUpInside];
+        if (self.navigationController.viewControllers.lastObject == self) {
+            [self.btnAutoJump sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
     });
 }
 

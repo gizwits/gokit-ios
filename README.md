@@ -18,7 +18,7 @@ Gizwits Open Source GoKit iOS App
 
 GizWifiSDK 版本号
 
-    2.01.01
+    2.05.05
 
 
 功能介绍

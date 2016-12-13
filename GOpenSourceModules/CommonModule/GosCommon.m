@@ -9,6 +9,8 @@
 #import "GosCommon.h"
 #import "GosConfigStart.h"
 #import <CommonCrypto/CommonCrypto.h>
+#import "AppDelegate.h"
+#import <GizWifiSDK/GizWifiSDK.h>
 
 #define UIColorFromHex(s) [UIColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s &0xFF00) >>8))/255.0 blue:((s &0xFF))/255.0 alpha:1.0]
 
@@ -117,9 +119,36 @@ static NSString *makeEncryptKey(Class class, NSString *ssid) {
         self.currentLoginStatus = GizLoginNone;
         self.airlinkConfigType = GizGAgentESP;
         self.cid = @"";
-        self.configModuleValueArray = [[NSArray alloc] initWithObjects:@(0), @(1), @(2), @(3), @(4), @(5), @(6), @(7), @(8), @(9), nil];
-        self.configModuleTextArray = [[NSArray alloc] initWithObjects:NSLocalizedString(@"MXCHIP", nil), NSLocalizedString(@"HF", nil), NSLocalizedString(@"RTK", nil), NSLocalizedString(@"WM", nil), NSLocalizedString(@"ESP", nil), NSLocalizedString(@"QCA", nil), NSLocalizedString(@"TI", nil), NSLocalizedString(@"FSK", nil), NSLocalizedString(@"MXCHIP3", nil), NSLocalizedString(@"BL", nil), nil];
-        self.cloudDomainDict = [[NSMutableDictionary alloc] init];
+        NSMutableArray *configValueArray = [NSMutableArray array];
+        self.configModuleValueArray = configValueArray;
+        [configValueArray addObject:@(GizGAgentESP)];
+        [configValueArray addObject:@(GizGAgentMXCHIP)];
+        [configValueArray addObject:@(GizGAgentHF)];
+        [configValueArray addObject:@(GizGAgentRTK)];
+        [configValueArray addObject:@(GizGAgentWM)];
+        [configValueArray addObject:@(GizGAgentQCA)];
+        [configValueArray addObject:@(GizGAgentTI)];
+        [configValueArray addObject:@(GizGAgentFSK)];
+        [configValueArray addObject:@(GizGAgentMXCHIP3)];
+        [configValueArray addObject:@(GizGAgentBL)];
+        [configValueArray addObject:@(GizGAgentAtmelEE)];
+        [configValueArray addObject:@(GizGAgentOther)];
+
+        NSMutableArray *configTextArray = [NSMutableArray array];
+        self.configModuleTextArray = configTextArray;
+        [configTextArray addObject:NSLocalizedString(@"ESP", @"乐鑫")];
+        [configTextArray addObject:NSLocalizedString(@"MXCHIP", @"庆科")];
+        [configTextArray addObject:NSLocalizedString(@"HF", @"汉枫")];
+        [configTextArray addObject:NSLocalizedString(@"RTK", @"瑞昱")];
+        [configTextArray addObject:NSLocalizedString(@"WM", @"联盛德")];
+        [configTextArray addObject:NSLocalizedString(@"QCA", @"高通")];
+        [configTextArray addObject:NSLocalizedString(@"TI", @"TI")];
+        [configTextArray addObject:NSLocalizedString(@"FSK", @"宇音天下")];
+        [configTextArray addObject:NSLocalizedString(@"MXCHIP3", @"庆科V3")];
+        [configTextArray addObject:NSLocalizedString(@"BL", @"古北")];
+        [configTextArray addObject:NSLocalizedString(@"Atmel", @"AtmelEE")];
+        [configTextArray addObject:NSLocalizedString(@"Other", @"其他")];
+        _cloudDomainDict = [[NSMutableDictionary alloc] init];
         [self parseConfig];
     }
     return self;
@@ -172,17 +201,17 @@ static NSString *makeEncryptKey(Class class, NSString *ssid) {
 }
 
 - (void)onCancel {
-    id <GizConfigStartDelegate>__delegate = self.delegate;
-    [__delegate gizConfigDidFinished];
+    id <GosConfigStartDelegate>__delegate = self.delegate;
+    [__delegate gosConfigDidFinished];
 }
 
 - (void)onSucceed:(GizWifiDevice *)device {
-    id <GizConfigStartDelegate>__delegate = self.delegate;
-    [__delegate gizConfigDidSuccedd:device];
+    id <GosConfigStartDelegate>__delegate = self.delegate;
+    [__delegate gosConfigDidSucceed:device];
 }
 
 - (void)showAlertCancelConfig:(id)delegate {
-    self.cancelAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Discard your configuration?", nil) delegate:delegate cancelButtonTitle:NSLocalizedString(@"NO", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+    self.cancelAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Discard your configuration?", nil) delegate:delegate cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
     [self.cancelAlertView show];
 }
 
@@ -246,8 +275,12 @@ static NSString *makeEncryptKey(Class class, NSString *ssid) {
 }
 
 - (void)saveUserDefaults:(NSString *)username password:(NSString *)password uid:(NSString *)uid token:(NSString *)token {
-    if (username) [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
-    if (password) [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
+    if (username && password) {
+        [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+        [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
+        _tmpUser = username;
+        _tmpPass = password;
+    }
 //    if (uid) [[NSUserDefaults standardUserDefaults] setObject:uid forKey:@"uid"];
 //    if (token) [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"];
     if (uid) self.uid = uid;
@@ -257,6 +290,8 @@ static NSString *makeEncryptKey(Class class, NSString *ssid) {
 }
 
 - (void)removeUserDefaults {
+    _tmpUser = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    _tmpPass = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
     self.uid = @"";
@@ -275,43 +310,59 @@ static NSString *makeEncryptKey(Class class, NSString *ssid) {
 //        NSLog(@"string1 ========= %@", configContent);
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:configContent options:NSJSONReadingMutableContainers error:nil];
         if (jsonObject) {
-            self.appID = [jsonObject objectForKey:@"app_id"];
-            self.appSecret = [jsonObject objectForKey:@"app_secret"];
-//            self.productKey = ([[jsonObject objectForKey:@"product_key"] count] > 0 ? [jsonObject objectForKey:@"product_key"] : nil);
-            self.productKey = nil;
-            if ([[jsonObject objectForKey:@"product_key"] count] > 0) {
-                NSString *pk = [[jsonObject objectForKey:@"product_key"] objectAtIndex:0];
-                if (pk.length > 0 && ![pk isEqualToString:@"your_product_key"]) self.productKey = [jsonObject objectForKey:@"product_key"];
+            @try {
+                _appID = [jsonObject objectForKey:@"app_id"];
+                _appSecret = [jsonObject objectForKey:@"app_secret"];
+//                self.productKey = ([[jsonObject objectForKey:@"product_key"] count] > 0 ? [jsonObject objectForKey:@"product_key"] : nil);
+                _productKey = nil;
+                if ([[jsonObject objectForKey:@"product_key"] count] > 0) {
+                    NSString *pk = [[jsonObject objectForKey:@"product_key"] objectAtIndex:0];
+                    if (pk.length > 0 && ![pk isEqualToString:@"your_product_key"]) {
+                        _productKey = [jsonObject objectForKey:@"product_key"];
+                    }
+                }
+                _moduleSelectOn = [[jsonObject objectForKey:@"wifi_type_select"] boolValue];
+                _tencentAppID = [jsonObject objectForKey:@"tencent_app_id"];
+                _wechatAppID = [jsonObject objectForKey:@"wechat_app_id"];
+                _wechatAppSecret = [jsonObject objectForKey:@"wechat_app_secret"];
+                _pushType = [[jsonObject objectForKey:@"push_type"] integerValue];
+                _jpushAppKey = [jsonObject objectForKey:@"jpush_app_key"];
+                _bpushAppKey = [jsonObject objectForKey:@"bpush_app_key"];
+                
+                NSString *openapi = [jsonObject objectForKey:@"openAPIDomain"];
+                NSString *site = [jsonObject objectForKey:@"siteDomain"];
+                NSString *push = [jsonObject objectForKey:@"pushDomain"];
+                
+                if (openapi.length > 0 && site.length > 0) {
+                    [self.cloudDomainDict setObject:openapi forKey:@"openAPIInfo"];
+                    [self.cloudDomainDict setObject:site forKey:@"siteInfo"];
+                }
+                if (push.length > 0) {
+                    [self.cloudDomainDict setObject:push forKey:@"pushInfo"];
+                }
+                
+//                unsigned long red = strtoul([@"0x6587" UTF8String],0,0);
+                _buttonColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"buttonColor"] UTF8String],0,16));
+                _buttonTextColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"buttonTextColor"] UTF8String],0,16));
+                _navigationBarColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"navigationBarColor"] UTF8String],0,16));
+                _navigationBarTextColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"navigationBarTextColor"] UTF8String],0,16));
+                _configProgressViewColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"configProgressViewColor"] UTF8String],0,16));
+                _statusBarStyle = [[jsonObject objectForKey:@"statusBarStyle"] integerValue];
+                _addDeviceTitle = [jsonObject objectForKey:@"addDeviceTitle"];
+                _qqOn = [[jsonObject objectForKey:@"qq"] boolValue];
+                _wechatOn = [[jsonObject objectForKey:@"wechat"] boolValue];
+                _anonymousLoginOn = [[jsonObject objectForKey:@"anonymousLogin"] boolValue];
+                
+//                self.buttonColor = [UIColor colorWithRed:0.973 green:0.855 blue:0.247 alpha:1];
+//                self.buttonTextColor = [UIColor blackColor];
+//                self.navigationBarColor = [UIColor blackColor];
+//                self.navigationBarTextColor = [UIColor whiteColor];
+//                self.configProgressViewColor = [UIColor colorWithRed:243/255.0 green:212/255.0 blue:29/255.0 alpha:1];
+//                self.statusBarStyle = UIStatusBarStyleLightContent;
+//                self.addDeviceTitle = @"添加设备";
+            } @catch (NSException *exception) {
+                GIZ_LOG_DEBUG("Parse UIConfig.json cause an exception: %s", exception.description.UTF8String);
             }
-            self.moduleSelectOn = [[jsonObject objectForKey:@"wifi_type_select"] boolValue];
-            self.tencentAppID = [jsonObject objectForKey:@"tencent_app_id"];
-            self.wechatAppID = [jsonObject objectForKey:@"wechat_app_id"];
-            self.wechatAppSecret = [jsonObject objectForKey:@"wechat_app_secret"];
-            self.pushType = [[jsonObject objectForKey:@"push_type"] integerValue];
-            self.jpushAppKey = [jsonObject objectForKey:@"jpush_app_key"];
-            self.bpushAppKey = [jsonObject objectForKey:@"bpush_app_key"];
-            
-            [self parseCloudDomain:[jsonObject objectForKey:@"openAPI_URL"] domainKey:@"openAPIDomain" portKey:@"openAPIPort"];
-            [self parseCloudDomain:[jsonObject objectForKey:@"site_URL"] domainKey:@"siteDomain" portKey:@"sitePort"];
-            [self parseCloudDomain:[jsonObject objectForKey:@"push_URL"] domainKey:@"pushDomain" portKey:@"pushPort"];
-            
-//            unsigned long red = strtoul([@"0x6587" UTF8String],0,0);
-            self.buttonColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"buttonColor"] UTF8String],0,16));
-            self.buttonTextColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"buttonTextColor"] UTF8String],0,16));
-            self.navigationBarColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"navigationBarColor"] UTF8String],0,16));
-            self.navigationBarTextColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"navigationBarTextColor"] UTF8String],0,16));
-            self.configProgressViewColor = UIColorFromHex(strtoul([[jsonObject objectForKey:@"configProgressViewColor"] UTF8String],0,16));
-            self.statusBarStyle = [[jsonObject objectForKey:@"statusBarStyle"] integerValue];
-            self.addDeviceTitle = [jsonObject objectForKey:@"addDeviceTitle"];
-            
-//            self.buttonColor = [UIColor colorWithRed:0.973 green:0.855 blue:0.247 alpha:1];
-//            self.buttonTextColor = [UIColor blackColor];
-//            self.navigationBarColor = [UIColor blackColor];
-//            self.navigationBarTextColor = [UIColor whiteColor];
-//            self.configProgressViewColor = [UIColor colorWithRed:243/255.0 green:212/255.0 blue:29/255.0 alpha:1];
-//            self.statusBarStyle = UIStatusBarStyleLightContent;
-//            self.addDeviceTitle = @"添加设备";
-            
         }
         else {
             [[GosCommon sharedInstance] showAlert:@"配置文件解析失败" disappear:YES];
@@ -355,13 +406,13 @@ static NSString *makeEncryptKey(Class class, NSString *ssid) {
 }
 
 - (void)loadDefaultConfig {
-    self.buttonColor = [UIColor colorWithRed:0.973 green:0.855 blue:0.247 alpha:1];
-    self.buttonTextColor = [UIColor blackColor];
-    self.navigationBarColor = [UIColor whiteColor];
-    self.navigationBarTextColor = [UIColor blackColor];
-    self.configProgressViewColor = [UIColor colorWithRed:243/255.0 green:212/255.0 blue:29/255.0 alpha:1];
-    self.statusBarStyle = UIStatusBarStyleDefault;
-    self.addDeviceTitle = @"添加设备";
+    _buttonColor = [UIColor colorWithRed:0.973 green:0.855 blue:0.247 alpha:1];
+    _buttonTextColor = [UIColor blackColor];
+    _navigationBarColor = [UIColor whiteColor];
+    _navigationBarTextColor = [UIColor blackColor];
+    _configProgressViewColor = [UIColor colorWithRed:243/255.0 green:212/255.0 blue:29/255.0 alpha:1];
+    _statusBarStyle = UIStatusBarStyleDefault;
+    _addDeviceTitle = @"添加设备";
 }
 
 - (NSString *)checkErrorCode:(GizWifiErrorCode)errorCode {
@@ -828,6 +879,51 @@ static NSString *makeEncryptKey(Class class, NSString *ssid) {
     [MBProgressHUD hideHUDForView:view animated:YES];
 }
 */
+
+#define DEFAULT_API_DOMAIN      @"api.gizwits.com"
+
+- (BOOL)setApplicationInfo:(NSDictionary *)info {
+    @try {
+        if (nil == info) {
+            [GizWifiSDK startWithAppID:APP_ID specialProductKeys:nil cloudServiceInfo:@{@"openAPIInfo": DEFAULT_API_DOMAIN,
+                                                                                        @"siteInfo": DEFAULT_SITE_DOMAIN}];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"appInfo"];
+        } else {
+            NSString *appid = info[@"APPID"];
+            if (32 != appid.length) {
+                return NO;
+            }
+            
+            NSMutableDictionary *mInfo = [info mutableCopy];
+            [mInfo removeObjectForKey:@"APPID"];
+            [mInfo removeObjectForKey:@"APPSECRET"];
+            
+            [GizWifiSDK startWithAppID:appid specialProductKeys:nil cloudServiceInfo:mInfo];
+            [[NSUserDefaults standardUserDefaults] setValue:info forKey:@"appInfo"];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } @catch (NSException *exception) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSDictionary *)getApplicationInfo {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"appInfo"];
+}
+
+- (NSString *)getAppSecret {
+    NSDictionary *ret = [[NSUserDefaults standardUserDefaults] valueForKey:@"appInfo"];
+    if (!ret) {
+        return APP_SECRET;
+    }
+    NSString *appSecret = ret[@"APPSECRET"];
+    if (appSecret.length != 32) {
+        return APP_SECRET;
+    }
+    return appSecret;
+}
+
 @end
 
 id GetControllerWithClass(Class class, UITableView *tableView, NSString *reuseIndentifer) {

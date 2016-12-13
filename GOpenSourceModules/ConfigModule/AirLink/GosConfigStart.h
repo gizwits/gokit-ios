@@ -10,17 +10,17 @@
 
 @class GizWifiDevice;
 
-@protocol GizConfigStartDelegate <NSObject>
+@protocol GosConfigStartDelegate <NSObject>
 @required
 
-- (void)gizConfigDidFinished;
-- (void)gizConfigDidSuccedd:(GizWifiDevice *)device;
+- (void)gosConfigDidFinished;
+- (void)gosConfigDidSucceed:(GizWifiDevice *)device;
 
 @end
 
 @interface GosConfigStart : UIViewController
 
-@property (assign, nonatomic) id <GizConfigStartDelegate>delegate;
+@property (assign, nonatomic) id <GosConfigStartDelegate>delegate;
 
 @end
 

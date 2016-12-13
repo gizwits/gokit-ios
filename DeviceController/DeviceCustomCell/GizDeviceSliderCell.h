@@ -34,11 +34,10 @@
 
 @interface GizDeviceSliderCell : UITableViewCell
 
-@property (nonatomic, assign) id <GizDeviceSliderCellDelegate>delegate;
+@property (nonatomic, weak) id <GizDeviceSliderCellDelegate>delegate;
 @property (nonatomic, assign) NSInteger tag;    //标识
 
 @property (nonatomic, strong) NSString *title;  //标题
-
 @property (nonatomic, assign) CGFloat min;      //最小值
 @property (nonatomic, assign) CGFloat max;      //最大值
 @property (nonatomic, assign) CGFloat value;    //当前值

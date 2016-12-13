@@ -28,73 +28,81 @@
 @interface GizDeviceEnumSelection ()
 
 @property (assign) BOOL isSelected;
-
 @property (nonatomic, strong) GizDeviceEnumCell *cell;
 
 @end
 
 @implementation GizDeviceEnumSelection
 
-- (id)initWithEnumCell:(GizDeviceEnumCell *)cell {
+- (id)initWithEnumCell:(GizDeviceEnumCell *)cell
+{
     self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
+    if (self)
+    {
         self.cell = cell;
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = self.cell.title;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.isSelected = NO;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     if(self.isSelected && [self.cell.delegate respondsToSelector:@selector(GizDeviceEnumDidSelectedValue:index:)])
+    {
         [self.cell.delegate GizDeviceEnumDidSelectedValue:self.cell index:self.cell.index];
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.cell.values.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *enumIdentifier = @"enumCellIdentifier";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:enumIdentifier];
     if(nil == cell)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:enumIdentifier];
+    }
     
     cell.textLabel.text = self.cell.values[indexPath.row];
     if(indexPath.row == self.cell.index)
+    {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     else
+    {
         cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView selectRowAtIndexPath:nil animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     NSInteger oldValue = self.cell.index;
-    if (oldValue != indexPath.row) {
+    if (oldValue != indexPath.row)
+    {
         self.cell.index = indexPath.row;
         NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldValue inSection:0];
         [tableView reloadRowsAtIndexPaths:@[oldIndexPath, indexPath] withRowAnimation:UITableViewRowAnimationNone];

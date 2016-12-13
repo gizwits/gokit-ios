@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A0098041D24FAF300402367 /* UIConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A0098031D24FAF300402367 /* UIConfig.json */; };
-		1A0098081D2682A800402367 /* libEsptouch_v0.3.5.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0098061D2682A800402367 /* libEsptouch_v0.3.5.0.a */; };
 		1A0805091D000B4800DF3FD6 /* GosConfigModuleSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0805081D000B4800DF3FD6 /* GosConfigModuleSelection.m */; };
 		1A083C3B1D08112A0050B161 /* GosDeviceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C391D08112A0050B161 /* GosDeviceListCell.m */; };
 		1A083C3C1D08112A0050B161 /* GosDeviceListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C3A1D08112A0050B161 /* GosDeviceListCell.xib */; };
@@ -22,34 +20,11 @@
 		1A083C511D11203D0050B161 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A083C501D11203D0050B161 /* CoreTelephony.framework */; };
 		1A083C531D1120460050B161 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A083C521D1120460050B161 /* libstdc++.6.0.9.tbd */; };
 		1A083C571D1120540050B161 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A083C561D1120540050B161 /* libz.1.2.5.tbd */; };
-		1A083C5B1D1126060050B161 /* qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C581D1126060050B161 /* qq.png */; };
-		1A083C5C1D1126060050B161 /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C591D1126060050B161 /* weibo.png */; };
-		1A083C5F1D112CAD0050B161 /* wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C5E1D112CAD0050B161 /* wechat.png */; };
-		1A083C611D1142F70050B161 /* skip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C601D1142F70050B161 /* skip.png */; };
-		1A083C771D11698C0050B161 /* align@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C631D11698C0050B161 /* align@2x.png */; };
-		1A083C781D11698C0050B161 /* DeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C651D11698C0050B161 /* DeviceController.m */; };
-		1A083C791D11698C0050B161 /* DeviceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C661D11698C0050B161 /* DeviceController.xib */; };
-		1A083C7A1D11698C0050B161 /* GizDeviceBoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C691D11698C0050B161 /* GizDeviceBoolCell.m */; };
-		1A083C7B1D11698C0050B161 /* GizDeviceBoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C6A1D11698C0050B161 /* GizDeviceBoolCell.xib */; };
-		1A083C7C1D11698C0050B161 /* GizDeviceEnumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C6C1D11698C0050B161 /* GizDeviceEnumCell.m */; };
-		1A083C7D1D11698C0050B161 /* GizDeviceEnumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C6D1D11698C0050B161 /* GizDeviceEnumCell.xib */; };
-		1A083C7E1D11698C0050B161 /* GizDeviceEnumSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C6F1D11698C0050B161 /* GizDeviceEnumSelection.m */; };
-		1A083C7F1D11698C0050B161 /* GizDeviceEnumSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C701D11698C0050B161 /* GizDeviceEnumSelection.xib */; };
-		1A083C801D11698C0050B161 /* GizDeviceLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C721D11698C0050B161 /* GizDeviceLabelCell.m */; };
-		1A083C811D11698C0050B161 /* GizDeviceLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C731D11698C0050B161 /* GizDeviceLabelCell.xib */; };
-		1A083C821D11698C0050B161 /* GizDeviceSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C751D11698C0050B161 /* GizDeviceSliderCell.m */; };
-		1A083C831D11698C0050B161 /* GizDeviceSliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C761D11698C0050B161 /* GizDeviceSliderCell.xib */; };
-		1A083C8C1D13FE1C0050B161 /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A083C8B1D13FE1C0050B161 /* more@2x.png */; };
-		1A083C9D1D1A53BE0050B161 /* GosPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C9C1D1A53BE0050B161 /* GosPushManager.m */; };
-		1A189A431D1A55380032FBF6 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A189A3F1D1A55380032FBF6 /* libBPush.a */; };
-		1A189A441D1A55390032FBF6 /* jpush-ios-2.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A189A411D1A55380032FBF6 /* jpush-ios-2.1.7.a */; };
-		1A35CD3E1CE99B3C0073627C /* libBLEasyConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A35CD1A1CE99B3C0073627C /* libBLEasyConfig.a */; };
-		1A35CD3F1CE99B3C0073627C /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A35CD1B1CE99B3C0073627C /* libEasyLink.a */; };
-		1A35CD401CE99B3C0073627C /* libemTMF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A35CD1C1CE99B3C0073627C /* libemTMF.a */; };
+		1A083C901D17CB420050B161 /* GosPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A083C8F1D17CB420050B161 /* GosPushManager.m */; };
+		1A083C981D17D0780050B161 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A083C941D17D0780050B161 /* libBPush.a */; };
+		1A083C991D17D0780050B161 /* jpush-ios-2.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A083C961D17D0780050B161 /* jpush-ios-2.1.7.a */; };
 		1A35CD441CE99B3C0073627C /* GizLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD221CE99B3C0073627C /* GizLog.m */; };
 		1A35CD451CE99B3C0073627C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD251CE99B3C0073627C /* MBProgressHUD.m */; };
-		1A35CD461CE99B3C0073627C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A35CD271CE99B3C0073627C /* libcrypto.a */; };
-		1A35CD471CE99B3C0073627C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A35CD281CE99B3C0073627C /* libssl.a */; };
 		1A35CD481CE99B3C0073627C /* QRCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD2B1CE99B3C0073627C /* QRCodeController.m */; };
 		1A35CD491CE99B3C0073627C /* QRCodeFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A35CD2C1CE99B3C0073627C /* QRCodeFrame@2x.png */; };
 		1A35CD4A1CE99B3C0073627C /* QRCodeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A35CD2D1CE99B3C0073627C /* QRCodeLine@2x.png */; };
@@ -60,16 +35,11 @@
 		1A35CD4F1CE99B3C0073627C /* UAProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD371CE99B3C0073627C /* UAProgressView.m */; };
 		1A35CD501CE99B3C0073627C /* UIImageView+PlayGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD3A1CE99B3C0073627C /* UIImageView+PlayGIF.m */; };
 		1A35CD511CE99B3C0073627C /* YFGIFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A35CD3C1CE99B3C0073627C /* YFGIFImageView.m */; };
-		1A55E2A91D2B7A6600E6F8E2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A55E2A41D2B7A6600E6F8E2 /* libWeChatSDK.a */; };
-		1A55E2AA1D2B7A6700E6F8E2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A55E2A51D2B7A6600E6F8E2 /* README.txt */; };
-		1A55E2AF1D2E48F900E6F8E2 /* GosWifiPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A55E2AE1D2E48F900E6F8E2 /* GosWifiPasswordCell.m */; };
-		1A55E2B01D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A55E2B21D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib */; };
-		1A55E2B71D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A55E2B61D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png */; };
-		1A56149F1D8691A800D618CB /* lst_icon_gokit-device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A56149E1D8691A800D618CB /* lst_icon_gokit-device@2x.png */; };
+		1AAB22FA1D4741FE000F49E9 /* launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB22F81D4741FE000F49E9 /* launch@2x.png */; };
+		1AAB22FB1D4741FE000F49E9 /* launch@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB22F91D4741FE000F49E9 /* launch@3x.png */; };
+		1AAB22FD1D474438000F49E9 /* nav_btn_update@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB22FC1D474438000F49E9 /* nav_btn_update@2x.png */; };
 		1AAC332F1CF6F80300A5D1A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33251CF6F80300A5D1A9 /* AppDelegate.m */; };
 		1AAC33301CF6F80300A5D1A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33261CF6F80300A5D1A9 /* Assets.xcassets */; };
-		1AAC33311CF6F80300A5D1A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33271CF6F80300A5D1A9 /* LaunchScreen.storyboard */; };
-		1AAC33321CF6F80300A5D1A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33291CF6F80300A5D1A9 /* Main.storyboard */; };
 		1AAC33341CF6F80300A5D1A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC332C1CF6F80300A5D1A9 /* main.m */; };
 		1AAC33351CF6F80300A5D1A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC332E1CF6F80300A5D1A9 /* ViewController.m */; };
 		1AAC338D1CF6FBFC00A5D1A9 /* GosPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC333A1CF6FBFC00A5D1A9 /* GosPasswordCell.m */; };
@@ -79,22 +49,6 @@
 		1AAC33931CF6FBFC00A5D1A9 /* GosTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33431CF6FBFC00A5D1A9 /* GosTextCell.m */; };
 		1AAC33951CF6FBFC00A5D1A9 /* GosVerificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33461CF6FBFC00A5D1A9 /* GosVerificationCell.m */; };
 		1AAC33971CF6FBFC00A5D1A9 /* GosCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33491CF6FBFC00A5D1A9 /* GosCommon.m */; };
-		1AAC33981CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334B1CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png */; };
-		1AAC33991CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334C1CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png */; };
-		1AAC339B1CF6FBFC00A5D1A9 /* 02-airlink.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334E1CF6FBFC00A5D1A9 /* 02-airlink.gif */; };
-		1AAC339C1CF6FBFC00A5D1A9 /* 04-softap-tips.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC334F1CF6FBFC00A5D1A9 /* 04-softap-tips.gif */; };
-		1AAC339D1CF6FBFC00A5D1A9 /* 04-softap.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33501CF6FBFC00A5D1A9 /* 04-softap.gif */; };
-		1AAC339E1CF6FBFC00A5D1A9 /* 06-softap-fail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33511CF6FBFC00A5D1A9 /* 06-softap-fail@2x.png */; };
-		1AAC339F1CF6FBFC00A5D1A9 /* 08-icon-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33521CF6FBFC00A5D1A9 /* 08-icon-add@2x.png */; };
-		1AAC33A01CF6FBFC00A5D1A9 /* 08-icon-Device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33531CF6FBFC00A5D1A9 /* 08-icon-Device@2x.png */; };
-		1AAC33A11CF6FBFC00A5D1A9 /* back_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33541CF6FBFC00A5D1A9 /* back_arrow@2x.png */; };
-		1AAC33A21CF6FBFC00A5D1A9 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33551CF6FBFC00A5D1A9 /* check.png */; };
-		1AAC33A31CF6FBFC00A5D1A9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33561CF6FBFC00A5D1A9 /* Icon@2x.png */; };
-		1AAC33A41CF6FBFC00A5D1A9 /* login_password.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33571CF6FBFC00A5D1A9 /* login_password.png */; };
-		1AAC33A51CF6FBFC00A5D1A9 /* login_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33581CF6FBFC00A5D1A9 /* login_user.png */; };
-		1AAC33A61CF6FBFC00A5D1A9 /* LoginBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC33591CF6FBFC00A5D1A9 /* LoginBanner.png */; };
-		1AAC33A71CF6FBFC00A5D1A9 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC335A1CF6FBFC00A5D1A9 /* phone.png */; };
-		1AAC33A81CF6FBFC00A5D1A9 /* sms.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC335B1CF6FBFC00A5D1A9 /* sms.png */; };
 		1AAC33AA1CF6FBFC00A5D1A9 /* GosConfigAirlinkTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33601CF6FBFC00A5D1A9 /* GosConfigAirlinkTips.m */; };
 		1AAC33AB1CF6FBFC00A5D1A9 /* GosConfigStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33621CF6FBFC00A5D1A9 /* GosConfigStart.m */; };
 		1AAC33AC1CF6FBFC00A5D1A9 /* GosConfigWaiting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC33641CF6FBFC00A5D1A9 /* GosConfigWaiting.m */; };
@@ -124,18 +78,72 @@
 		1AAC342F1CFC3BAC00A5D1A9 /* GosSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC34311CFC3BAC00A5D1A9 /* GosSettings.storyboard */; };
 		1AAC34351CFC3D6300A5D1A9 /* GosAirLink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC34371CFC3D6300A5D1A9 /* GosAirLink.storyboard */; };
 		1AAC343B1CFC3E2C00A5D1A9 /* GosSoftAP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC343D1CFC3E2C00A5D1A9 /* GosSoftAP.storyboard */; };
-		1AB45C3C1D534C8F008F7333 /* launch@2x_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C371D534C8F008F7333 /* launch@2x_640x960.png */; };
-		1AB45C3D1D534C8F008F7333 /* launch@2x_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C381D534C8F008F7333 /* launch@2x_640x1136.png */; };
-		1AB45C3E1D534C8F008F7333 /* launch@2x_750x1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C391D534C8F008F7333 /* launch@2x_750x1334.png */; };
-		1AB45C3F1D534C8F008F7333 /* launch@3x_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C3A1D534C8F008F7333 /* launch@3x_1242x2208.png */; };
-		1AB45C401D534C8F008F7333 /* nav_btn_update@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB45C3B1D534C8F008F7333 /* nav_btn_update@2x.png */; };
-		1AE53F521CEAC78200FFA01B /* GizWifiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE53F511CEAC78200FFA01B /* GizWifiSDK.framework */; };
-		1AE769531D3779C7006CDE34 /* icon_notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE769521D3779C7006CDE34 /* icon_notice@2x.png */; };
+		1ADE5FE31D3F2F6400FC2BFE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ADE5FDE1D3F2F6400FC2BFE /* libWeChatSDK.a */; };
+		1ADE5FE41D3F2F6400FC2BFE /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FDF1D3F2F6400FC2BFE /* README.txt */; };
+		1ADE5FE71D3F2F8E00FC2BFE /* GosWifiPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADE5FE61D3F2F8E00FC2BFE /* GosWifiPasswordCell.m */; };
+		1ADE5FEA1D3F2FAA00FC2BFE /* GosWifiPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FE81D3F2FAA00FC2BFE /* GosWifiPasswordCell.xib */; };
+		1ADE60121D3F31DE00FC2BFE /* 01-icon-wifi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FF81D3F31DE00FC2BFE /* 01-icon-wifi@2x.png */; };
+		1ADE60131D3F31DE00FC2BFE /* 01-iconfont-xianshimima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FF91D3F31DE00FC2BFE /* 01-iconfont-xianshimima@2x.png */; };
+		1ADE60151D3F31DE00FC2BFE /* 01-iconfont-yincangmima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FFB1D3F31DE00FC2BFE /* 01-iconfont-yincangmima@2x.png */; };
+		1ADE60171D3F31DE00FC2BFE /* 02-airlink.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FFD1D3F31DE00FC2BFE /* 02-airlink.gif */; };
+		1ADE60181D3F31DE00FC2BFE /* 04-softap-tips.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FFE1D3F31DE00FC2BFE /* 04-softap-tips.gif */; };
+		1ADE60191D3F31DE00FC2BFE /* 04-softap.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE5FFF1D3F31DE00FC2BFE /* 04-softap.gif */; };
+		1ADE601A1D3F31DE00FC2BFE /* 06-softap-fail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60001D3F31DE00FC2BFE /* 06-softap-fail@2x.png */; };
+		1ADE601B1D3F31DE00FC2BFE /* 08-icon-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60011D3F31DE00FC2BFE /* 08-icon-add@2x.png */; };
+		1ADE601C1D3F31DE00FC2BFE /* 08-icon-Device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60021D3F31DE00FC2BFE /* 08-icon-Device@2x.png */; };
+		1ADE601D1D3F31DE00FC2BFE /* back_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60031D3F31DE00FC2BFE /* back_arrow@2x.png */; };
+		1ADE601E1D3F31DE00FC2BFE /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60041D3F31DE00FC2BFE /* check.png */; };
+		1ADE601F1D3F31DE00FC2BFE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60051D3F31DE00FC2BFE /* Icon@2x.png */; };
+		1ADE60201D3F31DE00FC2BFE /* icon_notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60061D3F31DE00FC2BFE /* icon_notice@2x.png */; };
+		1ADE60211D3F31DE00FC2BFE /* login_password.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60071D3F31DE00FC2BFE /* login_password.png */; };
+		1ADE60221D3F31DE00FC2BFE /* login_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60081D3F31DE00FC2BFE /* login_user.png */; };
+		1ADE60231D3F31DE00FC2BFE /* LoginBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60091D3F31DE00FC2BFE /* LoginBanner.png */; };
+		1ADE60241D3F31DE00FC2BFE /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE600A1D3F31DE00FC2BFE /* more@2x.png */; };
+		1ADE60251D3F31DE00FC2BFE /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE600B1D3F31DE00FC2BFE /* phone.png */; };
+		1ADE60261D3F31DE00FC2BFE /* qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE600C1D3F31DE00FC2BFE /* qq.png */; };
+		1ADE60291D3F31DE00FC2BFE /* sms.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE600F1D3F31DE00FC2BFE /* sms.png */; };
+		1ADE602A1D3F31DE00FC2BFE /* wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE60101D3F31DE00FC2BFE /* wechat.png */; };
+		1ADE602D1D3F349600FC2BFE /* UIConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 1ADE602C1D3F349600FC2BFE /* UIConfig.json */; };
+		3330AFC31DE6927D0087C166 /* align@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFAE1DE6927D0087C166 /* align@2x.png */; };
+		3330AFC41DE6927D0087C166 /* DeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330AFB01DE6927D0087C166 /* DeviceController.m */; };
+		3330AFC51DE6927D0087C166 /* DeviceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFB11DE6927D0087C166 /* DeviceController.xib */; };
+		3330AFC61DE6927D0087C166 /* GizDeviceBoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330AFB41DE6927D0087C166 /* GizDeviceBoolCell.m */; };
+		3330AFC71DE6927D0087C166 /* GizDeviceBoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFB51DE6927D0087C166 /* GizDeviceBoolCell.xib */; };
+		3330AFC81DE6927D0087C166 /* GizDeviceEnumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330AFB71DE6927D0087C166 /* GizDeviceEnumCell.m */; };
+		3330AFC91DE6927D0087C166 /* GizDeviceEnumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFB81DE6927D0087C166 /* GizDeviceEnumCell.xib */; };
+		3330AFCA1DE6927D0087C166 /* GizDeviceEnumSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330AFBA1DE6927D0087C166 /* GizDeviceEnumSelection.m */; };
+		3330AFCB1DE6927D0087C166 /* GizDeviceEnumSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFBB1DE6927D0087C166 /* GizDeviceEnumSelection.xib */; };
+		3330AFCC1DE6927D0087C166 /* GizDeviceLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330AFBD1DE6927D0087C166 /* GizDeviceLabelCell.m */; };
+		3330AFCD1DE6927D0087C166 /* GizDeviceLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFBE1DE6927D0087C166 /* GizDeviceLabelCell.xib */; };
+		3330AFCE1DE6927D0087C166 /* GizDeviceSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330AFC01DE6927D0087C166 /* GizDeviceSliderCell.m */; };
+		3330AFCF1DE6927D0087C166 /* GizDeviceSliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFC11DE6927D0087C166 /* GizDeviceSliderCell.xib */; };
+		3330AFD01DE6927D0087C166 /* lst_icon_gokit-device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3330AFC21DE6927D0087C166 /* lst_icon_gokit-device@2x.png */; };
+		33A16A121DEED99400722C83 /* GizWifiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A16A0B1DEED99400722C83 /* GizWifiSDK.framework */; };
+		33A16A131DEED99400722C83 /* libBLEasyConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A16A0C1DEED99400722C83 /* libBLEasyConfig.a */; };
+		33A16A141DEED99400722C83 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A16A0D1DEED99400722C83 /* libcrypto.a */; };
+		33A16A151DEED99400722C83 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A16A0E1DEED99400722C83 /* libEasyLink.a */; };
+		33A16A161DEED99400722C83 /* libemTMF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A16A0F1DEED99400722C83 /* libemTMF.a */; };
+		33A16A171DEED99400722C83 /* libEsptouch_v0.3.5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A16A101DEED99400722C83 /* libEsptouch_v0.3.5.2.a */; };
+		33A16A181DEED99400722C83 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A16A111DEED99400722C83 /* libssl.a */; };
+		33A75FC51DEC044E0082BA1B /* GosTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A75FC41DEC044E0082BA1B /* GosTipView.m */; };
+		E22855691D94DE0D00F3B6A0 /* GosMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22855681D94DE0D00F3B6A0 /* GosMain.storyboard */; };
+		E29D03251D8649FD0011588C /* GosAnonymousLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = E29D03241D8649FD0011588C /* GosAnonymousLogin.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E21CCA0A1D9D1C650051C6D3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1A0098031D24FAF300402367 /* UIConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UIConfig.json; sourceTree = "<group>"; };
-		1A0098061D2682A800402367 /* libEsptouch_v0.3.5.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEsptouch_v0.3.5.0.a; sourceTree = "<group>"; };
 		1A0805071D000B4800DF3FD6 /* GosConfigModuleSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosConfigModuleSelection.h; sourceTree = "<group>"; };
 		1A0805081D000B4800DF3FD6 /* GosConfigModuleSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosConfigModuleSelection.m; sourceTree = "<group>"; };
 		1A083C381D08112A0050B161 /* GosDeviceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosDeviceListCell.h; sourceTree = "<group>"; };
@@ -151,45 +159,16 @@
 		1A083C501D11203D0050B161 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		1A083C521D1120460050B161 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		1A083C561D1120540050B161 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
-		1A083C581D1126060050B161 /* qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qq.png; sourceTree = "<group>"; };
-		1A083C591D1126060050B161 /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
-		1A083C5E1D112CAD0050B161 /* wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechat.png; sourceTree = "<group>"; };
-		1A083C601D1142F70050B161 /* skip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skip.png; sourceTree = "<group>"; };
-		1A083C631D11698C0050B161 /* align@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "align@2x.png"; sourceTree = "<group>"; };
-		1A083C641D11698C0050B161 /* DeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceController.h; sourceTree = "<group>"; };
-		1A083C651D11698C0050B161 /* DeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceController.m; sourceTree = "<group>"; };
-		1A083C661D11698C0050B161 /* DeviceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceController.xib; sourceTree = "<group>"; };
-		1A083C681D11698C0050B161 /* GizDeviceBoolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceBoolCell.h; sourceTree = "<group>"; };
-		1A083C691D11698C0050B161 /* GizDeviceBoolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceBoolCell.m; sourceTree = "<group>"; };
-		1A083C6A1D11698C0050B161 /* GizDeviceBoolCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceBoolCell.xib; sourceTree = "<group>"; };
-		1A083C6B1D11698C0050B161 /* GizDeviceEnumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceEnumCell.h; sourceTree = "<group>"; };
-		1A083C6C1D11698C0050B161 /* GizDeviceEnumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceEnumCell.m; sourceTree = "<group>"; };
-		1A083C6D1D11698C0050B161 /* GizDeviceEnumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceEnumCell.xib; sourceTree = "<group>"; };
-		1A083C6E1D11698C0050B161 /* GizDeviceEnumSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceEnumSelection.h; sourceTree = "<group>"; };
-		1A083C6F1D11698C0050B161 /* GizDeviceEnumSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceEnumSelection.m; sourceTree = "<group>"; };
-		1A083C701D11698C0050B161 /* GizDeviceEnumSelection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceEnumSelection.xib; sourceTree = "<group>"; };
-		1A083C711D11698C0050B161 /* GizDeviceLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceLabelCell.h; sourceTree = "<group>"; };
-		1A083C721D11698C0050B161 /* GizDeviceLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceLabelCell.m; sourceTree = "<group>"; };
-		1A083C731D11698C0050B161 /* GizDeviceLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceLabelCell.xib; sourceTree = "<group>"; };
-		1A083C741D11698C0050B161 /* GizDeviceSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceSliderCell.h; sourceTree = "<group>"; };
-		1A083C751D11698C0050B161 /* GizDeviceSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceSliderCell.m; sourceTree = "<group>"; };
-		1A083C761D11698C0050B161 /* GizDeviceSliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceSliderCell.xib; sourceTree = "<group>"; };
-		1A083C8B1D13FE1C0050B161 /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
-		1A083C9B1D1A53BE0050B161 /* GosPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosPushManager.h; sourceTree = "<group>"; };
-		1A083C9C1D1A53BE0050B161 /* GosPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosPushManager.m; sourceTree = "<group>"; };
-		1A189A3E1D1A55380032FBF6 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
-		1A189A3F1D1A55380032FBF6 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
-		1A189A411D1A55380032FBF6 /* jpush-ios-2.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.7.a"; sourceTree = "<group>"; };
-		1A189A421D1A55380032FBF6 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
-		1A35CD1A1CE99B3C0073627C /* libBLEasyConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBLEasyConfig.a; sourceTree = "<group>"; };
-		1A35CD1B1CE99B3C0073627C /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEasyLink.a; sourceTree = "<group>"; };
-		1A35CD1C1CE99B3C0073627C /* libemTMF.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libemTMF.a; sourceTree = "<group>"; };
+		1A083C8E1D17CB420050B161 /* GosPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosPushManager.h; sourceTree = "<group>"; };
+		1A083C8F1D17CB420050B161 /* GosPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosPushManager.m; sourceTree = "<group>"; };
+		1A083C931D17D0780050B161 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
+		1A083C941D17D0780050B161 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		1A083C961D17D0780050B161 /* jpush-ios-2.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.7.a"; sourceTree = "<group>"; };
+		1A083C971D17D0780050B161 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		1A35CD211CE99B3C0073627C /* GizLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizLog.h; sourceTree = "<group>"; };
 		1A35CD221CE99B3C0073627C /* GizLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizLog.m; sourceTree = "<group>"; };
 		1A35CD241CE99B3C0073627C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		1A35CD251CE99B3C0073627C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		1A35CD271CE99B3C0073627C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		1A35CD281CE99B3C0073627C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		1A35CD2A1CE99B3C0073627C /* QRCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeController.h; sourceTree = "<group>"; };
 		1A35CD2B1CE99B3C0073627C /* QRCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeController.m; sourceTree = "<group>"; };
 		1A35CD2C1CE99B3C0073627C /* QRCodeFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeFrame@2x.png"; sourceTree = "<group>"; };
@@ -205,23 +184,13 @@
 		1A35CD3A1CE99B3C0073627C /* UIImageView+PlayGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+PlayGIF.m"; sourceTree = "<group>"; };
 		1A35CD3B1CE99B3C0073627C /* YFGIFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFGIFImageView.h; sourceTree = "<group>"; };
 		1A35CD3C1CE99B3C0073627C /* YFGIFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFGIFImageView.m; sourceTree = "<group>"; };
-		1A38874B1CA11CB3001D4BAF /* GosGokit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GosGokit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A55E2A41D2B7A6600E6F8E2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		1A55E2A51D2B7A6600E6F8E2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		1A55E2A61D2B7A6600E6F8E2 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
-		1A55E2A71D2B7A6600E6F8E2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		1A55E2A81D2B7A6600E6F8E2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		1A55E2AD1D2E48F900E6F8E2 /* GosWifiPasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosWifiPasswordCell.h; sourceTree = "<group>"; };
-		1A55E2AE1D2E48F900E6F8E2 /* GosWifiPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosWifiPasswordCell.m; sourceTree = "<group>"; };
-		1A55E2B11D2E4AC900E6F8E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GosWifiPasswordCell.xib; sourceTree = "<group>"; };
-		1A55E2B51D2E4AD500E6F8E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/GosWifiPasswordCell.xib"; sourceTree = "<group>"; };
-		1A55E2B61D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-iconfont-yincangmima@2x.png"; sourceTree = "<group>"; };
-		1A56149E1D8691A800D618CB /* lst_icon_gokit-device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lst_icon_gokit-device@2x.png"; sourceTree = "<group>"; };
+		1A38874B1CA11CB3001D4BAF /* GOpenSourceAppKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GOpenSourceAppKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AAB22F81D4741FE000F49E9 /* launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x.png"; sourceTree = "<group>"; };
+		1AAB22F91D4741FE000F49E9 /* launch@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@3x.png"; sourceTree = "<group>"; };
+		1AAB22FC1D474438000F49E9 /* nav_btn_update@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_btn_update@2x.png"; sourceTree = "<group>"; };
 		1AAC33241CF6F80300A5D1A9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1AAC33251CF6F80300A5D1A9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1AAC33261CF6F80300A5D1A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1AAC33281CF6F80300A5D1A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1AAC332A1CF6F80300A5D1A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1AAC332B1CF6F80300A5D1A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAC332C1CF6F80300A5D1A9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1AAC332D1CF6F80300A5D1A9 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -239,22 +208,6 @@
 		1AAC33461CF6FBFC00A5D1A9 /* GosVerificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosVerificationCell.m; sourceTree = "<group>"; };
 		1AAC33481CF6FBFC00A5D1A9 /* GosCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosCommon.h; sourceTree = "<group>"; };
 		1AAC33491CF6FBFC00A5D1A9 /* GosCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosCommon.m; sourceTree = "<group>"; };
-		1AAC334B1CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-icon-wifi@2x.png"; sourceTree = "<group>"; };
-		1AAC334C1CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-iconfont-xianshimima@2x.png"; sourceTree = "<group>"; };
-		1AAC334E1CF6FBFC00A5D1A9 /* 02-airlink.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "02-airlink.gif"; sourceTree = "<group>"; };
-		1AAC334F1CF6FBFC00A5D1A9 /* 04-softap-tips.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "04-softap-tips.gif"; sourceTree = "<group>"; };
-		1AAC33501CF6FBFC00A5D1A9 /* 04-softap.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "04-softap.gif"; sourceTree = "<group>"; };
-		1AAC33511CF6FBFC00A5D1A9 /* 06-softap-fail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-softap-fail@2x.png"; sourceTree = "<group>"; };
-		1AAC33521CF6FBFC00A5D1A9 /* 08-icon-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-icon-add@2x.png"; sourceTree = "<group>"; };
-		1AAC33531CF6FBFC00A5D1A9 /* 08-icon-Device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-icon-Device@2x.png"; sourceTree = "<group>"; };
-		1AAC33541CF6FBFC00A5D1A9 /* back_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_arrow@2x.png"; sourceTree = "<group>"; };
-		1AAC33551CF6FBFC00A5D1A9 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
-		1AAC33561CF6FBFC00A5D1A9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		1AAC33571CF6FBFC00A5D1A9 /* login_password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_password.png; sourceTree = "<group>"; };
-		1AAC33581CF6FBFC00A5D1A9 /* login_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_user.png; sourceTree = "<group>"; };
-		1AAC33591CF6FBFC00A5D1A9 /* LoginBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBanner.png; sourceTree = "<group>"; };
-		1AAC335A1CF6FBFC00A5D1A9 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
-		1AAC335B1CF6FBFC00A5D1A9 /* sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sms.png; sourceTree = "<group>"; };
 		1AAC335F1CF6FBFC00A5D1A9 /* GosConfigAirlinkTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosConfigAirlinkTips.h; sourceTree = "<group>"; };
 		1AAC33601CF6FBFC00A5D1A9 /* GosConfigAirlinkTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosConfigAirlinkTips.m; sourceTree = "<group>"; };
 		1AAC33611CF6FBFC00A5D1A9 /* GosConfigStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosConfigStart.h; sourceTree = "<group>"; };
@@ -312,13 +265,70 @@
 		1AAC343A1CFC3D6800A5D1A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/GosAirLink.storyboard"; sourceTree = "<group>"; };
 		1AAC343C1CFC3E2C00A5D1A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/GosSoftAP.storyboard; sourceTree = "<group>"; };
 		1AAC34401CFC3E3100A5D1A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/GosSoftAP.storyboard"; sourceTree = "<group>"; };
-		1AB45C371D534C8F008F7333 /* launch@2x_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x_640x960.png"; sourceTree = "<group>"; };
-		1AB45C381D534C8F008F7333 /* launch@2x_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x_640x1136.png"; sourceTree = "<group>"; };
-		1AB45C391D534C8F008F7333 /* launch@2x_750x1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x_750x1334.png"; sourceTree = "<group>"; };
-		1AB45C3A1D534C8F008F7333 /* launch@3x_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@3x_1242x2208.png"; sourceTree = "<group>"; };
-		1AB45C3B1D534C8F008F7333 /* nav_btn_update@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_btn_update@2x.png"; sourceTree = "<group>"; };
-		1AE53F511CEAC78200FFA01B /* GizWifiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GizWifiSDK.framework; sourceTree = "<group>"; };
-		1AE769521D3779C7006CDE34 /* icon_notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_notice@2x.png"; sourceTree = "<group>"; };
+		1ADE5FDE1D3F2F6400FC2BFE /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		1ADE5FDF1D3F2F6400FC2BFE /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		1ADE5FE01D3F2F6400FC2BFE /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		1ADE5FE11D3F2F6400FC2BFE /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		1ADE5FE21D3F2F6400FC2BFE /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		1ADE5FE51D3F2F8E00FC2BFE /* GosWifiPasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosWifiPasswordCell.h; sourceTree = "<group>"; };
+		1ADE5FE61D3F2F8E00FC2BFE /* GosWifiPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosWifiPasswordCell.m; sourceTree = "<group>"; };
+		1ADE5FE91D3F2FAA00FC2BFE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GosWifiPasswordCell.xib; sourceTree = "<group>"; };
+		1ADE5FEB1D3F2FB300FC2BFE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/GosWifiPasswordCell.xib"; sourceTree = "<group>"; };
+		1ADE5FF81D3F31DE00FC2BFE /* 01-icon-wifi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-icon-wifi@2x.png"; sourceTree = "<group>"; };
+		1ADE5FF91D3F31DE00FC2BFE /* 01-iconfont-xianshimima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-iconfont-xianshimima@2x.png"; sourceTree = "<group>"; };
+		1ADE5FFB1D3F31DE00FC2BFE /* 01-iconfont-yincangmima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-iconfont-yincangmima@2x.png"; sourceTree = "<group>"; };
+		1ADE5FFD1D3F31DE00FC2BFE /* 02-airlink.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "02-airlink.gif"; sourceTree = "<group>"; };
+		1ADE5FFE1D3F31DE00FC2BFE /* 04-softap-tips.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "04-softap-tips.gif"; sourceTree = "<group>"; };
+		1ADE5FFF1D3F31DE00FC2BFE /* 04-softap.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "04-softap.gif"; sourceTree = "<group>"; };
+		1ADE60001D3F31DE00FC2BFE /* 06-softap-fail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-softap-fail@2x.png"; sourceTree = "<group>"; };
+		1ADE60011D3F31DE00FC2BFE /* 08-icon-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-icon-add@2x.png"; sourceTree = "<group>"; };
+		1ADE60021D3F31DE00FC2BFE /* 08-icon-Device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-icon-Device@2x.png"; sourceTree = "<group>"; };
+		1ADE60031D3F31DE00FC2BFE /* back_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_arrow@2x.png"; sourceTree = "<group>"; };
+		1ADE60041D3F31DE00FC2BFE /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		1ADE60051D3F31DE00FC2BFE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		1ADE60061D3F31DE00FC2BFE /* icon_notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_notice@2x.png"; sourceTree = "<group>"; };
+		1ADE60071D3F31DE00FC2BFE /* login_password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_password.png; sourceTree = "<group>"; };
+		1ADE60081D3F31DE00FC2BFE /* login_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_user.png; sourceTree = "<group>"; };
+		1ADE60091D3F31DE00FC2BFE /* LoginBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBanner.png; sourceTree = "<group>"; };
+		1ADE600A1D3F31DE00FC2BFE /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		1ADE600B1D3F31DE00FC2BFE /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		1ADE600C1D3F31DE00FC2BFE /* qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qq.png; sourceTree = "<group>"; };
+		1ADE600F1D3F31DE00FC2BFE /* sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sms.png; sourceTree = "<group>"; };
+		1ADE60101D3F31DE00FC2BFE /* wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechat.png; sourceTree = "<group>"; };
+		1ADE602C1D3F349600FC2BFE /* UIConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UIConfig.json; sourceTree = "<group>"; };
+		3330AFAE1DE6927D0087C166 /* align@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "align@2x.png"; sourceTree = "<group>"; };
+		3330AFAF1DE6927D0087C166 /* DeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceController.h; sourceTree = "<group>"; };
+		3330AFB01DE6927D0087C166 /* DeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceController.m; sourceTree = "<group>"; };
+		3330AFB11DE6927D0087C166 /* DeviceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceController.xib; sourceTree = "<group>"; };
+		3330AFB31DE6927D0087C166 /* GizDeviceBoolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceBoolCell.h; sourceTree = "<group>"; };
+		3330AFB41DE6927D0087C166 /* GizDeviceBoolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceBoolCell.m; sourceTree = "<group>"; };
+		3330AFB51DE6927D0087C166 /* GizDeviceBoolCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceBoolCell.xib; sourceTree = "<group>"; };
+		3330AFB61DE6927D0087C166 /* GizDeviceEnumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceEnumCell.h; sourceTree = "<group>"; };
+		3330AFB71DE6927D0087C166 /* GizDeviceEnumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceEnumCell.m; sourceTree = "<group>"; };
+		3330AFB81DE6927D0087C166 /* GizDeviceEnumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceEnumCell.xib; sourceTree = "<group>"; };
+		3330AFB91DE6927D0087C166 /* GizDeviceEnumSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceEnumSelection.h; sourceTree = "<group>"; };
+		3330AFBA1DE6927D0087C166 /* GizDeviceEnumSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceEnumSelection.m; sourceTree = "<group>"; };
+		3330AFBB1DE6927D0087C166 /* GizDeviceEnumSelection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceEnumSelection.xib; sourceTree = "<group>"; };
+		3330AFBC1DE6927D0087C166 /* GizDeviceLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceLabelCell.h; sourceTree = "<group>"; };
+		3330AFBD1DE6927D0087C166 /* GizDeviceLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceLabelCell.m; sourceTree = "<group>"; };
+		3330AFBE1DE6927D0087C166 /* GizDeviceLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceLabelCell.xib; sourceTree = "<group>"; };
+		3330AFBF1DE6927D0087C166 /* GizDeviceSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizDeviceSliderCell.h; sourceTree = "<group>"; };
+		3330AFC01DE6927D0087C166 /* GizDeviceSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizDeviceSliderCell.m; sourceTree = "<group>"; };
+		3330AFC11DE6927D0087C166 /* GizDeviceSliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GizDeviceSliderCell.xib; sourceTree = "<group>"; };
+		3330AFC21DE6927D0087C166 /* lst_icon_gokit-device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lst_icon_gokit-device@2x.png"; sourceTree = "<group>"; };
+		33A16A0B1DEED99400722C83 /* GizWifiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GizWifiSDK.framework; sourceTree = "<group>"; };
+		33A16A0C1DEED99400722C83 /* libBLEasyConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBLEasyConfig.a; sourceTree = "<group>"; };
+		33A16A0D1DEED99400722C83 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		33A16A0E1DEED99400722C83 /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEasyLink.a; sourceTree = "<group>"; };
+		33A16A0F1DEED99400722C83 /* libemTMF.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libemTMF.a; sourceTree = "<group>"; };
+		33A16A101DEED99400722C83 /* libEsptouch_v0.3.5.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEsptouch_v0.3.5.2.a; sourceTree = "<group>"; };
+		33A16A111DEED99400722C83 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		33A75FC31DEC044E0082BA1B /* GosTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GosTipView.h; path = DeviceCustomCell/GosTipView.h; sourceTree = "<group>"; };
+		33A75FC41DEC044E0082BA1B /* GosTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GosTipView.m; path = DeviceCustomCell/GosTipView.m; sourceTree = "<group>"; };
+		E22855681D94DE0D00F3B6A0 /* GosMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GosMain.storyboard; sourceTree = "<group>"; };
+		E29D03231D8649FD0011588C /* GosAnonymousLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GosAnonymousLogin.h; sourceTree = "<group>"; };
+		E29D03241D8649FD0011588C /* GosAnonymousLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GosAnonymousLogin.m; sourceTree = "<group>"; };
+		E2C918861D95053400F422CB /* GOpenSourceAppKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GOpenSourceAppKit.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,25 +336,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33A16A161DEED99400722C83 /* libemTMF.a in Frameworks */,
 				1A083C571D1120540050B161 /* libz.1.2.5.tbd in Frameworks */,
+				33A16A171DEED99400722C83 /* libEsptouch_v0.3.5.2.a in Frameworks */,
 				1A083C531D1120460050B161 /* libstdc++.6.0.9.tbd in Frameworks */,
-				1A189A431D1A55380032FBF6 /* libBPush.a in Frameworks */,
+				1A083C981D17D0780050B161 /* libBPush.a in Frameworks */,
+				33A16A151DEED99400722C83 /* libEasyLink.a in Frameworks */,
 				1A083C511D11203D0050B161 /* CoreTelephony.framework in Frameworks */,
 				1A083C4F1D1120360050B161 /* libsqlite3.0.tbd in Frameworks */,
-				1A189A441D1A55390032FBF6 /* jpush-ios-2.1.7.a in Frameworks */,
+				1A083C991D17D0780050B161 /* jpush-ios-2.1.7.a in Frameworks */,
 				1A083C4D1D11202C0050B161 /* CoreGraphics.framework in Frameworks */,
 				1A083C4B1D1120240050B161 /* SystemConfiguration.framework in Frameworks */,
+				33A16A121DEED99400722C83 /* GizWifiSDK.framework in Frameworks */,
+				33A16A131DEED99400722C83 /* libBLEasyConfig.a in Frameworks */,
 				1A083C491D11201A0050B161 /* libiconv.2.4.0.tbd in Frameworks */,
+				33A16A141DEED99400722C83 /* libcrypto.a in Frameworks */,
 				1A083C471D111FEA0050B161 /* Security.framework in Frameworks */,
-				1A35CD471CE99B3C0073627C /* libssl.a in Frameworks */,
-				1A0098081D2682A800402367 /* libEsptouch_v0.3.5.0.a in Frameworks */,
-				1A55E2A91D2B7A6600E6F8E2 /* libWeChatSDK.a in Frameworks */,
-				1A35CD461CE99B3C0073627C /* libcrypto.a in Frameworks */,
-				1A35CD3F1CE99B3C0073627C /* libEasyLink.a in Frameworks */,
-				1AE53F521CEAC78200FFA01B /* GizWifiSDK.framework in Frameworks */,
-				1A35CD401CE99B3C0073627C /* libemTMF.a in Frameworks */,
+				1ADE5FE31D3F2F6400FC2BFE /* libWeChatSDK.a in Frameworks */,
+				33A16A181DEED99400722C83 /* libssl.a in Frameworks */,
 				1A083C441D111E5A0050B161 /* TencentOpenAPI.framework in Frameworks */,
-				1A35CD3E1CE99B3C0073627C /* libBLEasyConfig.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,64 +378,29 @@
 			path = TencentOpenAPI;
 			sourceTree = "<group>";
 		};
-		1A083C621D11698C0050B161 /* DeviceController */ = {
+		1A083C8D1D17CAF80050B161 /* PushModule */ = {
 			isa = PBXGroup;
 			children = (
-				1A56149E1D8691A800D618CB /* lst_icon_gokit-device@2x.png */,
-				1A083C631D11698C0050B161 /* align@2x.png */,
-				1A083C641D11698C0050B161 /* DeviceController.h */,
-				1A083C651D11698C0050B161 /* DeviceController.m */,
-				1A083C661D11698C0050B161 /* DeviceController.xib */,
-				1A083C671D11698C0050B161 /* DeviceCustomCell */,
-			);
-			path = DeviceController;
-			sourceTree = "<group>";
-		};
-		1A083C671D11698C0050B161 /* DeviceCustomCell */ = {
-			isa = PBXGroup;
-			children = (
-				1A083C681D11698C0050B161 /* GizDeviceBoolCell.h */,
-				1A083C691D11698C0050B161 /* GizDeviceBoolCell.m */,
-				1A083C6A1D11698C0050B161 /* GizDeviceBoolCell.xib */,
-				1A083C6B1D11698C0050B161 /* GizDeviceEnumCell.h */,
-				1A083C6C1D11698C0050B161 /* GizDeviceEnumCell.m */,
-				1A083C6D1D11698C0050B161 /* GizDeviceEnumCell.xib */,
-				1A083C6E1D11698C0050B161 /* GizDeviceEnumSelection.h */,
-				1A083C6F1D11698C0050B161 /* GizDeviceEnumSelection.m */,
-				1A083C701D11698C0050B161 /* GizDeviceEnumSelection.xib */,
-				1A083C711D11698C0050B161 /* GizDeviceLabelCell.h */,
-				1A083C721D11698C0050B161 /* GizDeviceLabelCell.m */,
-				1A083C731D11698C0050B161 /* GizDeviceLabelCell.xib */,
-				1A083C741D11698C0050B161 /* GizDeviceSliderCell.h */,
-				1A083C751D11698C0050B161 /* GizDeviceSliderCell.m */,
-				1A083C761D11698C0050B161 /* GizDeviceSliderCell.xib */,
-			);
-			path = DeviceCustomCell;
-			sourceTree = "<group>";
-		};
-		1A083C9A1D1A53BE0050B161 /* PushModule */ = {
-			isa = PBXGroup;
-			children = (
-				1A083C9B1D1A53BE0050B161 /* GosPushManager.h */,
-				1A083C9C1D1A53BE0050B161 /* GosPushManager.m */,
+				1A083C8E1D17CB420050B161 /* GosPushManager.h */,
+				1A083C8F1D17CB420050B161 /* GosPushManager.m */,
 			);
 			path = PushModule;
 			sourceTree = "<group>";
 		};
-		1A189A3D1D1A55380032FBF6 /* BPush */ = {
+		1A083C921D17D0780050B161 /* BPush */ = {
 			isa = PBXGroup;
 			children = (
-				1A189A3E1D1A55380032FBF6 /* BPush.h */,
-				1A189A3F1D1A55380032FBF6 /* libBPush.a */,
+				1A083C931D17D0780050B161 /* BPush.h */,
+				1A083C941D17D0780050B161 /* libBPush.a */,
 			);
 			path = BPush;
 			sourceTree = "<group>";
 		};
-		1A189A401D1A55380032FBF6 /* JPush */ = {
+		1A083C951D17D0780050B161 /* JPush */ = {
 			isa = PBXGroup;
 			children = (
-				1A189A411D1A55380032FBF6 /* jpush-ios-2.1.7.a */,
-				1A189A421D1A55380032FBF6 /* JPUSHService.h */,
+				1A083C961D17D0780050B161 /* jpush-ios-2.1.7.a */,
+				1A083C971D17D0780050B161 /* JPUSHService.h */,
 			);
 			path = JPush;
 			sourceTree = "<group>";
@@ -433,32 +408,19 @@
 		1A35CD171CE99B3C0073627C /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				1A55E2A31D2B7A6600E6F8E2 /* WechatOpenSDK */,
-				1A189A3D1D1A55380032FBF6 /* BPush */,
-				1A189A401D1A55380032FBF6 /* JPush */,
+				1A804A0E1D5ADE500014F7B1 /* GizWifiSDK */,
+				1ADE5FDD1D3F2F6400FC2BFE /* WechatOpenSDK */,
+				1A083C921D17D0780050B161 /* BPush */,
+				1A083C951D17D0780050B161 /* JPush */,
 				1A083C411D111E5A0050B161 /* TencentOpenAPI */,
-				1A35CD181CE99B3C0073627C /* GizWifiSDK */,
 				1A35CD201CE99B3C0073627C /* Log */,
 				1A35CD291CE99B3C0073627C /* QRcode */,
 				1A35CD231CE99B3C0073627C /* MBProgress */,
-				1A35CD261CE99B3C0073627C /* OpenSSL */,
 				1A35CD2F1CE99B3C0073627C /* RadioButton */,
 				1A35CD351CE99B3C0073627C /* UAProgressView */,
 				1A35CD381CE99B3C0073627C /* UIImageView-PlayGIF */,
 			);
 			path = Library;
-			sourceTree = "<group>";
-		};
-		1A35CD181CE99B3C0073627C /* GizWifiSDK */ = {
-			isa = PBXGroup;
-			children = (
-				1AE53F511CEAC78200FFA01B /* GizWifiSDK.framework */,
-				1A0098061D2682A800402367 /* libEsptouch_v0.3.5.0.a */,
-				1A35CD1A1CE99B3C0073627C /* libBLEasyConfig.a */,
-				1A35CD1B1CE99B3C0073627C /* libEasyLink.a */,
-				1A35CD1C1CE99B3C0073627C /* libemTMF.a */,
-			);
-			path = GizWifiSDK;
 			sourceTree = "<group>";
 		};
 		1A35CD201CE99B3C0073627C /* Log */ = {
@@ -477,15 +439,6 @@
 				1A35CD251CE99B3C0073627C /* MBProgressHUD.m */,
 			);
 			path = MBProgress;
-			sourceTree = "<group>";
-		};
-		1A35CD261CE99B3C0073627C /* OpenSSL */ = {
-			isa = PBXGroup;
-			children = (
-				1A35CD271CE99B3C0073627C /* libcrypto.a */,
-				1A35CD281CE99B3C0073627C /* libssl.a */,
-			);
-			path = OpenSSL;
 			sourceTree = "<group>";
 		};
 		1A35CD291CE99B3C0073627C /* QRcode */ = {
@@ -542,7 +495,8 @@
 		1A3887421CA11CB3001D4BAF = {
 			isa = PBXGroup;
 			children = (
-				1A083C621D11698C0050B161 /* DeviceController */,
+				E2C918861D95053400F422CB /* GOpenSourceAppKit.entitlements */,
+				3330AFAD1DE6927D0087C166 /* DeviceController */,
 				1A35CD171CE99B3C0073627C /* Library */,
 				1AAC33361CF6FBFC00A5D1A9 /* GOpenSourceModules */,
 				1AAC33231CF6F80300A5D1A9 /* GOpenSourceAppKit */,
@@ -553,21 +507,23 @@
 		1A38874C1CA11CB3001D4BAF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A38874B1CA11CB3001D4BAF /* GosGokit.app */,
+				1A38874B1CA11CB3001D4BAF /* GOpenSourceAppKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1A55E2A31D2B7A6600E6F8E2 /* WechatOpenSDK */ = {
+		1A804A0E1D5ADE500014F7B1 /* GizWifiSDK */ = {
 			isa = PBXGroup;
 			children = (
-				1A55E2A41D2B7A6600E6F8E2 /* libWeChatSDK.a */,
-				1A55E2A51D2B7A6600E6F8E2 /* README.txt */,
-				1A55E2A61D2B7A6600E6F8E2 /* WechatAuthSDK.h */,
-				1A55E2A71D2B7A6600E6F8E2 /* WXApi.h */,
-				1A55E2A81D2B7A6600E6F8E2 /* WXApiObject.h */,
+				33A16A0B1DEED99400722C83 /* GizWifiSDK.framework */,
+				33A16A0C1DEED99400722C83 /* libBLEasyConfig.a */,
+				33A16A0D1DEED99400722C83 /* libcrypto.a */,
+				33A16A0E1DEED99400722C83 /* libEasyLink.a */,
+				33A16A0F1DEED99400722C83 /* libemTMF.a */,
+				33A16A101DEED99400722C83 /* libEsptouch_v0.3.5.2.a */,
+				33A16A111DEED99400722C83 /* libssl.a */,
 			);
-			path = WechatOpenSDK;
+			path = GizWifiSDK;
 			sourceTree = "<group>";
 		};
 		1AAC33231CF6F80300A5D1A9 /* GOpenSourceAppKit */ = {
@@ -576,8 +532,6 @@
 				1AAC33241CF6F80300A5D1A9 /* AppDelegate.h */,
 				1AAC33251CF6F80300A5D1A9 /* AppDelegate.m */,
 				1AAC33261CF6F80300A5D1A9 /* Assets.xcassets */,
-				1AAC33271CF6F80300A5D1A9 /* LaunchScreen.storyboard */,
-				1AAC33291CF6F80300A5D1A9 /* Main.storyboard */,
 				1AAC332B1CF6F80300A5D1A9 /* Info.plist */,
 				1AAC332C1CF6F80300A5D1A9 /* main.m */,
 				1AAC332D1CF6F80300A5D1A9 /* ViewController.h */,
@@ -591,7 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				1AAC33371CF6FBFC00A5D1A9 /* CommonModule */,
-				1A083C9A1D1A53BE0050B161 /* PushModule */,
+				1A083C8D1D17CAF80050B161 /* PushModule */,
 				1AAC335C1CF6FBFC00A5D1A9 /* ConfigModule */,
 				1AAC33781CF6FBFC00A5D1A9 /* DeviceModule */,
 				1AAC337F1CF6FBFC00A5D1A9 /* SettingsModule */,
@@ -603,11 +557,12 @@
 		1AAC33371CF6FBFC00A5D1A9 /* CommonModule */ = {
 			isa = PBXGroup;
 			children = (
-				1A0098031D24FAF300402367 /* UIConfig.json */,
+				1ADE602C1D3F349600FC2BFE /* UIConfig.json */,
 				1AAC33481CF6FBFC00A5D1A9 /* GosCommon.h */,
 				1AAC33491CF6FBFC00A5D1A9 /* GosCommon.m */,
+				E22855681D94DE0D00F3B6A0 /* GosMain.storyboard */,
 				1AAC33381CF6FBFC00A5D1A9 /* CustomCell */,
-				1AAC334A1CF6FBFC00A5D1A9 /* Images */,
+				1ADE5FF71D3F31DE00FC2BFE /* Images */,
 			);
 			path = CommonModule;
 			sourceTree = "<group>";
@@ -615,9 +570,9 @@
 		1AAC33381CF6FBFC00A5D1A9 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
-				1A55E2AD1D2E48F900E6F8E2 /* GosWifiPasswordCell.h */,
-				1A55E2AE1D2E48F900E6F8E2 /* GosWifiPasswordCell.m */,
-				1A55E2B21D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib */,
+				1ADE5FE51D3F2F8E00FC2BFE /* GosWifiPasswordCell.h */,
+				1ADE5FE61D3F2F8E00FC2BFE /* GosWifiPasswordCell.m */,
+				1ADE5FE81D3F2FAA00FC2BFE /* GosWifiPasswordCell.xib */,
 				1AAC33391CF6FBFC00A5D1A9 /* GosPasswordCell.h */,
 				1AAC333A1CF6FBFC00A5D1A9 /* GosPasswordCell.m */,
 				1AAC340F1CF859D200A5D1A9 /* GosPasswordCell.xib */,
@@ -635,41 +590,6 @@
 				1AAC34251CF85AFC00A5D1A9 /* GosVerificationCell.xib */,
 			);
 			path = CustomCell;
-			sourceTree = "<group>";
-		};
-		1AAC334A1CF6FBFC00A5D1A9 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				1AB45C371D534C8F008F7333 /* launch@2x_640x960.png */,
-				1AB45C381D534C8F008F7333 /* launch@2x_640x1136.png */,
-				1AB45C391D534C8F008F7333 /* launch@2x_750x1334.png */,
-				1AB45C3A1D534C8F008F7333 /* launch@3x_1242x2208.png */,
-				1AB45C3B1D534C8F008F7333 /* nav_btn_update@2x.png */,
-				1AE769521D3779C7006CDE34 /* icon_notice@2x.png */,
-				1A083C8B1D13FE1C0050B161 /* more@2x.png */,
-				1A083C601D1142F70050B161 /* skip.png */,
-				1A083C5E1D112CAD0050B161 /* wechat.png */,
-				1A083C581D1126060050B161 /* qq.png */,
-				1A083C591D1126060050B161 /* weibo.png */,
-				1AAC334B1CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png */,
-				1AAC334C1CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png */,
-				1A55E2B61D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png */,
-				1AAC334E1CF6FBFC00A5D1A9 /* 02-airlink.gif */,
-				1AAC334F1CF6FBFC00A5D1A9 /* 04-softap-tips.gif */,
-				1AAC33501CF6FBFC00A5D1A9 /* 04-softap.gif */,
-				1AAC33511CF6FBFC00A5D1A9 /* 06-softap-fail@2x.png */,
-				1AAC33521CF6FBFC00A5D1A9 /* 08-icon-add@2x.png */,
-				1AAC33531CF6FBFC00A5D1A9 /* 08-icon-Device@2x.png */,
-				1AAC33541CF6FBFC00A5D1A9 /* back_arrow@2x.png */,
-				1AAC33551CF6FBFC00A5D1A9 /* check.png */,
-				1AAC33561CF6FBFC00A5D1A9 /* Icon@2x.png */,
-				1AAC33571CF6FBFC00A5D1A9 /* login_password.png */,
-				1AAC33581CF6FBFC00A5D1A9 /* login_user.png */,
-				1AAC33591CF6FBFC00A5D1A9 /* LoginBanner.png */,
-				1AAC335A1CF6FBFC00A5D1A9 /* phone.png */,
-				1AAC335B1CF6FBFC00A5D1A9 /* sms.png */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		1AAC335C1CF6FBFC00A5D1A9 /* ConfigModule */ = {
@@ -767,8 +687,90 @@
 				1AAC338B1CF6FBFC00A5D1A9 /* GosRegisterViewController.m */,
 				1AAC33861CF6FBFC00A5D1A9 /* GosForgetViewController.h */,
 				1AAC33871CF6FBFC00A5D1A9 /* GosForgetViewController.m */,
+				E29D03231D8649FD0011588C /* GosAnonymousLogin.h */,
+				E29D03241D8649FD0011588C /* GosAnonymousLogin.m */,
 			);
 			path = UserModule;
+			sourceTree = "<group>";
+		};
+		1ADE5FDD1D3F2F6400FC2BFE /* WechatOpenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				1ADE5FDE1D3F2F6400FC2BFE /* libWeChatSDK.a */,
+				1ADE5FDF1D3F2F6400FC2BFE /* README.txt */,
+				1ADE5FE01D3F2F6400FC2BFE /* WechatAuthSDK.h */,
+				1ADE5FE11D3F2F6400FC2BFE /* WXApi.h */,
+				1ADE5FE21D3F2F6400FC2BFE /* WXApiObject.h */,
+			);
+			path = WechatOpenSDK;
+			sourceTree = "<group>";
+		};
+		1ADE5FF71D3F31DE00FC2BFE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1AAB22FC1D474438000F49E9 /* nav_btn_update@2x.png */,
+				1AAB22F81D4741FE000F49E9 /* launch@2x.png */,
+				1AAB22F91D4741FE000F49E9 /* launch@3x.png */,
+				1ADE5FF81D3F31DE00FC2BFE /* 01-icon-wifi@2x.png */,
+				1ADE5FF91D3F31DE00FC2BFE /* 01-iconfont-xianshimima@2x.png */,
+				1ADE5FFB1D3F31DE00FC2BFE /* 01-iconfont-yincangmima@2x.png */,
+				1ADE5FFD1D3F31DE00FC2BFE /* 02-airlink.gif */,
+				1ADE5FFE1D3F31DE00FC2BFE /* 04-softap-tips.gif */,
+				1ADE5FFF1D3F31DE00FC2BFE /* 04-softap.gif */,
+				1ADE60001D3F31DE00FC2BFE /* 06-softap-fail@2x.png */,
+				1ADE60011D3F31DE00FC2BFE /* 08-icon-add@2x.png */,
+				1ADE60021D3F31DE00FC2BFE /* 08-icon-Device@2x.png */,
+				1ADE60031D3F31DE00FC2BFE /* back_arrow@2x.png */,
+				1ADE60041D3F31DE00FC2BFE /* check.png */,
+				1ADE60051D3F31DE00FC2BFE /* Icon@2x.png */,
+				1ADE60061D3F31DE00FC2BFE /* icon_notice@2x.png */,
+				1ADE60071D3F31DE00FC2BFE /* login_password.png */,
+				1ADE60081D3F31DE00FC2BFE /* login_user.png */,
+				1ADE60091D3F31DE00FC2BFE /* LoginBanner.png */,
+				1ADE600A1D3F31DE00FC2BFE /* more@2x.png */,
+				1ADE600B1D3F31DE00FC2BFE /* phone.png */,
+				1ADE600C1D3F31DE00FC2BFE /* qq.png */,
+				1ADE600F1D3F31DE00FC2BFE /* sms.png */,
+				1ADE60101D3F31DE00FC2BFE /* wechat.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		3330AFAD1DE6927D0087C166 /* DeviceController */ = {
+			isa = PBXGroup;
+			children = (
+				3330AFC21DE6927D0087C166 /* lst_icon_gokit-device@2x.png */,
+				3330AFAE1DE6927D0087C166 /* align@2x.png */,
+				3330AFAF1DE6927D0087C166 /* DeviceController.h */,
+				3330AFB01DE6927D0087C166 /* DeviceController.m */,
+				3330AFB11DE6927D0087C166 /* DeviceController.xib */,
+				33A75FC31DEC044E0082BA1B /* GosTipView.h */,
+				33A75FC41DEC044E0082BA1B /* GosTipView.m */,
+				3330AFB21DE6927D0087C166 /* DeviceCustomCell */,
+			);
+			path = DeviceController;
+			sourceTree = "<group>";
+		};
+		3330AFB21DE6927D0087C166 /* DeviceCustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				3330AFB31DE6927D0087C166 /* GizDeviceBoolCell.h */,
+				3330AFB41DE6927D0087C166 /* GizDeviceBoolCell.m */,
+				3330AFB51DE6927D0087C166 /* GizDeviceBoolCell.xib */,
+				3330AFB61DE6927D0087C166 /* GizDeviceEnumCell.h */,
+				3330AFB71DE6927D0087C166 /* GizDeviceEnumCell.m */,
+				3330AFB81DE6927D0087C166 /* GizDeviceEnumCell.xib */,
+				3330AFB91DE6927D0087C166 /* GizDeviceEnumSelection.h */,
+				3330AFBA1DE6927D0087C166 /* GizDeviceEnumSelection.m */,
+				3330AFBB1DE6927D0087C166 /* GizDeviceEnumSelection.xib */,
+				3330AFBC1DE6927D0087C166 /* GizDeviceLabelCell.h */,
+				3330AFBD1DE6927D0087C166 /* GizDeviceLabelCell.m */,
+				3330AFBE1DE6927D0087C166 /* GizDeviceLabelCell.xib */,
+				3330AFBF1DE6927D0087C166 /* GizDeviceSliderCell.h */,
+				3330AFC01DE6927D0087C166 /* GizDeviceSliderCell.m */,
+				3330AFC11DE6927D0087C166 /* GizDeviceSliderCell.xib */,
+			);
+			path = DeviceCustomCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -781,6 +783,7 @@
 				1A3887471CA11CB3001D4BAF /* Sources */,
 				1A3887481CA11CB3001D4BAF /* Frameworks */,
 				1A3887491CA11CB3001D4BAF /* Resources */,
+				E21CCA0A1D9D1C650051C6D3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -788,7 +791,7 @@
 			);
 			name = GosGokit;
 			productName = GBOSA;
-			productReference = 1A38874B1CA11CB3001D4BAF /* GosGokit.app */;
+			productReference = 1A38874B1CA11CB3001D4BAF /* GOpenSourceAppKit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -797,12 +800,18 @@
 		1A3887431CA11CB3001D4BAF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Gizwits;
 				TargetAttributes = {
 					1A38874A1CA11CB3001D4BAF = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = PQ4M5DLLZT;
+						DevelopmentTeam = 4F4JWNAD79;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -830,67 +839,62 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A55E2AA1D2B7A6700E6F8E2 /* README.txt in Resources */,
-				1AAC339B1CF6FBFC00A5D1A9 /* 02-airlink.gif in Resources */,
 				1AAC343B1CFC3E2C00A5D1A9 /* GosSoftAP.storyboard in Resources */,
-				1AAC33A51CF6FBFC00A5D1A9 /* login_user.png in Resources */,
-				1AAC33A81CF6FBFC00A5D1A9 /* sms.png in Resources */,
 				1AAC34071CF8586A00A5D1A9 /* GosUser.storyboard in Resources */,
 				1AAC33921CF6FBFC00A5D1A9 /* GosSSIDCell.xib in Resources */,
-				1AAC339E1CF6FBFC00A5D1A9 /* 06-softap-fail@2x.png in Resources */,
-				1AB45C3D1D534C8F008F7333 /* launch@2x_640x1136.png in Resources */,
+				1ADE60151D3F31DE00FC2BFE /* 01-iconfont-yincangmima@2x.png in Resources */,
 				1AAC34291CFC1C6100A5D1A9 /* GosDevice.storyboard in Resources */,
-				1AAC339F1CF6FBFC00A5D1A9 /* 08-icon-add@2x.png in Resources */,
-				1AAC339D1CF6FBFC00A5D1A9 /* 04-softap.gif in Resources */,
 				1AAC34231CF85AFC00A5D1A9 /* GosVerificationCell.xib in Resources */,
-				1A083C7B1D11698C0050B161 /* GizDeviceBoolCell.xib in Resources */,
+				1AAB22FD1D474438000F49E9 /* nav_btn_update@2x.png in Resources */,
 				1AAC33301CF6F80300A5D1A9 /* Assets.xcassets in Resources */,
-				1AAC33A61CF6FBFC00A5D1A9 /* LoginBanner.png in Resources */,
+				1ADE601B1D3F31DE00FC2BFE /* 08-icon-add@2x.png in Resources */,
 				1AAC33B81CF6FBFC00A5D1A9 /* GosDeviceController.xib in Resources */,
-				1A55E2B01D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib in Resources */,
+				1ADE60231D3F31DE00FC2BFE /* LoginBanner.png in Resources */,
 				1AAC34351CFC3D6300A5D1A9 /* GosAirLink.storyboard in Resources */,
+				1ADE602A1D3F31DE00FC2BFE /* wechat.png in Resources */,
+				3330AFC91DE6927D0087C166 /* GizDeviceEnumCell.xib in Resources */,
+				3330AFC31DE6927D0087C166 /* align@2x.png in Resources */,
 				1A35CD4B1CE99B3C0073627C /* QRCodeBackBtn@2x.png in Resources */,
-				1AAC33321CF6F80300A5D1A9 /* Main.storyboard in Resources */,
+				1AAB22FA1D4741FE000F49E9 /* launch@2x.png in Resources */,
 				1A35CD491CE99B3C0073627C /* QRCodeFrame@2x.png in Resources */,
-				1AAC33311CF6F80300A5D1A9 /* LaunchScreen.storyboard in Resources */,
-				1AAC33A41CF6FBFC00A5D1A9 /* login_password.png in Resources */,
+				3330AFC71DE6927D0087C166 /* GizDeviceBoolCell.xib in Resources */,
+				1ADE5FE41D3F2F6400FC2BFE /* README.txt in Resources */,
+				1ADE601F1D3F31DE00FC2BFE /* Icon@2x.png in Resources */,
+				1ADE60131D3F31DE00FC2BFE /* 01-iconfont-xianshimima@2x.png in Resources */,
+				1ADE60191D3F31DE00FC2BFE /* 04-softap.gif in Resources */,
+				1ADE601D1D3F31DE00FC2BFE /* back_arrow@2x.png in Resources */,
+				1ADE601C1D3F31DE00FC2BFE /* 08-icon-Device@2x.png in Resources */,
+				1ADE60241D3F31DE00FC2BFE /* more@2x.png in Resources */,
+				1ADE601E1D3F31DE00FC2BFE /* check.png in Resources */,
+				1ADE60181D3F31DE00FC2BFE /* 04-softap-tips.gif in Resources */,
+				1ADE60261D3F31DE00FC2BFE /* qq.png in Resources */,
+				1ADE602D1D3F349600FC2BFE /* UIConfig.json in Resources */,
 				1A083C451D111E5A0050B161 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
-				1A083C611D1142F70050B161 /* skip.png in Resources */,
-				1AAC339C1CF6FBFC00A5D1A9 /* 04-softap-tips.gif in Resources */,
-				1A0098041D24FAF300402367 /* UIConfig.json in Resources */,
-				1AAC33A11CF6FBFC00A5D1A9 /* back_arrow@2x.png in Resources */,
-				1A083C791D11698C0050B161 /* DeviceController.xib in Resources */,
-				1A083C811D11698C0050B161 /* GizDeviceLabelCell.xib in Resources */,
-				1A083C7D1D11698C0050B161 /* GizDeviceEnumCell.xib in Resources */,
+				3330AFCF1DE6927D0087C166 /* GizDeviceSliderCell.xib in Resources */,
+				3330AFCD1DE6927D0087C166 /* GizDeviceLabelCell.xib in Resources */,
+				1ADE5FEA1D3F2FAA00FC2BFE /* GosWifiPasswordCell.xib in Resources */,
 				1AAC341D1CF85ABD00A5D1A9 /* GosTextCell.xib in Resources */,
-				1A083C5F1D112CAD0050B161 /* wechat.png in Resources */,
-				1A083C831D11698C0050B161 /* GizDeviceSliderCell.xib in Resources */,
+				1ADE60171D3F31DE00FC2BFE /* 02-airlink.gif in Resources */,
 				1AAC34021CF8541600A5D1A9 /* Localizable.strings in Resources */,
-				1A083C771D11698C0050B161 /* align@2x.png in Resources */,
-				1A083C7F1D11698C0050B161 /* GizDeviceEnumSelection.xib in Resources */,
-				1AB45C3C1D534C8F008F7333 /* launch@2x_640x960.png in Resources */,
-				1A55E2B71D2E51DD00E6F8E2 /* 01-iconfont-yincangmima@2x.png in Resources */,
-				1AAC33A71CF6FBFC00A5D1A9 /* phone.png in Resources */,
+				3330AFCB1DE6927D0087C166 /* GizDeviceEnumSelection.xib in Resources */,
+				1ADE60201D3F31DE00FC2BFE /* icon_notice@2x.png in Resources */,
 				1A35CD4A1CE99B3C0073627C /* QRCodeLine@2x.png in Resources */,
-				1AAC33991CF6FBFC00A5D1A9 /* 01-iconfont-xianshimima@2x.png in Resources */,
+				3330AFC51DE6927D0087C166 /* DeviceController.xib in Resources */,
 				1A35CD4C1CE99B3C0073627C /* checked@2x.png in Resources */,
-				1AE769531D3779C7006CDE34 /* icon_notice@2x.png in Resources */,
 				1A083C3C1D08112A0050B161 /* GosDeviceListCell.xib in Resources */,
-				1AAC33A21CF6FBFC00A5D1A9 /* check.png in Resources */,
-				1AAC33A31CF6FBFC00A5D1A9 /* Icon@2x.png in Resources */,
-				1AB45C401D534C8F008F7333 /* nav_btn_update@2x.png in Resources */,
-				1AB45C3E1D534C8F008F7333 /* launch@2x_750x1334.png in Resources */,
-				1A083C8C1D13FE1C0050B161 /* more@2x.png in Resources */,
-				1AAC33A01CF6FBFC00A5D1A9 /* 08-icon-Device@2x.png in Resources */,
+				1ADE60251D3F31DE00FC2BFE /* phone.png in Resources */,
+				1AAB22FB1D4741FE000F49E9 /* launch@3x.png in Resources */,
+				1ADE60211D3F31DE00FC2BFE /* login_password.png in Resources */,
 				1AAC340D1CF859D200A5D1A9 /* GosPasswordCell.xib in Resources */,
-				1A083C5C1D1126060050B161 /* weibo.png in Resources */,
-				1A083C5B1D1126060050B161 /* qq.png in Resources */,
+				1ADE601A1D3F31DE00FC2BFE /* 06-softap-fail@2x.png in Resources */,
 				1AAC34171CF85A4D00A5D1A9 /* GosPhoneCell.xib in Resources */,
+				1ADE60121D3F31DE00FC2BFE /* 01-icon-wifi@2x.png in Resources */,
+				E22855691D94DE0D00F3B6A0 /* GosMain.storyboard in Resources */,
 				1A35CD4D1CE99B3C0073627C /* unchecked@2x.png in Resources */,
-				1AB45C3F1D534C8F008F7333 /* launch@3x_1242x2208.png in Resources */,
+				1ADE60291D3F31DE00FC2BFE /* sms.png in Resources */,
+				1ADE60221D3F31DE00FC2BFE /* login_user.png in Resources */,
+				3330AFD01DE6927D0087C166 /* lst_icon_gokit-device@2x.png in Resources */,
 				1AAC342F1CFC3BAC00A5D1A9 /* GosSettings.storyboard in Resources */,
-				1A56149F1D8691A800D618CB /* lst_icon_gokit-device@2x.png in Resources */,
-				1AAC33981CF6FBFC00A5D1A9 /* 01-icon-wifi@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -902,80 +906,57 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AAC33BC1CF6FBFC00A5D1A9 /* GosSettingsViewController.m in Sources */,
-				1A083C821D11698C0050B161 /* GizDeviceSliderCell.m in Sources */,
+				3330AFC41DE6927D0087C166 /* DeviceController.m in Sources */,
 				1AAC33AB1CF6FBFC00A5D1A9 /* GosConfigStart.m in Sources */,
+				E29D03251D8649FD0011588C /* GosAnonymousLogin.m in Sources */,
 				1AAC33B01CF6FBFC00A5D1A9 /* GosConfigSoftAPHelp.m in Sources */,
 				1AAC33BD1CF6FBFC00A5D1A9 /* GosForgetViewController.m in Sources */,
-				1A083C7A1D11698C0050B161 /* GizDeviceBoolCell.m in Sources */,
 				1AAC33B41CF6FBFC00A5D1A9 /* GosReachability.m in Sources */,
 				1AAC33AF1CF6FBFC00A5D1A9 /* GosConfigSoftAPFailed.m in Sources */,
 				1AAC33B21CF6FBFC00A5D1A9 /* GosConfigSoftAPStart.m in Sources */,
-				1A083C7E1D11698C0050B161 /* GizDeviceEnumSelection.m in Sources */,
-				1A083C781D11698C0050B161 /* DeviceController.m in Sources */,
-				1A083C9D1D1A53BE0050B161 /* GosPushManager.m in Sources */,
 				1AAC33351CF6F80300A5D1A9 /* ViewController.m in Sources */,
 				1AAC332F1CF6F80300A5D1A9 /* AppDelegate.m in Sources */,
+				1ADE5FE71D3F2F8E00FC2BFE /* GosWifiPasswordCell.m in Sources */,
+				33A75FC51DEC044E0082BA1B /* GosTipView.m in Sources */,
+				3330AFCA1DE6927D0087C166 /* GizDeviceEnumSelection.m in Sources */,
+				3330AFCE1DE6927D0087C166 /* GizDeviceSliderCell.m in Sources */,
 				1A35CD441CE99B3C0073627C /* GizLog.m in Sources */,
 				1AAC33911CF6FBFC00A5D1A9 /* GosSSIDCell.m in Sources */,
 				1AAC33BF1CF6FBFC00A5D1A9 /* GosRegisterViewController.m in Sources */,
 				1AAC33AE1CF6FBFC00A5D1A9 /* GosConfigSoftAPCheckPwd.m in Sources */,
 				1A0805091D000B4800DF3FD6 /* GosConfigModuleSelection.m in Sources */,
+				3330AFC81DE6927D0087C166 /* GizDeviceEnumCell.m in Sources */,
 				1AAC33931CF6FBFC00A5D1A9 /* GosTextCell.m in Sources */,
 				1AAC33951CF6FBFC00A5D1A9 /* GosVerificationCell.m in Sources */,
 				1A35CD501CE99B3C0073627C /* UIImageView+PlayGIF.m in Sources */,
 				1AAC338F1CF6FBFC00A5D1A9 /* GosPhoneCell.m in Sources */,
 				1AAC33BB1CF6FBFC00A5D1A9 /* GosAboutViewController.m in Sources */,
 				1AAC33B31CF6FBFC00A5D1A9 /* GosConfigSoftAPWaiting.m in Sources */,
+				3330AFCC1DE6927D0087C166 /* GizDeviceLabelCell.m in Sources */,
 				1AAC33971CF6FBFC00A5D1A9 /* GosCommon.m in Sources */,
 				1A35CD511CE99B3C0073627C /* YFGIFImageView.m in Sources */,
 				1A35CD4E1CE99B3C0073627C /* RadioButton.m in Sources */,
 				1A083C3B1D08112A0050B161 /* GosDeviceListCell.m in Sources */,
 				1AAC33AA1CF6FBFC00A5D1A9 /* GosConfigAirlinkTips.m in Sources */,
 				1A35CD4F1CE99B3C0073627C /* UAProgressView.m in Sources */,
-				1A55E2AF1D2E48F900E6F8E2 /* GosWifiPasswordCell.m in Sources */,
 				1A35CD481CE99B3C0073627C /* QRCodeController.m in Sources */,
 				1AAC33B71CF6FBFC00A5D1A9 /* GosDeviceController.m in Sources */,
 				1AAC33B51CF6FBFC00A5D1A9 /* GosSoftAPDetection.m in Sources */,
 				1A35CD451CE99B3C0073627C /* MBProgressHUD.m in Sources */,
 				1AAC33B11CF6FBFC00A5D1A9 /* GosConfigSoftAPNotSame.m in Sources */,
+				1A083C901D17CB420050B161 /* GosPushManager.m in Sources */,
 				1AAC33AC1CF6FBFC00A5D1A9 /* GosConfigWaiting.m in Sources */,
+				3330AFC61DE6927D0087C166 /* GizDeviceBoolCell.m in Sources */,
 				1AAC33B91CF6FBFC00A5D1A9 /* GosDeviceListViewController.m in Sources */,
-				1A083C7C1D11698C0050B161 /* GizDeviceEnumCell.m in Sources */,
 				1AAC338D1CF6FBFC00A5D1A9 /* GosPasswordCell.m in Sources */,
 				1AAC33341CF6F80300A5D1A9 /* main.m in Sources */,
 				1AAC33BE1CF6FBFC00A5D1A9 /* GosLoginViewController.m in Sources */,
-				1A083C801D11698C0050B161 /* GizDeviceLabelCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1A55E2B21D2E4AC900E6F8E2 /* GosWifiPasswordCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1A55E2B11D2E4AC900E6F8E2 /* en */,
-				1A55E2B51D2E4AD500E6F8E2 /* zh-Hans */,
-			);
-			name = GosWifiPasswordCell.xib;
-			sourceTree = "<group>";
-		};
-		1AAC33271CF6F80300A5D1A9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1AAC33281CF6F80300A5D1A9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		1AAC33291CF6F80300A5D1A9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1AAC332A1CF6F80300A5D1A9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1AAC34041CF8541600A5D1A9 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1066,6 +1047,15 @@
 			name = GosSoftAP.storyboard;
 			sourceTree = "<group>";
 		};
+		1ADE5FE81D3F2FAA00FC2BFE /* GosWifiPasswordCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1ADE5FE91D3F2FAA00FC2BFE /* en */,
+				1ADE5FEB1D3F2FB300FC2BFE /* zh-Hans */,
+			);
+			name = GosWifiPasswordCell.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1073,6 +1063,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1082,8 +1073,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1105,7 +1098,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1117,6 +1110,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1126,8 +1120,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1143,7 +1139,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1155,9 +1151,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chao zhang (P7LZM8BSXM)";
-				DEVELOPMENT_TEAM = PQ4M5DLLZT;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1166,7 +1162,6 @@
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/TencentOpenAPI",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/GOpenSourceAppKit/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1178,10 +1173,11 @@
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/JPush",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/WechatOpenSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.zono.opensource.gokit;
-				PRODUCT_NAME = GosGokit;
-				PROVISIONING_PROFILE = "2a113112-83bc-4137-8fc9-a4e91c84fe10";
-				PROVISIONING_PROFILE_SPECIFIER = UniversalAppDevelopment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gizwits.opensource.gokit;
+				PRODUCT_NAME = GOpenSourceAppKit;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1189,9 +1185,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chao zhang (PQ4M5DLLZT)";
-				DEVELOPMENT_TEAM = PQ4M5DLLZT;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1200,7 +1196,6 @@
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/TencentOpenAPI",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/GOpenSourceAppKit/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1212,10 +1207,11 @@
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/JPush",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/WechatOpenSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.zono.opensource.gokit;
-				PRODUCT_NAME = GosGokit;
-				PROVISIONING_PROFILE = "413393ab-f7d2-47de-b13d-c94452fbcdf5";
-				PROVISIONING_PROFILE_SPECIFIER = UniversalAppDistribution;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gizwits.opensource.gokit;
+				PRODUCT_NAME = GOpenSourceAppKit;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

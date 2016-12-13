@@ -1,8 +1,8 @@
-/* 
-  Localizable.strings
+/*
+  Gos.strings
   GOpenSourceAppKit
 
-  Created by Zono on 16/5/27.
+  Created by GeHaitong on 16/6/2.
   Copyright © 2016年 Gizwits. All rights reserved.
 */
 
@@ -164,11 +164,9 @@
 "Login successful" = "登录成功";
 "the phone number is incorrect" = "手机号码不正确";
 "Cancel" = "取消";
-"NO" = "不了";
 "Get verification code" = "获取验证码";
 
 
-"please enter verification code" = "请输入验证码";
 "Phone verification code sent successfully" = "手机验证码发送成功";
 "Phone verification code sent failure" = "手机验证码发送失败";
 "Registered successfully" = "注册成功";
@@ -222,6 +220,7 @@
 "seconds" = "秒";
 "Connect successfully, click to return App" = "连接成功，点击返回App";
 "Manually click \"Settings\" icon on your desktop, then select \"Wi-Fi\"" = "请手动点击桌面的 '设置' 图标，然后选择 '无线局域网'。";
+"Configuration is busy, please try another after a moment" = "执行配置的操作过于频繁，请稍后再试";
 "Configuration success" = "配置成功";
 
 "Password is empty?" = "确定密码为空吗？";
@@ -241,20 +240,26 @@
 "QCA" = "高通";
 "TI" = "TI";
 "BL" = "古北";
-"Atmel" = "Atmel";
+"Atmel" = "AtmelEE";
 "FSK" = "宇音天下";
+"Other" = "其他";
 
 "current connect" = "当前连接：";
 
 "get device status" = "获取设备状态";
 "get device hardware info" = "获取硬件信息";
 "set device info" = "设置设备信息";
-"device hardware info" = "提示";
+"device hardware info" = "设备硬件信息";
 "Waiting for device ready" = "等待设备就绪";
 
-"set alias and remark" = "设置设备信息";
+"set alias and remark" = "设置别名及备注";
 "input alias" = "请输入别名";
 "input remark" = "请输入备注";
 "set successful" = "设置成功";
 "set failed" = "设置失败";
 "connection dropped" = "连接已断开";
+
+"Only enterprise developers can apply this feature which is not supported by the current version." = "推送功能仅限于企业开发者使用，目前版本暂不支持推送";
+"haven't WeChat Application" = "未检测到微信，请安装后重试";
+
+"No response from device,Please check the running state of device"="设备无响应，请检查设备是否正常工作";

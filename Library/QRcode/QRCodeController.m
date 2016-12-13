@@ -297,6 +297,17 @@
         [self removeFromParentViewController];
     }];
     [[UIApplication sharedApplication] setStatusBarStyle:[GosCommon sharedInstance].statusBarStyle animated:YES];
+    if (_didCancelBlock) {
+        _didCancelBlock();
+    }
+}
+
+/*!
+ *  <#Description#>
+ *  @param didCancelBlock <#didReceiveBlock description#>
+ */
+- (void)setDidCancelBlock:(QRCodeDidCancelBlock)didCancelBlock {
+    _didCancelBlock = [didCancelBlock copy];
 }
 
 /*!

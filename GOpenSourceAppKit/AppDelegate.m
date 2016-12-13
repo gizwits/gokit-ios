@@ -17,6 +17,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
 
+#import "GosDeviceController.h"
 #import "DeviceController.h"
 
 @interface AppDelegate () <GizWifiSDKDelegate, WXApiDelegate>
@@ -28,6 +29,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GosCommon sharedInstance].controlHandler = ^(GizWifiDevice *device, UIViewController *deviceListController) {
+        
+        // 避免多次点击出现多次跳转到控制界面
+        if ([deviceListController.navigationController.topViewController isKindOfClass:[DeviceController class]])
+        {
+            return;
+        }
         DeviceController *devCtrl = [[DeviceController alloc] initWithDevice:device];
         [deviceListController.navigationController pushViewController:devCtrl animated:YES];
     };
@@ -44,14 +51,29 @@
                 UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
                 UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
                 [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-            } else {
+            }
+#ifndef __IPHONE_10_0
+            else {
                 [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
                  (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
             }
+#endif
+            
+            //开发者可自行移除此提示
+            NSString *tip = NSLocalizedString(@"tip", @"提示");
+            NSString *message = NSLocalizedString(@"Only enterprise developers can apply this feature which is not supported by the current version.", @"推送功能仅限于企业开发者使用，目前版本暂不支持推送");
+            NSString *confirm = NSLocalizedString(@"OK", @"确定");
+            [[[UIAlertView alloc] initWithTitle:tip message:message delegate:nil cancelButtonTitle:confirm otherButtonTitles:nil] show];
         }
         // 初始化 GizWifiSDK
         [GizWifiSDK sharedInstance].delegate = self;
-        [GizWifiSDK startWithAppID:APP_ID];
+        if ([GosCommon sharedInstance].cloudDomainDict.count > 0) {
+            [GizWifiSDK startWithAppID:APP_ID specialProductKeys:nil cloudServiceInfo:[GosCommon sharedInstance].cloudDomainDict];
+        } else {
+            //设置服务器
+            GosCommon *common = [GosCommon sharedInstance];
+            [common setApplicationInfo:[common getApplicationInfo]];
+        }
     }
     
     [[UINavigationBar appearance] setBackgroundColor:[GosCommon sharedInstance].navigationBarColor];
@@ -64,19 +86,30 @@
 }
 
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didNotifyEvent:(GizEventType)eventType eventSource:(id)eventSource eventID:(GizWifiErrorCode)eventID eventMessage:(NSString*)eventMessage {
+    GIZ_LOG_DEBUG("eventID: %zi, eventMessage: %s", eventID, eventMessage.description);
+    
     if (eventType == GizEventSDK && eventID == GIZ_SDK_START_SUCCESS) {
+        //清理代理
+        [GizWifiSDK sharedInstance].delegate = nil;
+        
         // [GosCommon shareInstance].sdk是否启动
         [GizWifiSDK setLogLevel:GizLogPrintAll];
-        if ([GosCommon sharedInstance].cloudDomainDict.count > 0) {
-            [GizWifiSDK setCloudService:[GosCommon sharedInstance].cloudDomainDict];
-        }
-        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"GosUser" bundle:nil];
-        self.window.rootViewController = [storyboard instantiateInitialViewController];
-        [self.window makeKeyAndVisible];
-    }
-    else {
+        //导航设置代理
+        UINavigationController *newViewController = [storyboard instantiateInitialViewController];
+        newViewController.view.alpha = 0;
+        self.window.rootViewController = newViewController;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationsEnabled:YES];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+        newViewController.view.alpha = 1;
+        [UIView commitAnimations];
+    } else {
         if (eventID != GIZ_SDK_EXEC_DAEMON_FAILED) {
+            //清理代理，弹出提示
+            [GizWifiSDK sharedInstance].delegate = nil;
             [[GosCommon sharedInstance] showAlert:[[GosCommon sharedInstance] checkErrorCode:eventID] disappear:YES];
         }
     }
@@ -152,6 +185,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    _isBackground = YES;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -161,6 +195,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    _isBackground = NO;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

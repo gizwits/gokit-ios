@@ -36,13 +36,11 @@
 
 @interface GizDeviceEnumCell : UITableViewCell
 
-@property (nonatomic, assign) id <GizDeviceEnumCellDelegate>delegate;
+@property (nonatomic, weak) id <GizDeviceEnumCellDelegate>delegate;
 @property (nonatomic, assign) NSInteger tag;    //标识
 
 @property (nonatomic, strong) NSString *title;  //标题
 @property (nonatomic, strong) NSArray *values;  //值
 @property (nonatomic, assign) NSInteger index;  //选中的值
-
-@property (nonatomic, assign) BOOL preSelected;
 
 @end

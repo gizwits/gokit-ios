@@ -8,12 +8,11 @@
 
 #import "DeviceController.h"
 #import "GizLog.h"
-
 #import "GosCommon.h"
+#import "GosTipView.h"
 
-//#import "GizSDKInstance.h"
-
-typedef enum {
+typedef enum
+{
     // writable
     GizDeviceWriteLED_R_onOff,      //LED R开关
     GizDeviceWriteLED_Color,        //LED 组合颜色
@@ -48,11 +47,11 @@ typedef enum {
 #define DATA_ATTR_TEMPERATURE           @"Temperature"      //属性：温度
 #define DATA_ATTR_HUMIDITY              @"Humidity"         //属性：湿度
 
-@interface DeviceController () {
+@interface DeviceController ()
+{
     UIAlertView *_alertView;
     
     // 这些变量用于数据更新
-    BOOL bLedCtrl;
     NSInteger iLedR;
     NSInteger iledColor;
     CGFloat fLedR;
@@ -62,55 +61,57 @@ typedef enum {
     NSInteger iir;
     CGFloat fTemperature;
     CGFloat fHumidity;
-    
-    // 暂停数据更新
-//    NSTimer *remainTimer;
-    NSMutableArray *updateCtrl;
-    MBProgressHUD *hud;
 }
 
 @property (readonly, nonatomic) GizWifiDevice *device;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+// 网络检测线程
+@property (nonatomic, strong) NSOperationQueue *queue;
+//提示框
+@property (nonatomic, strong) GosTipView *tipView;
+
 @end
 
 @implementation DeviceController 
 
-- (id)initWithDevice:(GizWifiDevice *)device {
+- (id)initWithDevice:(GizWifiDevice *)device
+{
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _device = device;
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(onBack)];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(menuBtnPressed)];
+    
+    _device.delegate = self;
+    [self.tipView showLoadTipWithMessage:NSLocalizedString(@"Waiting for device ready", @"HUD loading title")];
+    [self checkDeviceStatus];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    GIZ_LOG_BIZ("device_control_page_show", "success", "device control page is shown");
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-    [self.device getDeviceStatus];
     
-    //大循环判断设备是否在线
-//    if (!self.device.isOnline && !self.device.isLAN) {
-//        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
-//        _alertView = [[UIAlertView alloc] initWithTitle:@"警告" message:@"设备不在线，你不可以控制设备，但你可以解除绑定信息。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [_alertView show];
-//        self.view.userInteractionEnabled = NO;
-//    }
+    // 日志输出
+    GIZ_LOG_BIZ("device_control_page_show", "success", "device control page is shown");
     
     //初始化信息    
     NSString *devName = _device.alias;
-    if (devName == nil || devName.length == 0) {
+    if (devName == nil || devName.length == 0)
+    {
         devName = _device.productName;
     }
     self.navigationItem.title = devName;
-
-    _device.delegate = self;
     
     iLedR = 0;
     iledColor = -1;
@@ -121,35 +122,80 @@ typedef enum {
     fTemperature = -1;
     fHumidity = -1;
     
-    //暂停更新页面的计时器
-//    if (!remainTimer) {
-//        remainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onRemainTimer) userInfo:nil repeats:YES];
-//    }
-    updateCtrl = [NSMutableArray array];
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.label.text = NSLocalizedString(@"Waiting for device ready", @"HUD loading title");
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     GIZ_LOG_BIZ("device_control_page_hide", "success", "device control page is hiden");
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-//    [remainTimer invalidate];
-//    remainTimer = nil;
+#pragma mark 检查设备状态
+- (void)checkDeviceStatus
+{
+    if (self.device.netStatus == GizDeviceControlled)
+    {
+        // 设备可控获取设备状态
+//        [self.tipView hideTipView];
+        [self.device getDeviceStatus];
+        
+        return;
+    }
+    
+    // 开启一个子线程 检测设备状态
+    NSBlockOperation *operation = [[NSBlockOperation alloc] init];
+    
+    __weak NSBlockOperation *weakOperation = operation;
+    [operation addExecutionBlock:^{
+        int timeInterval = self.device.isLAN ? 10 : 20;
+        
+        // 小循环延时 10s / 大循环延时 20s
+        [NSThread sleepForTimeInterval:timeInterval];
+        
+        if (![weakOperation isCancelled])
+        {
+            if (self.device.netStatus != GizDeviceControlled)
+            {
+                // 10s后 设备不可控，退到设备列表
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 退到设备列表
+                    if (self.navigationController.viewControllers.lastObject == self)
+                    {
+                        [self.tipView showLoadTipWithMessage:NSLocalizedString(@"No response from device,Please check the running state of device", @"HUD loading title") delay:1 completion:^{
+                            [self performSelector:@selector(onBack)];
+                        }];
+                    }
+                });
+                
+            }
+            else
+            {
+                // 可控，获取设备状态
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.device getDeviceStatus];
+                    
+                });
+            }
+            // 关闭所有线程
+            [self.queue cancelAllOperations];
+        }
+        
+    }];
+    
+    // 取消其它所有正在检测设备网络状态的线程
+    if (self.queue.operationCount > 0)
+    {
+        [self.queue cancelAllOperations];
+    }
+    [self.queue addOperation:operation];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)menuBtnPressed {
+- (void)menuBtnPressed
+{
     UIActionSheet *actionSheet = nil;
-    if (self.device.isLAN) {
+    if (self.device.isLAN)
+    {
         actionSheet = [[UIActionSheet alloc]
                        initWithTitle:nil
                        delegate:self
@@ -157,7 +203,8 @@ typedef enum {
                        destructiveButtonTitle:nil
                        otherButtonTitles:NSLocalizedString(@"get device status", nil), NSLocalizedString(@"get device hardware info", nil), NSLocalizedString(@"set device info", nil), nil];
     }
-    else {
+    else
+    {
         actionSheet = [[UIActionSheet alloc]
                        initWithTitle:nil
                        delegate:self
@@ -173,13 +220,18 @@ typedef enum {
 #pragma mark - actionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if (buttonIndex == 0)
+    {
+        [self.tipView showLoadTipWithMessage:nil];
         [self.device getDeviceStatus];
-    }else if (buttonIndex == 1 && self.device.isLAN) {
+    }
+    else if (buttonIndex == 1 && self.device.isLAN)
+    {
         [self.device getHardwareInfo];
-    }else if ((buttonIndex == 1 && !self.device.isLAN) || (buttonIndex == 2 && self.device.isLAN)){
-//        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:@"暂不支持" delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+    }
+    else if ((buttonIndex == 1 && !self.device.isLAN) || (buttonIndex == 2 && self.device.isLAN))
+    {
+
         UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"set alias and remark", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
         
         [customAlertView setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
@@ -197,31 +249,35 @@ typedef enum {
     }
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == alertView.firstOtherButtonIndex) {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.firstOtherButtonIndex)
+    {
         UITextField *aliasField = [alertView textFieldAtIndex:0];
         UITextField *remarkField = [alertView textFieldAtIndex:1];
         [aliasField resignFirstResponder];
         [remarkField resignFirstResponder];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self.tipView showLoadTipWithMessage:nil];
         [self.device setCustomInfo:remarkField.text alias:aliasField.text];
     }
 }
 
-- (void)device:(GizWifiDevice *)device didSetCustomInfo:(NSError *)result {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    if (result.code == GIZ_SDK_SUCCESS) {
+- (void)device:(GizWifiDevice *)device didSetCustomInfo:(NSError *)result
+{
+    [self.tipView hideTipView];
+    if (result.code == GIZ_SDK_SUCCESS)
+    {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"set successful", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
-//        [self toast:NSLocalizedString(@"success", nil)];
     }
-    else {
+    else
+    {
         NSString *info = [[GosCommon sharedInstance] checkErrorCode:result.code];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:info delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
-//        [self toast:info];
     }
 }
 
-- (void)device:(GizWifiDevice *)device didGetHardwareInfo:(NSError *)result hardwareInfo:(NSDictionary *)hardwareInfo {
+- (void)device:(GizWifiDevice *)device didGetHardwareInfo:(NSError *)result hardwareInfo:(NSDictionary *)hardwareInfo
+{
     NSString *hardWareInfo = [NSString stringWithFormat:@"WiFi Hardware Version: %@,\nWiFi Software Version: %@,\nMCU Hardware Version: %@,\nMCU Software Version: %@,\nFirmware Id: %@,\nFirmware Version: %@,\nProduct Key: %@,\nDevice ID: %@,\nDevice IP: %@,\nDevice MAC: %@"
                               , [hardwareInfo valueForKey:@"wifiHardVersion"]
                               , [hardwareInfo valueForKey:@"wifiSoftVersion"]
@@ -238,9 +294,12 @@ typedef enum {
 }
 
 #pragma mark - event
-- (void)onBack {
+- (void)onBack
+{
+    NSLog(@"****************************解除订阅****************************");
     [self.device setSubscribe:NO];
     _device.delegate = nil;
+    [_alertView dismissWithClickedButtonIndex:0 animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -249,22 +308,14 @@ typedef enum {
     [self.device getDeviceStatus];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark - tableView
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 9;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     switch (indexPath.row) {
         case 2:
         case 3:
@@ -277,7 +328,8 @@ typedef enum {
     return 44;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *slider_id = @"SliderCell";
     static NSString *label_id = @"LabelCell";
     static NSString *bool_id = @"BoolCell";
@@ -285,7 +337,8 @@ typedef enum {
     
     NSString *reuseIndentifer = @"";
     
-    switch (indexPath.row) {
+    switch (indexPath.row)
+    {
         case 0:
         case 6:
             reuseIndentifer = bool_id;
@@ -308,18 +361,28 @@ typedef enum {
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifer];
-    if (nil == cell) {
+    if (nil == cell)
+    {
         UINib *nib = nil;
         if([reuseIndentifer isEqualToString:slider_id])
+        {
             nib = [UINib nibWithNibName:@"GizDeviceSliderCell" bundle:nil];
+        }
         else if([reuseIndentifer isEqualToString:label_id])
+        {
             nib = [UINib nibWithNibName:@"GizDeviceLabelCell" bundle:nil];
+        }
         else if([reuseIndentifer isEqualToString:bool_id])
+        {
             nib = [UINib nibWithNibName:@"GizDeviceBoolCell" bundle:nil];
+        }
         else if([reuseIndentifer isEqualToString:enum_id])
+        {
             nib = [UINib nibWithNibName:@"GizDeviceEnumCell" bundle:nil];
+        }
         
-        if (nib) {
+        if (nib)
+        {
             [tableView registerNib:nib forCellReuseIdentifier:reuseIndentifer];
             cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifer];
         }
@@ -355,7 +418,6 @@ typedef enum {
             sliderCell.step = 1;
             sliderCell.tag = indexPath.row;
             sliderCell.delegate = self;
-//            sliderCell.userInteractionEnabled = bLedCtrl;
             sliderCell.userInteractionEnabled = YES;
             break;
         }
@@ -368,7 +430,6 @@ typedef enum {
             sliderCell.step = 1;
             sliderCell.tag = indexPath.row;
             sliderCell.delegate = self;
-//            sliderCell.userInteractionEnabled = bLedCtrl;
             sliderCell.userInteractionEnabled = YES;
             break;
         }
@@ -381,7 +442,6 @@ typedef enum {
             sliderCell.step = 1;
             sliderCell.tag = indexPath.row;
             sliderCell.delegate = self;
-//            sliderCell.userInteractionEnabled = bLedCtrl;
             sliderCell.userInteractionEnabled = YES;
             break;
         }
@@ -430,7 +490,8 @@ typedef enum {
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -509,134 +570,90 @@ typedef enum {
         case 2:
             fLedR = value;
             [self writeDataPoint:GizDeviceWriteLED_R value:@(value)];
-            [self addRemainElement:cell.tag];
             break;
         case 3:
             fLedG = value;
             [self writeDataPoint:GizDeviceWriteLED_G value:@(value)];
-            [self addRemainElement:cell.tag];
             break;
         case 4:
             fLedB = value;
             [self writeDataPoint:GizDeviceWriteLED_B value:@(value)];
-            [self addRemainElement:cell.tag];
             break;
         case 5:
             fMonitorSpeed = value;
             [self writeDataPoint:GizDeviceWriteMotorSpeed value:@(value)];
-            [self addRemainElement:cell.tag];
             break;
         default:
             return;
     }
-    [self addRemainElement:cell.tag];
 }
 
-- (void)GizDeviceSwitchDidUpdateValue:(GizDeviceBoolCell *)cell value:(BOOL)value {
-    switch (cell.tag) {
+- (void)GizDeviceSwitchDidUpdateValue:(GizDeviceBoolCell *)cell value:(BOOL)value
+{
+    switch (cell.tag)
+    {
         case 0:
             iLedR = value;
             [self writeDataPoint:GizDeviceWriteLED_R_onOff value:@(value)];
-            [self addRemainElement:cell.tag];
             break;
         default:
             break;
     }
 }
 
-- (void)GizDeviceDidSelectedEnum:(GizDeviceEnumCell *)cell {
+- (void)GizDeviceDidSelectedEnum:(GizDeviceEnumCell *)cell
+{
     GizDeviceEnumSelection *selectController = [[GizDeviceEnumSelection alloc] initWithEnumCell:cell];
     [selectController.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onBackControl)]];
     [self.navigationController pushViewController:selectController animated:YES];
 }
 
-- (void)GizDeviceEnumDidSelectedValue:(GizDeviceEnumCell *)cell index:(NSInteger)index {
+- (void)GizDeviceEnumDidSelectedValue:(GizDeviceEnumCell *)cell index:(NSInteger)index
+{
     switch (cell.tag) {
         case 1:
             iledColor = index;
             [self writeDataPoint:GizDeviceWriteLED_Color value:@(index)];
-            [self addRemainElement:cell.tag];
             break;
         default:
             break;
     }
 }
 
-- (CGFloat)prepareForUpdateFloatRows:(NSString *)str value:(CGFloat)value rows:(NSMutableArray *)rows index:(NSInteger)index {
-    if ([self isElementRemaining:index]) return value;
-    
-    if ([str isKindOfClass:[NSNumber class]] ||
-       ([str isKindOfClass:[NSString class]] && str.length > 0)) {
-        CGFloat newValue = [str floatValue];
-        if (newValue != value) {
-            value = newValue;
-            [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        }
-    }
-    return value;
-}
-
-- (NSInteger)prepareForUpdateIntegerRows:(NSString *)str value:(NSInteger)value rows:(NSMutableArray *)rows index:(NSInteger)index {
-    if ([self isElementRemaining:index]) return value;
-    
-    if ([str isKindOfClass:[NSNumber class]] || ([str isKindOfClass:[NSString class]] && str.length > 0)) {
-        NSInteger newValue = [str integerValue];
-        if (newValue != value) {
-            value = newValue;
-            [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        }
-    }
-    return value;
-}
-
-- (NSInteger)prepareForUpdateColorRows:(NSString *)str value:(NSInteger)value rows:(NSMutableArray *)rows index:(NSInteger)index {
+- (NSInteger)prepareForUpdateColorRows:(NSString *)str value:(NSInteger)value rows:(NSMutableArray *)rows index:(NSInteger)index
+{
     NSInteger newValue = [str integerValue];
-    if (newValue != value) {
+    if (newValue != value)
+    {
         value = newValue;
         [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
     }
     return value;
 }
 
-//- (NSInteger)prepareForUpdateColorRows:(NSString *)str value:(NSInteger)value rows:(NSMutableArray *)rows index:(NSInteger)index {
-//    if ([str isKindOfClass:[NSString class]] && str.length > 0) {
-//        NSInteger newValue = -1;
-//        if ([str isEqualToString:@"自定义"]) newValue = 0;
-//        else if ([str isEqualToString:@"黄色"]) newValue = 1;
-//        else if ([str isEqualToString:@"紫色"]) newValue = 2;
-//        else if ([str isEqualToString:@"粉色"]) newValue = 3;
-//        if (newValue != value) {
-//            value = newValue;
-//            [rows addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-//        }
-//    }
-//    return value;
-//}
-
 #pragma mark - GizWifiDeviceDelegate
 - (void)device:(GizWifiDevice *)device didReceiveData:(NSError *)result data:(NSDictionary *)data withSN:(NSNumber *)sn {
+    
+    [self.tipView hideTipView];
     
     const char *strMacAddr = device.macAddress.UTF8String;
     const char *strDid = device.did.UTF8String;
     const char *strIsLAN = device.isLAN?"true":"false";
     
     // 8308 GIZ_SDK_REQUEST_TIMEOUT
-    
-    if (result.code != GIZ_SDK_SUCCESS) {
+    if (result.code != GIZ_SDK_SUCCESS)
+    {
         NSString *info = [NSString stringWithFormat:@"%@ - %@", @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
         GIZ_LOG_BIZ("device_notify_error", "failed", "device notify error, result is %s, device mac is %s, did is %s, LAN is %s", info.UTF8String, strMacAddr, strDid, strIsLAN);
-//        [self toast:[NSString stringWithFormat:@"状态回调错误：%@", info]];
         return;
     }
-    
-    [hud hideAnimated:YES];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     /**
      * 数据部分
      */
     NSDictionary *_data = [data valueForKey:@"data"];
-    if (!_data || _data.count == 0) {
+    if (!_data || _data.count == 0)
+    {
         return;
     }
     
@@ -652,7 +669,6 @@ typedef enum {
     
     NSMutableArray *rows = [NSMutableArray array];
     
-//    iLedR = [self prepareForUpdateIntegerRows:ledRonOff value:iLedR rows:rows index:0];
     iLedR = [ledRonOff integerValue];
     
     iledColor = [self prepareForUpdateColorRows:ledColor value:iledColor rows:rows index:1];
@@ -660,20 +676,10 @@ typedef enum {
     fLedG = [ledG integerValue];
     fLedB = [ledB integerValue];
     
-//    fLedR = [self prepareForUpdateFloatRows:ledR value:fLedR rows:rows index:2];
-//    fLedG = [self prepareForUpdateFloatRows:ledG value:fLedG rows:rows index:3];
-//    fLedB = [self prepareForUpdateFloatRows:ledB value:fLedB rows:rows index:4];
-    
     fMonitorSpeed = [motorSpeed integerValue];
     iir = [ir integerValue];
     fTemperature = [temperature integerValue];
     fHumidity = [humidity integerValue];
-    
-//    fMonitorSpeed = [self prepareForUpdateFloatRows:motorSpeed value:fMonitorSpeed rows:rows index:5];
-//    iir = [self prepareForUpdateIntegerRows:ir value:iir rows:rows index:6];
-//    fTemperature = [self prepareForUpdateFloatRows:temperature value:fTemperature rows:rows index:7];
-//    fHumidity = [self prepareForUpdateFloatRows:humidity value:fHumidity rows:rows index:8];
-    
     
     GIZ_LOG_BIZ("device_notify_LED_OnOff", "success", "device notify LED_OnOff %i, errorCode is %i, device mac is %s, did is %s, LAN is %s", iLedR, result, strMacAddr, strDid, strIsLAN);
     GIZ_LOG_BIZ("device_notify_LED_Color", "success", "device notify LED_Color %i, errorCode is %i, device mac is %s, did is %s, LAN is %s", iledColor, result, strMacAddr, strDid, strIsLAN);
@@ -685,17 +691,7 @@ typedef enum {
     GIZ_LOG_BIZ("device_notify_Humidity", "success", "device notify Humidity %f, errorCode is %i, device mac is %s, did is %s, LAN is %s", fHumidity, result, strMacAddr, strDid, strIsLAN);
     GIZ_LOG_BIZ("device_notify_Infrared", "success", "device notify Infrared %i, errorCode is %i, device mac is %s, did is %s, LAN is %s", iir, result, strMacAddr, strDid, strIsLAN);
     
-//    if (rows.count > 0) {
-//        [self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
-//    }
     [self.tableView reloadData];
-    
-    // 如果 LED 组合颜色不是自定义，则 LED 不可控制
-    if (iledColor > 0) {
-        [self setCustomLEDMode:NO];
-    } else {
-        [self setCustomLEDMode:YES];
-    }
     
     /**
      * 报警和错误
@@ -707,26 +703,32 @@ typedef enum {
     NSArray *faults = [data valueForKey:@"faults"];
     
     if (alerts.count == 0 && faults.count == 0) return;
-    if (alerts.count > 0) {
+    if (alerts.count > 0)
+    {
         BOOL isFirst = YES;
-        for (NSString *name in alerts) {
+        for (NSString *name in alerts)
+        {
             NSNumber *value = [alerts valueForKey:name];
             
             if (![value isKindOfClass:[NSNumber class]]) continue;
             if ([value integerValue] == 0) continue;
            
-            if ([name isEqualToString:@"Alert_1"]) {
+            if ([name isEqualToString:@"Alert_1"])
+            {
                 GIZ_LOG_BIZ("device_notify_Alert_1", "success", "device notify Alert_1 1, device mac is %s, did is %s, LAN is %s", strMacAddr, strDid, strIsLAN);
-            } else if ([name isEqualToString:@"Alert_2"]) {
+            } else if ([name isEqualToString:@"Alert_2"])
+            {
                 GIZ_LOG_BIZ("device_notify_Alert_2", "success", "device notify Alert_2 1, device mac is %s, did is %s, LAN is %s", strMacAddr, strDid, strIsLAN);
             }
             
-            if (isFirst) {
+            if (isFirst)
+            {
                 str = @"设备报警：";
                 isFirst = NO;
             }
             
-            if (str.length > 0) {
+            if (str.length > 0)
+            {
                 str = [str stringByAppendingString:@"\n"];
             }
             
@@ -735,34 +737,43 @@ typedef enum {
         }
     }
     
-    if (faults.count > 0) {
+    if (faults.count > 0)
+    {
         BOOL isFirst = YES;
         
-        for (NSString *name in faults) {
+        for (NSString *name in faults)
+        {
             NSNumber *value = [faults valueForKey:name];
             
             if (![value isKindOfClass:[NSNumber class]]) continue;
             if ([value integerValue] == 0) continue;
             
-            if ([name isEqualToString:@"Fault_LED"]) {
+            if ([name isEqualToString:@"Fault_LED"])
+            {
                 GIZ_LOG_BIZ("device_notify_Fault_LED", "success", "device notify Fault_LED 1, device mac is %s, did is %s, LAN is %s", strMacAddr, strDid, strIsLAN);
-            } else if ([name isEqualToString:@"Fault_Motor"]) {
+            } else if ([name isEqualToString:@"Fault_Motor"])
+            {
                 GIZ_LOG_BIZ("device_notify_Fault_Motor", "success", "device notify Fault_Motor 1, device mac is %s, did is %s, LAN is %s", strMacAddr, strDid, strIsLAN);
-            } else if ([name isEqualToString:@"Fault_TemHum"]) {
+            } else if ([name isEqualToString:@"Fault_TemHum"])
+            {
                 GIZ_LOG_BIZ("device_notify_Fault_TemHum", "success", "device notify Fault_TemHum 1, device mac is %s, did is %s, LAN is %s", strMacAddr, strDid, strIsLAN);
-            } else if ([name isEqualToString:@"Fault_IR"]) {
+            } else if ([name isEqualToString:@"Fault_IR"])
+            {
                 GIZ_LOG_BIZ("device_notify_Fault_IR", "success", "device notify Fault_IR 1, device mac is %s, did is %s, LAN is %s", strMacAddr, strDid, strIsLAN);
             }
 
-            if (isFirst) {
-                if (str.length > 0) {
+            if (isFirst)
+            {
+                if (str.length > 0)
+                {
                     str = [str stringByAppendingString:@"\n"];
                 }
                 str = [str stringByAppendingString:@"设备错误："];
                 isFirst = NO;
             }
             
-            if (str.length > 0) {
+            if (str.length > 0)
+            {
                 str = [str stringByAppendingString:@"\n"];
             }
             
@@ -771,92 +782,47 @@ typedef enum {
         }
     }
     
-    //    NSLog(@"str = \"%@\"", str);
-    
-    if (str.length > 0) {
-//        [self performSelectorInBackground:@selector(toast:) withObject:str];
+    if (str.length > 0)
+    {
         [[GosCommon sharedInstance] showAlert:str disappear:YES];
     }
 }
 
-- (void)device:(GizWifiDevice *)device didUpdateNetStatus:(GizWifiDeviceNetStatus)netStatus {
-    if (netStatus == GizDeviceOffline || netStatus == GizDeviceUnavailable) {
+- (void)device:(GizWifiDevice *)device didUpdateNetStatus:(GizWifiDeviceNetStatus)netStatus
+{
+    NSLog(@"netStatus = %d", netStatus);
+    if (netStatus != GizDeviceControlled)
+    {
         GIZ_LOG_BIZ("device_notify_disconnected", "success", "device notify disconnected, device mac is %s, did is %s, LAN is %s", self.device.macAddress.UTF8String, self.device.did.UTF8String, self.device.isLAN?"true":"false");
-        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
-        _alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"connection dropped", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [_alertView show];
-        [self performSelector:@selector(onBack) withObject:nil afterDelay:0.5];
+        [self.tipView showLoadTipWithMessage:NSLocalizedString(@"connection dropped", nil) delay:1 completion:^{
+            [self performSelector:@selector(onBack)];
+        }];
     }
-//    else if (netStatus == GizDeviceControlled) {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [self.device getDeviceStatus];
-//    }
+    else
+    {
+        NSLog(@"SDK版本 = %@", [GizWifiSDK getVersion]);
+        [self.tipView hideTipView];
+        [self.device getDeviceStatus];
+    }
 }
 
-#pragma mark - others
-- (void)setCustomLEDMode:(BOOL)mode {
-    //设置 LED 的 RGB 值是否可用
-    bLedCtrl = mode;
-    NSArray *leds = @[[NSIndexPath indexPathForRow:2 inSection:0],
-                      [NSIndexPath indexPathForRow:3 inSection:0],
-                      [NSIndexPath indexPathForRow:4 inSection:0]];
-    [self.tableView reloadRowsAtIndexPaths:leds withRowAnimation:UITableViewRowAnimationNone];
+#pragma mark - Properity
+- (NSOperationQueue *)queue
+{
+    if (_queue == nil)
+    {
+        _queue = [[NSOperationQueue alloc] init];
+    }
+    return _queue;
 }
 
-- (void)toast:(NSString *)strToast {
-    //弹出一段字符，最多不超过3行
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:strToast delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-    [alertView show];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sleep(3);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:YES];
-        });
-    });
-}
-
-#pragma mark - 发控制指令后一段时间内禁止推送
-- (void)addRemainElement:(NSInteger)row {
-    BOOL isEqual = NO;
-    NSNumber *timeout = @3;    // 发控制指令后，等待3s后才可接收指定控件的变更
-    
-    for (NSMutableDictionary *dict in updateCtrl) {
-        NSNumber *object = [dict valueForKey:@"object"];
-        if ([object intValue] == row) {
-            [dict setValue:timeout forKey:@"remaining"];
-            isEqual = YES;
-            break;
-        }
+- (GosTipView *)tipView
+{
+    if (_tipView == nil)
+    {
+        _tipView = [GosTipView sharedInstance];
     }
-    
-    if (!isEqual) {
-        NSMutableDictionary *mdict = [NSMutableDictionary dictionaryWithDictionary:@{@"object": @(row), @"remaining": timeout}];
-        [updateCtrl addObject:mdict];
-    }
-}
-/*
-- (void)onRemainTimer {
-    //根据系统的 Timer 去更新控件可以变更的剩余时间
-    NSMutableArray *removeCtrl = [NSMutableArray array];
-    for (NSMutableDictionary *dict in updateCtrl) {
-        int remainTime = [[dict valueForKey:@"remaining"] intValue] - 1;
-        if (remainTime != 0) {
-            [dict setValue:@(remainTime) forKey:@"remaining"];
-        } else {
-            [removeCtrl addObject:dict];
-        }
-    }
-    [updateCtrl removeObjectsInArray:removeCtrl];
-}
-*/
-- (BOOL)isElementRemaining:(NSInteger)row {
-    //判断某个控件是否能更新内容
-    for (NSMutableDictionary *dict in updateCtrl) {
-        NSNumber *object = [dict valueForKey:@"object"];
-        if ([object intValue] == row) return YES;
-    }
-    return NO;
+    return _tipView;
 }
 
 @end

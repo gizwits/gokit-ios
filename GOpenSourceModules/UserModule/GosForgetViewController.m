@@ -121,8 +121,7 @@
     if([self.phoneCell.textInput.text isEqualToString:@""]) {
         [common showAlert:NSLocalizedString(@"please input cellphone", nil) disappear:YES];
         return;
-    }
-    else {
+    } else {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[GizWifiSDK sharedInstance] requestSendPhoneSMSCode:APP_SECRET phone:self.phoneCell.textInput.text];
     }

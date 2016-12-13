@@ -33,25 +33,30 @@
 
 @implementation GizDeviceLabelCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     self.titleText.text = _title;
     self.valueText.text = _value;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:NO animated:animated];
 }
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
     
 }
 
-- (void)setTitle:(NSString *)title {
+- (void)setTitle:(NSString *)title
+{
     _title = title;
     self.titleText.text = title;
 }
 
-- (void)setValue:(NSString *)value {
+- (void)setValue:(NSString *)value
+{
     _value = value;
     self.valueText.text = value;
 }

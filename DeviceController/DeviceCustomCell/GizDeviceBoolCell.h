@@ -34,9 +34,8 @@
 
 @interface GizDeviceBoolCell : UITableViewCell
 
-@property (nonatomic, assign) id <GizDeviceBoolCellDelegate>delegate;
+@property (nonatomic, weak) id <GizDeviceBoolCellDelegate>delegate;
 @property (nonatomic, assign) NSInteger tag;    //标识
-
 @property (nonatomic, strong) NSString *title;  //标题
 @property (nonatomic, assign) BOOL value;       //值
 

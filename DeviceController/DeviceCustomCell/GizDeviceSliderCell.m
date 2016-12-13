@@ -36,9 +36,8 @@
 
 @implementation GizDeviceSliderCell
 
-@synthesize tag = _tag;
-
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     self.title = self.title;
     self.min = self.min;
     self.max = self.max;
@@ -46,54 +45,64 @@
     [self sliderChanging:self.slider];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:NO animated:animated];
 }
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
     
 }
 
 #pragma mark - Properties
-- (void)setTitle:(NSString *)title {
+- (void)setTitle:(NSString *)title
+{
     _title = title;
     self.titleText.text = title;
 }
 
-- (void)setMin:(CGFloat)min {
+- (void)setMin:(CGFloat)min
+{
     _min = min;
     self.slider.minimumValue = min;
 }
 
-- (void)setMax:(CGFloat)max {
+- (void)setMax:(CGFloat)max
+{
     _max = max;
     self.slider.maximumValue = max;
 }
 
-- (void)setValue:(CGFloat)value {
+- (void)setValue:(CGFloat)value
+{
     _value = value;
     self.slider.value = value;
     [self sliderChanging:self.slider];
 }
 
-- (void)setStep:(CGFloat)step {
+- (void)setStep:(CGFloat)step
+{
     _step = step;
 }
 
 #pragma mark - Button Actions
-- (IBAction)minute:(id)sender {
+- (IBAction)minute:(id)sender
+{
     self.slider.value -= _step;
     [self sliderChanging:self.slider];
     [self sliderChanged:self.slider];
 }
 
-- (IBAction)add:(id)sender {
+- (IBAction)add:(id)sender
+{
     self.slider.value += _step;
     [self sliderChanging:self.slider];
     [self sliderChanged:self.slider];
 }
 
-- (CGFloat)calculateValidValueFromSlider {
+- (CGFloat)calculateValidValueFromSlider
+{
     if(!self.slider)
         return _value;
     
@@ -110,14 +119,18 @@
     return (a * _step) + _min;
 }
 
-- (IBAction)sliderChanged:(id)sender {
+- (IBAction)sliderChanged:(id)sender
+{
     _value = [self calculateValidValueFromSlider];
     self.slider.value = _value;
     if([_delegate respondsToSelector:@selector(GizDeviceSliderDidUpdateValue:value:)])
+    {
         [_delegate GizDeviceSliderDidUpdateValue:self value:_value];
+    }
 }
 
-- (IBAction)sliderChanging:(id)sender {
+- (IBAction)sliderChanging:(id)sender
+{
     self.valueText.text = [NSString stringWithFormat:@"%@", @([self calculateValidValueFromSlider])];
 }
 
