@@ -29,6 +29,12 @@
     [super viewDidLoad];
     self.device.delegate = self;
     self.macLabel.text = self.device.macAddress;
+    
+    if (self.device.alias.length) {
+        self.navigationItem.title = self.device.alias;
+    } else {
+        self.navigationItem.title = self.device.productName;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

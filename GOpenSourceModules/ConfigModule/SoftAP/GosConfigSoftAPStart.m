@@ -39,18 +39,26 @@
     [self.btnHelp setAttributedTitle:mstr forState:UIControlStateNormal];
 
     self.imgSoftapTips.gifPath = [[NSBundle mainBundle] pathForResource:@"04-softap-tips" ofType:@"gif"];
-    
-    self.currentSSID.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"current connect", nil), GetCurrentSSID()];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.imgSoftapTips startGIF];
+    [self onUpdateSSID];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUpdateSSID) name:UIApplicationDidBecomeActiveNotification object:nil];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.imgSoftapTips stopGIF];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
+- (void)onUpdateSSID {
+    self.currentSSID.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"current connect", nil), GetCurrentSSID()];
 }
 
 - (void)didReceiveMemoryWarning {

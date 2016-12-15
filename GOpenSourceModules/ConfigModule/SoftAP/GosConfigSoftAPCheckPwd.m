@@ -8,7 +8,7 @@
 
 #import "GosConfigSoftAPCheckPwd.h"
 #import "GosSSIDCell.h"
-#import "GosPasswordCell.h"
+#import "GosWifiPasswordCell.h"
 #import "GosCommon.h"
 #import "GosConfigSoftAPStart.h"
 
@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) GosSSIDCell *ssidCell;
-@property (strong, nonatomic) GosPasswordCell *passwordCell;
+@property (strong, nonatomic) GosWifiPasswordCell *passwordCell;
 
 @property (assign, nonatomic) CGFloat top;
 @property (assign) BOOL isFirstRun;//检查密码有区分是第一次还是其他，第一次一定显示的是上次配置的ssid和密码
@@ -113,7 +113,7 @@
             return self.ssidCell;
         case 1:
             if (nil == self.passwordCell) {
-                self.passwordCell = GetControllerWithClass([GosPasswordCell class], tableView, @"passwordCell");
+                self.passwordCell = GetControllerWithClass([GosWifiPasswordCell class], tableView, @"passwordCell");
                 self.passwordCell.textPassword.delegate = self;
                 self.passwordCell.textPassword.returnKeyType = UIReturnKeyDone;
 //                [self.passwordCell.btnClearPassword addTarget:self action:@selector(onClearPassword) forControlEvents:UIControlEventTouchUpInside];

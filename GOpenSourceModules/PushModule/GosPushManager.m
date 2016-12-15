@@ -5,6 +5,7 @@
 //  Created by Zono on 16/6/20.
 //  Copyright © 2016年 Gizwits. All rights reserved.
 //
+// @note 推送功能仅限于企业开发者使用，目前版本暂不支持推送
 
 #import "GosPushManager.h"
 #import "AppDelegate.h"
@@ -44,13 +45,16 @@
                                                                   UIUserNotificationTypeSound |
                                                                   UIUserNotificationTypeAlert)
                                                       categories:nil];
-            } else {
+            }
+#ifndef __IPHONE_10_0
+            else {
                 //categories 必须为nil
                 [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                                   UIRemoteNotificationTypeSound |
                                                                 UIRemoteNotificationTypeAlert)
                                                       categories:nil];
             }
+#endif
         }
             break;
         case 2:
@@ -64,10 +68,13 @@
                 
                 UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
                 [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-            }else {
+            }
+#ifndef __IPHONE_10_0
+            else {
                 UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert;
                 [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
             }
+#endif
             [BPush registerChannel:launchOptions apiKey:BPUSH_API_KEY pushMode:BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil useBehaviorTextInput:NO isDebug:NO];
             
             // App 是用户点击推送消息启动

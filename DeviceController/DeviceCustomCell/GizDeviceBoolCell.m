@@ -33,40 +33,36 @@
 
 @implementation GizDeviceBoolCell
 
-@synthesize tag = _tag;
-
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     self.titleText.text = _title;
     self.valueSwitch.on = _value;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//    [super setSelected:NO animated:animated];
-//    
-//    if (selected) {
-//        [self setValue:!self.valueSwitch.on];
-//        [self switchChanged:self.valueSwitch];
-//    }
-//}
-
-- (void)setTitle:(NSString *)title {
+- (void)setTitle:(NSString *)title
+{
     _title = title;
     self.titleText.text = title;
 }
 
-- (void)setValue:(BOOL)value {
+- (void)setValue:(BOOL)value
+{
     _value = value;
     [self.valueSwitch setOn:value animated:YES];
 }
 
-- (IBAction)switchChanged:(id)sender {
+- (IBAction)switchChanged:(id)sender
+{
     _value = self.valueSwitch.on;
     if([self.delegate respondsToSelector:@selector(GizDeviceSwitchDidUpdateValue:value:)])
+    {
         [_delegate GizDeviceSwitchDidUpdateValue:self value:_value];
+    }
 }
 
-- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
+- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled
+{
     [super setUserInteractionEnabled:userInteractionEnabled];
     self.valueSwitch.enabled = userInteractionEnabled;
 }

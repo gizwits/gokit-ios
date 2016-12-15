@@ -1,8 +1,8 @@
-/* 
-  Localizable.strings
+/*
+  Gos.strings
   GOpenSourceAppKit
 
-  Created by Zono on 16/5/27.
+  Created by GeHaitong on 16/6/2.
   Copyright © 2016年 Gizwits. All rights reserved.
 */
 
@@ -164,11 +164,9 @@
 "Login successful" = "Login successful";
 "the phone number is incorrect" = "the phone number is incorrect";
 "Cancel" = "Cancel";
-"NO" = "NO";
 "Get verification code" = "Get code";
 
 
-"please enter verification code" = "please enter verification code";
 "Phone verification code sent successfully" = "Phone verification code sent successfully";
 "Phone verification code sent failure" = "Phone verification code sent failure";
 "Registered successfully" = "Registered successfully";
@@ -209,7 +207,7 @@
 "Unknown QR Code" = "Unknown QR Code";
 
 "About" = "About";
-"Program Version" = "Program Version";
+"Program Version" = "App Version";
 "SDK Version" = "SDK Version";
 
 "No open Wi-Fi" = "No open Wi-Fi";
@@ -242,21 +240,24 @@
 "QCA" = "QCA";
 "TI" = "TI";
 "BL" = "BL";
-"Atmel" = "Atmel";
+"Atmel" = "AtmelEE";
 "FSK" = "FSK";
+"Other" = "Other";
 
 "current connect" = "current connect: ";
 
 "get device status" = "get device status";
 "get device hardware info" = "get device hardware info";
 "set device info" = "set device info";
-"device hardware info" = "tip";
+"device hardware info" = "device hardware info";
 "Waiting for device ready" = "Waiting for device ready";
 
-"set alias and remark" = "set device info";
+"set alias and remark" = "set alias and remark";
 "input alias" = "input alias";
 "input remark" = "input remark";
 
 "set successful" = "set successful";
 "set failed" = "set failed";
 "connection dropped" = "connection dropped";
+
+"No response from device,Please check the running state of device"="No response from device,Please check the running state of device";

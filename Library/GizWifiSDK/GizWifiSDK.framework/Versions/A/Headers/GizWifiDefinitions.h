@@ -381,6 +381,43 @@ typedef NS_ENUM(NSInteger, GizWifiErrorCode) {
     GIZ_SDK_START_SUCCESS = 8316,
     
     /*
+     当前固件是最新版本，不需要升级
+     */
+    GIZ_SDK_DEVICE_FIRMWARE_IS_LATEST = 8350,
+    /*
+     固件下载成功
+     */
+    GIZ_SDK_DEVICE_FIRMWARE_DOWNLOAD_OK = 8351,
+    /*
+     固件下载失败
+     */
+    GIZ_SDK_DEVICE_FIRMWARE_DOWNLOAD_FAILED = 8352,
+    /*
+     设备忙，固件正在升级
+     */
+    GIZ_SDK_DEVICE_BUSY_IN_UPGRADE = 8353,
+    /*
+     固件推送失败
+     */
+    GIZ_SDK_DEVICE_FIRMWARE_PUSH_FAILED = 8354,
+    /*
+     固件版本过低
+     */
+    GIZ_SDK_DEVICE_FIRMWARE_VERSION_TOO_LOW = 8355,
+    /*
+     固件校验失败
+     */
+    GIZ_SDK_DEVICE_FIRMWARE_CHECK_FAILED = 8356,
+    /*
+     固件升级失败
+     */
+    GIZ_SDK_DEVICE_UPGRADE_FAILED = 8357,
+    /*
+     固件升级成功
+     */
+    GIZ_SDK_DEVICE_UPGRADE_SUCCESS = 8358,
+    
+    /*
      mac already registered!
      */
     GIZ_OPENAPI_MAC_ALREADY_REGISTERED = 9001,
@@ -714,6 +751,14 @@ typedef NS_ENUM(NSInteger, GizWifiGAgentType) {
      古北模组
      */
     GizGAgentBL = 9,
+    /*
+     AtmelEE
+     */
+    GizGAgentAtmelEE = 10,
+    /*
+     其他
+     */
+    GizGAgentOther = 11,
 };
 
 /*
@@ -906,6 +951,72 @@ typedef NS_ENUM(NSInteger, GizPushType) {
      极光
      */
     GizPushJiGuang = 1
+};
+
+/*
+ 定时按周重复
+ */
+typedef NS_ENUM(NSInteger, GizScheduleWeekday) {
+    /*
+     星期日
+     */
+    GizScheduleSunday = 0,
+    /*
+     星期一
+     */
+    GizScheduleMonday = 1,
+    /*
+     星期二
+     */
+    GizScheduleTuesday = 2,
+    /*
+     星期三
+     */
+    GizScheduleWednesday = 3,
+    /*
+     星期四
+     */
+    GizScheduleThursday = 4,
+    /*
+     星期五
+     */
+    GizScheduleFriday = 5,
+    /*
+     星期六
+     */
+    GizScheduleSaturday = 6
+};
+
+/*
+ 定时任务重复策略
+ */
+typedef NS_ENUM(NSInteger, GizScheduleRepeatRule) {
+    /*
+     不管什么情况都重复
+     */
+    GizScheduleRepeatAll = 0,
+    /*
+     仅失败重复
+     */
+    GizScheduleRepeatFailed,
+};
+
+/*
+ 定时任务执行状态
+ */
+typedef NS_ENUM(NSInteger, GizScheduleStatus) {
+    /*
+     成功
+     */
+    GizScheduleSucceed = 0,
+    /*
+     失败
+     */
+    GizScheduleFailed,
+    /**
+     无状态
+     */
+    GizScheduleNotDone,
 };
 
 #endif

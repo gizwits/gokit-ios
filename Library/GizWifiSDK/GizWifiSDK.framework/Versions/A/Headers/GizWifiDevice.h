@@ -41,7 +41,7 @@ extern NSString *XPGWifiDeviceHardwareProductKey DEPRECATED_ATTRIBUTE;
  @param result 详细见 GizWifiErrorCode 枚举定义。result.code 为 GIZ_SDK_SUCCESS 表示成功，其他为失败。失败时，dataMap为空字典
  @param dataMap 设备上报的数据内容，字典格式：
      {
-        "status": [value],  // value 为 NSDictionary 类型，内容为设备状态键值对，[数据点标识名：数据点值]，数据点值的类型与 site 上的定义一致
+        "data": [value],  // value 为 NSDictionary 类型，内容为设备状态键值对，[数据点标识名：数据点值]，数据点值的类型与 site 上的定义一致
         "alerts": [value],  // value 为 NSDictionary 类型，内容为设备报警键值对，[数据点标识名：数据点值]，数据点值的类型与 site 上的定义一致
         "faults": [value],  // value 为 NSDictionary 类型，内容为设备故障键值对，[数据点标识名：数据点值]，数据点值的类型与 site 上的定义一致
         "binary": [value],  // value 为 NSData 类型，内容为二进制数据，专指没有在 site 上定义数据点的需要透传的数据

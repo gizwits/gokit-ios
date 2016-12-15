@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GPN-x3-OxC">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GPN-x3-OxC">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -22,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-404" y="322"/>
         </scene>
-        <!--My Device-->
+        <!--My Devices-->
         <scene sceneID="3Yt-4y-aXG">
             <objects>
                 <viewController id="1aQ-H0-RTz" customClass="GosDeviceListViewController" sceneMemberID="viewController">
@@ -31,39 +32,36 @@
                         <viewControllerLayoutGuide type="bottom" id="1bv-JN-mNy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l1g-Xe-McI">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dgv-1j-SMt">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="1aQ-H0-RTz" id="WCM-pq-ZHp"/>
                                     <outlet property="delegate" destination="1aQ-H0-RTz" id="WIr-BY-X6E"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzp-eJ-eiN">
-                                <rect key="frame" x="241" y="154" width="119" height="86"/>
                                 <state key="normal" image="08-icon-add.png"/>
                                 <connections>
                                     <action selector="toAirLink:" destination="1aQ-H0-RTz" eventType="touchUpInside" id="ZFd-ui-Qzr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ge6-cj-r94">
-                                <rect key="frame" x="60" y="280" width="480" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="rxW-d0-iFe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="No devices, please add">
-                                    <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="toAirLink:" destination="1aQ-H0-RTz" eventType="touchUpInside" id="Vus-Lk-g9d"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="dgv-1j-SMt" secondAttribute="trailing" id="24q-ee-dIJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ge6-cj-r94" secondAttribute="trailing" constant="40" id="V73-PK-BXH"/>
@@ -77,12 +75,8 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="My Device" id="dLD-Q7-c39">
-                        <barButtonItem key="leftBarButtonItem" image="nav_btn_update" id="30B-nD-0Of">
-                            <connections>
-                                <action selector="refreshBtnPressed:" destination="1aQ-H0-RTz" id="KaP-eP-EZ7"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="My Devices" id="dLD-Q7-c39">
+                        <barButtonItem key="leftBarButtonItem" image="nav_btn_update" id="B4l-tb-xv3"/>
                         <barButtonItem key="rightBarButtonItem" image="more" id="chy-rk-J3i">
                             <connections>
                                 <action selector="actionSheet:" destination="1aQ-H0-RTz" id="ZQS-5b-UTy"/>

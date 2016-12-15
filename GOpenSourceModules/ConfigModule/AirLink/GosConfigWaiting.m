@@ -44,6 +44,7 @@
         [(UILabel *)progressView.centralView setText:[NSString stringWithFormat:@"%2.0f%%", progress * 100]];
     };
     [self.progressView setProgress:0.1];
+    self.progressView.userInteractionEnabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -205,19 +206,14 @@
     }
     else if (result.code == GIZ_SDK_DEVICE_CONFIG_IS_RUNNING) {
         GIZ_LOG_BIZ("airlink_config_end", "warn", "end airlink config，result is :%s, current ssid is %s, elapsed: %i(s)", info.UTF8String, GetCurrentSSID().UTF8String, CONFIG_TIMEOUT-self.timeout);
-        /*
-        __block UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:info delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-        [alertView show];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            sleep(3);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:YES];
-                alertView = nil;
-            });
-        });
-         
-         */
+        NSString *strTip = NSLocalizedString(@"tip", @"提示");
+        NSString *strMessage = NSLocalizedString(@"Configuration is busy, please try another after a moment", @"执行配置的操作过于频繁，请稍后再试");
+        NSString *strConfirm = NSLocalizedString(@"OK", @"确定");
+        [[[UIAlertView alloc] initWithTitle:strTip message:strMessage delegate:nil cancelButtonTitle:strConfirm otherButtonTitles:nil] show];
+        if (self.navigationController.viewControllers.lastObject == self) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
     else {
         GIZ_LOG_BIZ("airlink_config_end", "failed", "end airlink config，result is :%s, current ssid is %s, elapsed: %i(s)", info.UTF8String, GetCurrentSSID().UTF8String, CONFIG_TIMEOUT-self.timeout);

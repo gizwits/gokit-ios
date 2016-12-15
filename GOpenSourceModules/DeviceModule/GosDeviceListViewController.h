@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GosConfigStart.h"
 
-@interface GosDeviceListViewController : UIViewController <GizConfigStartDelegate>
+@interface GosDeviceListViewController : UIViewController <GosConfigStartDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *deviceListTableView;
 @property (nonatomic, strong) UIViewController *parent;

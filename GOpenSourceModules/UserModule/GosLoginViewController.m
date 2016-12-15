@@ -17,6 +17,7 @@
 #import "WXApi.h"
 
 #import "GosPushManager.h"
+#import "GosAnonymousLogin.h"
 
 #define APPDELEGATE ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
@@ -59,6 +60,20 @@
     CGPathRelease(path);
     [[self.loginBtnsBar layer] addSublayer:shapeLayer];
     
+    BOOL qqOn = [GosCommon sharedInstance].qqOn;
+    BOOL wechatOn = [GosCommon sharedInstance].wechatOn;
+    if (!qqOn) {
+        self.loginQQBtn.hidden = YES;
+    }
+    
+    if (!wechatOn) {
+        self.loginWechatBtn.hidden = YES;
+    }
+    
+    if (!qqOn && !wechatOn) {
+        self.loginBtnsBar.hidden = YES;
+    }
+    
     self.loginBtn.backgroundColor = [GosCommon sharedInstance].buttonColor;
     [self.loginBtn setTitleColor:[GosCommon sharedInstance].buttonTextColor forState:UIControlStateNormal];
     [self.loginBtn.layer setCornerRadius:22.0];
@@ -78,30 +93,40 @@
     
     // 默认进入设备列表界面
 //    [self toDeviceListWithoutLogin:NO];
+    [self autoLogin];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.textCell.textInput.text = [GosCommon sharedInstance].tmpUser;
+    self.passwordCell.textPassword.text = [GosCommon sharedInstance].tmpPass;
+    [GizWifiSDK sharedInstance].delegate = self;
+    [self autoLogin];
     
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
-    if (username && [username length] > 0 && password && [password length] > 0) {
-        [self userLogin:YES];
-    }
-    [GizWifiSDK sharedInstance].delegate = self;
 //    if ([GizCommon sharedInstance].hasBeenLoggedIn) {
 //        [self.skipBtn setHidden:YES];
 //    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autoLogin) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self cancelInput];
 //    [[UIApplication sharedApplication] setStatusBarStyle:[GosCommon sharedInstance].statusBarStyle];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)autoLogin {
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+    if (![MBProgressHUD HUDForView:self.view] && //上次没有执行登录操作
+        username && [username length] > 0 && password && [password length] > 0) {
+        [self userLogin:YES];
+    }
 }
 
 - (void)cancelInput {
@@ -131,7 +156,9 @@
     }
     [WXApi registerApp:WECHAT_APP_ID];
     if (![WXApi isWXAppInstalled]) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:@"未检测到微信，请安装后重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        NSString *message = NSLocalizedString(@"haven't WeChat Application", @"未检测到微信，请安装后重试");
+        NSString *confirm = NSLocalizedString(@"OK", @"确定");
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:message delegate:self cancelButtonTitle:confirm otherButtonTitles:nil, nil] show];
         return;
     }
     [GosCommon sharedInstance].currentLoginStatus = GizLoginNone;
@@ -252,15 +279,22 @@
 }
 
 - (IBAction)userLoginBtnPressed:(id)sender {
+    if ([GosCommon sharedInstance].anonymousLoginOn) {
+        [GosAnonymousLogin cleanup];
+    }
     [self userLogin:NO];
 }
 
 #pragma mark - GizWifiSDKDelegate
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didUserLogin:(NSError *)result uid:(NSString *)uid token:(NSString *)token {
-    if ([GosCommon sharedInstance].currentLoginStatus == GizLoginAnonymousProcess || [GosCommon sharedInstance].currentLoginStatus == GizLoginAnonymousCancel) {
-        return;
+    [MBProgressHUD hideHUDForView:self.view animated:!APPDELEGATE.isBackground];
+    if ([GosCommon sharedInstance].anonymousLoginOn) {
+        GosAnonymousLoginStatus lastStatus = [GosAnonymousLogin lastLoginStatus];
+        if (lastStatus == GosAnonymousLoginStatusProcessing ||
+            lastStatus == GosAnonymousLoginStatusFailed) {
+            return;
+        }
     }
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (result.code == GIZ_SDK_SUCCESS) {
         [common showAlert:NSLocalizedString(@"Login successful", nil) disappear:YES];
         [[GosCommon sharedInstance] saveUserDefaults:nil password:nil uid:uid token:token];
@@ -273,13 +307,18 @@
         [GosCommon sharedInstance].currentLoginStatus = GizLoginUser;
         [GosPushManager unbindToGDMS:NO];
         [GosPushManager bindToGDMS];
-        [self.navigationController pushViewController:devListCtrl animated:YES];
-    }
-//    else if (result.code == 8050) {
-//        GIZ_LOG_DEBUG("userLoginAnonymous failed");
-//    }
-    else {
-        [[GosCommon sharedInstance] removeUserDefaults];
+        if (self.navigationController.viewControllers.lastObject == self) {
+            [self.navigationController pushViewController:devListCtrl animated:YES];
+        }
+    } else {
+        if (result.code != GIZ_SDK_DNS_FAILED &&
+            result.code != GIZ_SDK_CONNECTION_TIMEOUT &&
+            result.code != GIZ_SDK_CONNECTION_REFUSED &&
+            result.code != GIZ_SDK_CONNECTION_ERROR &&
+            result.code != GIZ_SDK_CONNECTION_CLOSED &&
+            result.code != GIZ_SDK_SSL_HANDSHAKE_FAILED) {
+            [[GosCommon sharedInstance] removeUserDefaults];
+        }
         NSString *info = [[GosCommon sharedInstance] checkErrorCode:result.code];
         [common showAlert:info disappear:YES];
     }

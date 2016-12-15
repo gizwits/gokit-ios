@@ -92,7 +92,10 @@
     [self.tableView reloadData];
     
     NSInteger indexOfAirlinkType = [[GosCommon sharedInstance].configModuleValueArray indexOfObject:@([GosCommon sharedInstance].airlinkConfigType)];
-    [self.selectModuleBtn setTitle:[NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Select the type of module", nil), [[GosCommon sharedInstance].configModuleTextArray objectAtIndex:indexOfAirlinkType]] forState:UIControlStateNormal];
+    NSString *str = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Select the type of module", nil), [[GosCommon sharedInstance].configModuleTextArray objectAtIndex:indexOfAirlinkType]];
+    NSMutableAttributedString *moduleTitle = [[NSMutableAttributedString alloc] initWithString:str];
+    [moduleTitle addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, str.length)];
+    [self.selectModuleBtn setAttributedTitle:moduleTitle forState:UIControlStateNormal];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -110,7 +113,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setDelegate:(id<GizConfigStartDelegate>)delegate {
+- (void)setDelegate:(id<GosConfigStartDelegate>)delegate {
     [GosCommon sharedInstance].delegate = delegate;
 }
 

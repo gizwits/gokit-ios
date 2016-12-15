@@ -16,8 +16,12 @@
 #import "GosDeviceListCell.h"
 
 #import "GosPushManager.h"
+#import "GosAnonymousLogin.h"
+#import "GosCommon.h"
 
-@interface GosDeviceListViewController () <UIActionSheetDelegate, GizWifiSDKDelegate, GizWifiDeviceDelegate>
+#import <TargetConditionals.h>
+
+@interface GosDeviceListViewController () <UIActionSheetDelegate, GizWifiSDKDelegate, GizWifiDeviceDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -32,9 +36,34 @@
 //        self.navigationItem.leftBarButtonItem = nil;
 //        self.navigationItem.hidesBackButton = YES;
 //    }
-    if ([GosCommon sharedInstance].currentLoginStatus == GizLoginNone || [GosCommon sharedInstance].currentLoginStatus == GizLoginAnonymousCancel) {
-        [[GizWifiSDK sharedInstance] userLoginAnonymous];
-        [GosCommon sharedInstance].currentLoginStatus = GizLoginAnonymousProcess;
+    if ([GosCommon sharedInstance].anonymousLoginOn) {
+        GosAnonymousLoginStatus lastLoginStatus = [GosAnonymousLogin lastLoginStatus];
+        if ([GosCommon sharedInstance].currentLoginStatus == GizLoginNone || lastLoginStatus == GosAnonymousLoginStatusLogout) {
+            GosDidLogin loginHandler = ^(NSError *result, NSString *uid, NSString *token) {
+                if (result.code == GIZ_SDK_SUCCESS) {
+//                    [GizCommon sharedInstance].hasBeenLoggedIn = YES;
+                    NSString *info = [NSString stringWithFormat:@"%@，%@ - %@", NSLocalizedString(@"Login successful", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
+                    GIZ_LOG_BIZ("userLoginAnonymous_end", "success", "%s", info.UTF8String);
+                    [[GosCommon sharedInstance] saveUserDefaults:nil password:nil uid:uid token:token];
+                    [GosPushManager unbindToGDMS:NO];
+                    [GosPushManager bindToGDMS];
+                }
+                else {
+                    [GosCommon sharedInstance].currentLoginStatus = GizLoginNone;
+                    NSString *info = [NSString stringWithFormat:@"%@，%@ - %@", NSLocalizedString(@"Login failed", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
+                    GIZ_LOG_BIZ("userLoginAnonymous_end", "failed", "%s", info.UTF8String);
+                    double delayInSeconds = 3.0;
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                        if ([GosCommon sharedInstance].currentLoginStatus == GizLoginNone) {
+                            [GosAnonymousLogin loginAnonymous:loginHandler];
+                            [[GizWifiSDK sharedInstance] userLoginAnonymous];
+                        }
+                    });
+                }
+            };
+            [GosAnonymousLogin loginAnonymous:loginHandler];
+        }
     }
     
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(actionSheet:)];
@@ -61,6 +90,7 @@
 }
 
 - (IBAction)refreshBtnPressed:(id)sender {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self getBoundDevice];
 }
@@ -130,7 +160,7 @@
 
 - (void)onUserLogout {
     if ([GosCommon sharedInstance].currentLoginStatus == GizLoginUser) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Logout?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"NO", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:NSLocalizedString(@"Logout?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
         [alertView show];
     }
     else {
@@ -138,7 +168,9 @@
             [GosPushManager unbindToGDMS:YES];
             self.deviceListArray  = @[@[],@[],@[]];
             [[GosCommon sharedInstance] removeUserDefaults];
-            [GosCommon sharedInstance].currentLoginStatus = GizLoginAnonymousCancel;
+            if ([GosCommon sharedInstance].anonymousLoginOn) {
+                [GosAnonymousLogin logout];
+            }
             [self.navigationController popToViewController:self.parent animated:YES];
         });
     }
@@ -264,6 +296,14 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *devArr = [self.deviceListArray objectAtIndex:indexPath.section];
+    if (devArr.count == 0) {
+        return NO;
+    }
+    return YES;
+}
+
 - (void)customCell:(GosDeviceListCell *)cell device:(GizWifiDevice *)dev {
     // 添加左边的图片
     UIGraphicsBeginImageContext(CGSizeMake(60, 60));
@@ -316,18 +356,21 @@
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             dev.delegate = self;
             [dev setSubscribe:YES];
+            NSLog(@"****************************订阅设备****************************");
         }
     }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([[self.deviceListArray objectAtIndex:indexPath.section] count] == 0) {
-        return NO;
-    }
     if (indexPath.section == 1) {
         return NO;
     }
+    NSMutableArray *devArr = [self.deviceListArray objectAtIndex:indexPath.section];
+    if (devArr.count == 0) {
+        return NO;
+    }
     return YES;
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -358,24 +401,33 @@
 }
 
 - (IBAction)toAirLink:(id)sender {
+#if (!TARGET_IPHONE_SIMULATOR)
     if (GetCurrentSSID().length > 0) {
+#endif
         UINavigationController *nav = [[UIStoryboard storyboardWithName:@"GosAirLink" bundle:nil] instantiateInitialViewController];
         GosConfigStart *configStartVC = nav.viewControllers.firstObject;
         configStartVC.delegate = self;
         [self.navigationController pushViewController:configStartVC animated:YES];
+#if (!TARGET_IPHONE_SIMULATOR)
     } else {
         [self showAlert:NSLocalizedString(@"Please switch to Wifi environment", nil)];
     }
+#endif
 }
 
 - (void)toSettings {
-    UINavigationController *nav = [[UIStoryboard storyboardWithName:@"GosSettings" bundle:nil] instantiateInitialViewController];
-    GosSettingsViewController *settingsVC = nav.viewControllers.firstObject;
-    [self.navigationController pushViewController:settingsVC animated:YES];
+    GosCommon *dataCommon = [GosCommon sharedInstance];
+    if (dataCommon.settingPageHandler) {
+        dataCommon.settingPageHandler(self.navigationController);
+    } else {
+        UINavigationController *nav = [[UIStoryboard storyboardWithName:@"GosSettings" bundle:nil] instantiateInitialViewController];
+        GosSettingsViewController *settingsVC = nav.viewControllers.firstObject;
+        [self.navigationController pushViewController:settingsVC animated:YES];
+    }
 }
 
 #pragma mark - Back to root
-- (void)gizConfigDidFinished {
+- (void)gosConfigDidFinished {
     [self onPopToSelf:YES];
 }
 
@@ -385,7 +437,7 @@
     }
 }
 
-- (void)gizConfigDidSuccedd:(GizWifiDevice *)device {
+- (void)gosConfigDidSucceed:(GizWifiDevice *)device {
     //延迟1s执行
     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         sleep(1);
@@ -397,6 +449,12 @@
 }
 
 #pragma mark - GizWifiSDK Delegate
+- (void)wifiSDK:(GizWifiSDK *)wifiSDK didUserLogin:(NSError *)result uid:(NSString *)uid token:(NSString *)token {
+    if ([GosCommon sharedInstance].anonymousLoginOn) {
+        [GosAnonymousLogin didUserLogin:result uid:uid token:token];
+    }
+}
+
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didDiscovered:(NSError *)result deviceList:(NSArray *)deviceList {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self refreshTableView];
@@ -418,32 +476,6 @@
     else {
         NSString *info = [[GosCommon sharedInstance] checkErrorCode:result.code];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil) message:info delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
-    }
-}
-
-- (void)wifiSDK:(GizWifiSDK *)wifiSDK didUserLogin:(NSError *)result uid:(NSString *)uid token:(NSString *)token {
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    if (result.code == GIZ_SDK_SUCCESS) {
-//        [GizCommon sharedInstance].hasBeenLoggedIn = YES;
-        NSString *info = [NSString stringWithFormat:@"%@，%@ - %@", NSLocalizedString(@"Login successful", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
-        GIZ_LOG_BIZ("userLoginAnonymous_end", "success", "%s", info.UTF8String);
-        [[GosCommon sharedInstance] saveUserDefaults:nil password:nil uid:uid token:token];
-        [GosCommon sharedInstance].currentLoginStatus = GizLoginAnonymous;
-        [GosPushManager unbindToGDMS:NO];
-        [GosPushManager bindToGDMS];
-    }
-    else {
-        [GosCommon sharedInstance].currentLoginStatus = GizLoginNone;
-        NSString *info = [NSString stringWithFormat:@"%@，%@ - %@", NSLocalizedString(@"Login failed", nil), @(result.code), [result.userInfo objectForKey:@"NSLocalizedDescription"]];
-        GIZ_LOG_BIZ("userLoginAnonymous_end", "failed", "%s", info.UTF8String);
-        double delayInSeconds = 3.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            if ([GosCommon sharedInstance].currentLoginStatus == GizLoginNone) {
-                [[GizWifiSDK sharedInstance] userLoginAnonymous];
-                [GosCommon sharedInstance].currentLoginStatus = GizLoginAnonymousProcess;
-            }
-        });
     }
 }
 
@@ -493,6 +525,11 @@
     
     QRCodeController *qrcodeVC = [[QRCodeController alloc] init];
     qrcodeVC.view.alpha = 0;
+    [qrcodeVC setDidCancelBlock:^{
+        if ([GosCommon sharedInstance].recordPageHandler) {
+            [GosCommon sharedInstance].recordPageHandler(self);
+        }
+    }];
     [qrcodeVC setDidReceiveBlock:^(NSString *result) {
         NSDictionary *dict = [self getScanResult:result];
         if(dict != nil)
@@ -523,6 +560,9 @@
     [del.window.rootViewController.view addSubview:qrcodeVC.view];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         qrcodeVC.view.alpha = 1;
+        if ([GosCommon sharedInstance].recordPageHandler) {
+            [GosCommon sharedInstance].recordPageHandler(qrcodeVC);
+        }
     } completion:^(BOOL finished) {
     }];
 }

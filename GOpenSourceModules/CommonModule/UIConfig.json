@@ -9,14 +9,17 @@
     "push_type":0,
     "jpush_app_key":"your_jpush_app_key",
     "bpush_app_key":"your_bpush_app_key",
-    "openAPI_URL":"",
-    "site_URL":"",
-    "push_URL":"",
+    "openAPIDomain":"",
+    "siteDomain":"",
+    "pushDomain":"",
     "buttonColor":"ffd100",
     "buttonTextColor":"000000",
     "navigationBarColor":"ffd100",
     "navigationBarTextColor":"000000",
     "configProgressViewColor":"",
     "statusBarStyle":0,
-    "addDeviceTitle":""
+    "addDeviceTitle":"",
+    "qq": false,
+    "wechat": false,
+    "anonymousLogin": true
 }

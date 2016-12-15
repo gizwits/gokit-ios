@@ -33,41 +33,45 @@
 
 @implementation GizDeviceEnumCell
 
-@synthesize tag = _tag;
-
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     self.titleText.text = _title;
     self.index = _index;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.preSelected = NO;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//    if (self.preSelected == selected) {
-//        return;
-//    }
-//    self.preSelected = selected;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     if(selected == YES && [_delegate respondsToSelector:@selector(GizDeviceDidSelectedEnum:)])
+    {
         [_delegate GizDeviceDidSelectedEnum:self];
+    }
     
     [super setSelected:NO animated:animated];
 }
 
-- (void)setTitle:(NSString *)title {
+- (void)setTitle:(NSString *)title
+{
     _title = title;
     self.titleText.text = title;
 }
 
-- (void)setValues:(NSArray *)values {
+- (void)setValues:(NSArray *)values
+{
     _values = values;
 }
 
-- (void)setIndex:(NSInteger)index {
+- (void)setIndex:(NSInteger)index
+{
     _index = index;
     if(_index >= 0 && _index < _values.count)
+    {
         self.valueText.text = [NSString stringWithFormat:@"%@", _values[index]];
+    }
     else
+    {
         self.valueText.text = @"";
+    }
 }
 
 @end
